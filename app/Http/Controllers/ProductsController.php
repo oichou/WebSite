@@ -13,7 +13,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Product::where('category','=','phone')->inRandomOrder()->take(9)->get();
+        $products = Product::inRandomOrder()->take(9)->get();
         return view('products')->with('products',$products);
     }
 

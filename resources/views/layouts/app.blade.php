@@ -28,6 +28,18 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/OwlCarousel2-2.2.1/animate.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/main_styles.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/responsive.css')}}">
+    <!-- <link rel="stylesheet" type="text/css" href="{{ asset('/styles/bootstrap4/bootstrap.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/product.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/product_responsive.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/checkout.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/checkout_responsive.css') }}">') }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/categories.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/categories_responsive.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/contact.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/contact_responsive.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/cart.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/cart_responsive.css') }}"> -->
+
     <!-- <link rel="stylesheet" type="text/css" href="{{ asset('/styles/bootstrap4/bootstrap.min.css')}}"> -->
     @yield('extra-css')
 </head>
@@ -41,10 +53,10 @@
       @yield('extra-js')
 
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      <!-- <script src="{{ asset('/js/jquery-3.2.1.min.js') }}"></script> -->
+      <script src="{{ asset('/js/jquery-3.2.1.min.js') }}"></script>
       <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
-      <!-- <script src="{{ asset('/css/bootstrap4/popper.js') }}"></script> -->
-      <!-- <script src="{{ asset('/css/bootstrap4/bootstrap.min.js') }}"></script> -->
+      <script src="{{ asset('/css/bootstrap4/popper.js') }}"></script>
+      <script src="{{ asset('/css/bootstrap4/bootstrap.min.js') }}"></script>
       <script src="{{ asset('/plugins/greensock/TweenMax.min.js') }}"></script>
       <script src="{{ asset('/plugins/greensock/TimelineMax.min.js') }}"></script>
       <script src="{{ asset('/plugins/scrollmagic/ScrollMagic.min.js') }}"></script>
@@ -55,5 +67,11 @@
       <script src="{{ asset('/plugins/easing/easing.js') }}"></script>
       <script src="{{ asset('/plugins/parallax-js-master/parallax.min.js') }}"></script>
       <script type="text/javascript" src="{{ asset('/js/custom.js')}}"></script>
+      <script src="{{ asset('js/product.js') }}"></script>
+      <script src="{{ asset('js/checkout.js') }}"></script>
+      <script src="{{ asset('js/categories.js') }}"></script>
+      <script src="{{ asset('js/contact.js') }}"></script>
+      <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
+      <script src="{{ asset('js/cart.js') }}"></script>
 </body>
 </html>

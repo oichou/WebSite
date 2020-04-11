@@ -9,26 +9,26 @@
             <nav class="main_nav">
               <ul>
                 <li class="hassubs active">
-                  <a href="/">Home</a>
+                  <a href="{{ url('home')}}">Home</a>
                 </li>
                 <li class="hassubs">
-                  <a href="categories.html">Categories</a>
+                  <a href="{{ url('categories')}}">Categories</a>
                   <ul>
-                    <li><a href="{{ route('products') }}">Phones</a></li>
-                    <li><a href="categories.html">Category</a></li>
-                    <li><a href="categories.html">Category</a></li>
-                    <li><a href="categories.html">Category</a></li>
-                    <li><a href="categories.html">Category</a></li>
+                    <li><a href="{{ url('categories')}}">Phones</a></li>
+                    <li><a href="{{ url('categories')}}">Laptops</a></li>
+                    <li><a href="{{ url('categories')}}">Cameras</a></li>
+                    <li><a href="{{ url('categories')}}">tablets</a></li>
+                    <li><a href="{{ url('categories')}}">Gaming</a></li>
                   </ul>
                 </li>
                 <li><a href="#">Accessories</a></li>
                 <li><a href="#">Offers</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="{{ url('contact')}}">Contact</a></li>
               </ul>
             </nav>
             <div class="header_extra ml-auto">
               <div class="shopping_cart">
-                <a href="cart.html">
+                <a href="{{ url('cart')}}">
                   <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                        viewBox="0 0 489 489" style="enable-background:new 0 0 489 489;" xml:space="preserve">
                     <g>
@@ -44,11 +44,11 @@
               </div>
               <div class="user_login">
                 @guest
-                    <li class="nav-item">
+                    <div class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}"><ion-icon name="person-circle-outline"></ion-icon></a>
-                    </li>
+                    </div>
                 @else
-                <li class="nav-item ">
+                <div class="nav-item ">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle dropbtn " href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                       <ion-icon name="person-circle-outline"></ion-icon>
                         {{ Auth::user()->name }} <span class="caret"></span>
@@ -65,7 +65,7 @@
                             @csrf
                         </form>
                     </div>
-                </li>
+                </div>
             @endguest
 
               </div>

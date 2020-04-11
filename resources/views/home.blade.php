@@ -61,7 +61,7 @@
 
         <!-- Slider Item -->
         <div class="owl-item home_slider_item">
-          <div class="home_slider_background" style="background-image:url({{URL::to('/')}}/image_project/alldevice.jpg)"></div>
+          <div class="home_slider_background" style="background-image:url({{URL::to('/')}}/images/alldevice.jpg)"></div>
           <div class="home_slider_content_container">
             <div class="container">
               <div class="row">
@@ -79,7 +79,7 @@
 
 				<!-- Slider Item -->
 				<div class="owl-item home_slider_item">
-					<div class="home_slider_background" style="background-image:url({{URL::to('/')}}/image_project/macpro2.jpg)"></div>
+					<div class="home_slider_background" style="background-image:url({{URL::to('/')}}/images/macpro2.jpg)"></div>
 					<div class="home_slider_content_container">
 						<div class="container">
 							<div class="row">
@@ -144,25 +144,25 @@
       <div class="categories-container d-flex flex-lg-row flex-column align-items-start justify-content-between">
         <div class="category">
           <a id ="" href="#">
-            <div class="category-background" style="background-image:url({{URL::to('/')}}/image_project/cat_phones.jpg)"></div>
+            <div class="category-background" style="background-image:url({{URL::to('/')}}/images/cat_phones.jpg)"></div>
             <div class="category-title">Phones</div>
           </a>
         </div>
         <div class="category">
           <a id ="" href="#">
-            <div class="category-background" style="background-image:url({{URL::to('/')}}/image_project/cat_computers.jpg)"></div>
+            <div class="category-background" style="background-image:url({{URL::to('/')}}/images/cat_computers.jpg)"></div>
             <div class="category-title">Computers</div>
           </a>
         </div>
         <div class="category">
           <a id ="" href="#">
-            <div class="category-background" style="background-image:url({{URL::to('/')}}/image_project/gaming.jpg)"></div>
+            <div class="category-background" style="background-image:url({{URL::to('/')}}/images/gaming.jpg)"></div>
             <div class="category-title">Gaming</div>
           </a>
         </div>
         <div class="category">
           <a id ="" href="#">
-            <div class="category-background" style="background-image:url({{URL::to('/')}}/image_project/cat_other.jpg)"></div>
+            <div class="category-background" style="background-image:url({{URL::to('/')}}/images/cat_other.jpg)"></div>
             <div class="category-title">Other</div>
           </a>
         </div>
@@ -176,19 +176,19 @@
     <div class="brands-container d-flex flex-lg-row flex-column align-items-start justify-content-between">
       <div class="brand">
         <a id ="" href="#">
-          <div class="brand-background" style="background-image:url({{URL::to('/')}}/image_project/brand_apple2.jpg)"></div>
+          <div class="brand-background" style="background-image:url({{URL::to('/')}}/images/brand_apple2.jpg)"></div>
           <div class="brand-title">apple</div>
         </a>
       </div>
       <div class="brand">
         <a id ="" href="#">
-          <div class="brand-background" style="background-image:url({{URL::to('/')}}/image_project/brand_samsung.jpg)"></div>
+          <div class="brand-background" style="background-image:url({{URL::to('/')}}/images/brand_samsung.jpg)"></div>
           <div class="brand-title">Samsung</div>
         </a>
       </div>
       <div class="brand">
         <a id ="" href="#">
-          <div class="brand-background" style="background-image:url({{URL::to('/')}}/image_project/brand_sony2.jpg)"></div>
+          <div class="brand-background" style="background-image:url({{URL::to('/')}}/images/brand_sony2.jpg)"></div>
           <div class="brand-title">Sony</div>
         </a>
       </div>

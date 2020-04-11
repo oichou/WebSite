@@ -443,7 +443,7 @@ section
 {
 
 }
-.shopping_cart
+.shopping_cart , .user_login
 {
 	display: inline-block;
 }

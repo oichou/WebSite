@@ -42,6 +42,33 @@
                   <div>Cart <span>(0)</span></div>
                 </a>
               </div>
+              <div class="user_login">
+                @guest
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}"><ion-icon name="person-circle-outline"></ion-icon></a>
+                    </li>
+                @else
+                <li class="nav-item ">
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle dropbtn " href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                      <ion-icon name="person-circle-outline"></ion-icon>
+                        {{ Auth::user()->name }} <span class="caret"></span>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-right dropdown_account" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                         document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </div>
+                </li>
+            @endguest
+
+              </div>
               <div class="search">
                 <div class="search_icon">
                   <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -87,14 +114,14 @@
   </div>
 
   <!-- Social -->
-  <div class="header_social">
+  <!-- <div class="header_social">
     <ul>
       <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
       <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
       <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
       <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
     </ul>
-  </div>
+  </div> -->
 </header>
 
 @endsection

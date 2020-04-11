@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+<!-- Header -->
+@include('header')
+
 @section('content')
 <div class="login-dark">
     <form method="POST" action="{{ route('register') }}">

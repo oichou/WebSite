@@ -1,6 +1,6 @@
 @section('footer')
 
-<div class="footer_overlay"></div>
+<div class="footer_overlay">
 <footer class="footer">
   <div class="footer_background" style="background-image:url(images/footer.jpg)"></div>
   <div class="container">

@@ -29,15 +29,17 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/main_styles.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/responsive.css')}}">
     <!-- <link rel="stylesheet" type="text/css" href="{{ asset('/styles/bootstrap4/bootstrap.min.css')}}"> -->
-
+    @yield('extra-css')
 </head>
 <body>
 
       <main class="py-4">
-          @yield('header')
+        @yield('header')
           @yield('content')
           @yield('footer')
       </main>
+      @yield('extra-js')
+
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <!-- <script src="{{ asset('/js/jquery-3.2.1.min.js') }}"></script> -->
       <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>

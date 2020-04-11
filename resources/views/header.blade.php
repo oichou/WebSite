@@ -14,7 +14,7 @@
                 <li class="hassubs">
                   <a href="categories.html">Categories</a>
                   <ul>
-                    <li><a href="categories.html">Category</a></li>
+                    <li><a href="{{ route('products') }}">Phones</a></li>
                     <li><a href="categories.html">Category</a></li>
                     <li><a href="categories.html">Category</a></li>
                     <li><a href="categories.html">Category</a></li>

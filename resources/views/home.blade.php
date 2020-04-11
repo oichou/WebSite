@@ -1,4 +1,12 @@
 @extends('layouts.app')
+
+@section('extra-css')
+<style >
+	.header ,.footer{
+		position: fixed;
+	}
+</style>
+@endsection
 <!-- Header -->
 @include('header')
 

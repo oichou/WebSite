@@ -19,6 +19,20 @@ Route::get('/', function () {
 Route::get('admin', function () {
     return view('admin');
 });
+// Route::get('products', function () {
+//     return view('products');
+// });
+Route::get('checkout', function () {
+    return view('checkout');
+});
+Route::get('product', function () {
+    return view('product');
+});
+Route::get('products', 'ProductsController@index')->name('products');
+
+Route::get('cart', function () {
+    return view('cart');
+});
 
 Auth::routes();
 

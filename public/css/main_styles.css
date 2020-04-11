@@ -305,7 +305,7 @@ section
 .header
 {
 	display: block;
-	position: fixed;
+	position: center;
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -1374,7 +1374,7 @@ section
 }
 .footer
 {
-	position: fixed;
+	position: center;
 	left: 0;
 	bottom: 0;
 	width: 100%;

@@ -14,11 +14,19 @@
                 <li class="hassubs">
                   <a href="{{ url('categories')}}">Categories</a>
                   <ul>
+<<<<<<< HEAD
                     <li><a href="{{ url('categories')}}">Phones</a></li>
                     <li><a href="{{ url('categories')}}">Laptops</a></li>
                     <li><a href="{{ url('categories')}}">Cameras</a></li>
                     <li><a href="{{ url('categories')}}">tablets</a></li>
                     <li><a href="{{ url('categories')}}">Gaming</a></li>
+=======
+                    <li><a href="{{ route('products') }}">Phones</a></li>
+                    <li><a href="categories.html">Category</a></li>
+                    <li><a href="categories.html">Category</a></li>
+                    <li><a href="categories.html">Category</a></li>
+                    <li><a href="categories.html">Category</a></li>
+>>>>>>> decd1802317bf40dd090d4db9395d80bdfb34949
                   </ul>
                 </li>
                 <li><a href="#">Accessories</a></li>

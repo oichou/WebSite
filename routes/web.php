@@ -19,6 +19,7 @@ Route::get('/', function () {
 Route::get('admin', function () {
     return view('admin');
 });
+<<<<<<< HEAD
 Route::get('/categories', function () {
     return view('categories');
 });
@@ -34,6 +35,22 @@ Route::get('/check', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
+=======
+// Route::get('products', function () {
+//     return view('products');
+// });
+Route::get('checkout', function () {
+    return view('checkout');
+});
+Route::get('product', function () {
+    return view('product');
+});
+Route::get('products', 'ProductsController@index')->name('products');
+
+Route::get('cart', function () {
+    return view('cart');
+});
+>>>>>>> decd1802317bf40dd090d4db9395d80bdfb34949
 
 Auth::routes();
 

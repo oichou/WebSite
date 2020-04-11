@@ -28,6 +28,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/OwlCarousel2-2.2.1/animate.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/main_styles.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/responsive.css')}}">
+<<<<<<< HEAD
     <link rel="stylesheet" type="text/css" href="{{ asset('/styles/bootstrap4/bootstrap.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/product.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/product_responsive.css') }}">
@@ -39,14 +40,20 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/contact_responsive.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/cart.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/cart_responsive.css') }}">
+=======
+    <!-- <link rel="stylesheet" type="text/css" href="{{ asset('/styles/bootstrap4/bootstrap.min.css')}}"> -->
+    @yield('extra-css')
+>>>>>>> decd1802317bf40dd090d4db9395d80bdfb34949
 </head>
 <body>
 
       <main class="py-4">
-          @yield('header')
+        @yield('header')
           @yield('content')
           @yield('footer')
       </main>
+      @yield('extra-js')
+
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script src="{{ asset('/js/jquery-3.2.1.min.js') }}"></script>
       <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>

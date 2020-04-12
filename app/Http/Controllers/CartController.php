@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
+use App\Product;
+use App\Cart;
+use Session;
 
 class CartController extends Controller
 {
@@ -13,7 +18,21 @@ class CartController extends Controller
      */
     public function index()
     {
-        //
+        $products = [];
+        $cart     = Session::has('cart') ? Session::get('cart') : null;
+        // dd($cart);
+        if($cart){
+          foreach ($cart->products_id as $key => $value) {
+            $qty = $value;
+            $product = Product::find(intval($key));
+            $products [] = [$product,$qty];
+          }
+        }
+        // dd($products);
+        return view('cart')->with([
+          'products' => $products
+
+        ]);
     }
 
     /**
@@ -27,14 +46,19 @@ class CartController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * add a newly product to the cart.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function addProduct(Product $product)
     {
-        //
+        $oldcart = Session::has('cart') ? Session::get('cart') : null;
+        // dd($oldcart);
+        $mycart  = new Cart($oldcart);
+        $mycart->add($product);
+        Session::put('cart',$mycart);
+        return redirect()->route('cart.index');
     }
 
     /**

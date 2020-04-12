@@ -18,7 +18,9 @@ Route::get('/products', 'ProductsController@index')->name('products.index');
 Route::get('/products/{id}', 'ProductsController@show')->name('products.show');
 Route::get('/admin', function () {
     return view('admin');
-});
+})->middleware('auth');
 Route::get('/cart', 'CartController@index')->name('cart.index');
+
+Route::get('/cart/{product}', 'CartController@addProduct')->name('cart.addProduct');
 
 Auth::routes();

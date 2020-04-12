@@ -9,6 +9,7 @@ body {
   background: linear-gradient(to right, #eecda3, #ef629f);
   min-height: 100vh;
 }
+
 .qty .count {
     color: #000;
     display: inline-block;
@@ -101,52 +102,36 @@ input:disabled{
                 </tr>
               </thead>
               <tbody>
+                @forelse ($products as $product)
                 <tr>
-                  <th scope="row" class="border-0">
+                  <th scope="row" >
                     <div class="p-2">
-                      <img src="https://res.cloudinary.com/mhmd/image/upload/v1556670479/product-1_zrifhn.jpg" alt="" width="70" class="img-fluid rounded shadow-sm">
+                      <img src="images/{{$product[0]->path}}" alt="" width="70" class="img-fluid rounded shadow-sm">
                       <div class="ml-3 d-inline-block align-middle">
-                        <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle">Timex Unisex Originals</a></h5><span class="text-muted font-weight-normal font-italic d-block">Category: Watches</span>
+                        <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle">{{$product[0]->name}}</a></h5><span class="text-muted font-weight-normal font-italic d-block">Category: {{$product[0]->category}}</span>
                       </div>
                     </div>
                   </th>
-                  <td class="border-0 align-middle"><strong>$79.00</strong></td>
-                  <td class="border-0 align-middle">
-                    <div class="qty mt-5">
+                  <td class=" align-middle"><strong>{{$product[0]->price}}</strong></td>
+                  <td class=" align-middle">
+                    <div class="qty mt-5 quantity">
+
                         <span class="minus bg-dark">-</span>
-                        <input type="number" class="count" name="qty" value="1">
+                        <input type="number" class="count" name="qty" value="{{$product[1]}}">
                         <span class="plus bg-dark">+</span>
                     </div>
                   </td>
-                  <td class="border-0 align-middle"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a></td>
+                  <td class=" align-middle"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a></td>
                 </tr>
-                <tr>
-                  <th scope="row">
-                    <div class="p-2">
-                      <img src="https://res.cloudinary.com/mhmd/image/upload/v1556670479/product-3_cexmhn.jpg" alt="" width="70" class="img-fluid rounded shadow-sm">
-                      <div class="ml-3 d-inline-block align-middle">
-                        <h5 class="mb-0"><a href="#" class="text-dark d-inline-block">Lumix camera lense</a></h5><span class="text-muted font-weight-normal font-italic">Category: Electronics</span>
-                      </div>
-                    </div>
-                  </th>
-                  <td class="align-middle"><strong>$79.00</strong></td>
-                  <td class="align-middle"><strong>3</strong></td>
-                  <td class="align-middle"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">
-                    <div class="p-2">
-                      <img src="https://res.cloudinary.com/mhmd/image/upload/v1556670479/product-2_qxjis2.jpg" alt="" width="70" class="img-fluid rounded shadow-sm">
-                      <div class="ml-3 d-inline-block align-middle">
-                        <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block">Gray Nike running shoe</a></h5><span class="text-muted font-weight-normal font-italic">Category: Fashion</span>
-                      </div>
-                    </div>
-                    <td class="align-middle"><strong>$79.00</strong></td>
-                    <td class="align-middle"><strong>3</strong></td>
-                    <td class="align-middle"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a>
-                    </td>
-                </tr>
+                @empty
+                <!-- <th scope="row" >
+                  <div class="p-2">
+                    empty cart dude
+                  </div>
+                </th> -->
+                empty cart dude
+
+                @endforelse
               </tbody>
             </table>
           </div>

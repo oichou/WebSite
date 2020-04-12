@@ -1,79 +1,6 @@
 @extends('layouts.app')
 <!-- Header -->
 @include('header')
-
-<!-- Menu -->
-
-<!-- Menu -->
-
-<div class="menu menu_mm trans_300">
-  <div class="menu_container menu_mm">
-    <div class="page_menu_content">
-
-      <div class="page_menu_search menu_mm">
-        <form action="#">
-          <input type="search" required="required" class="page_menu_search_input menu_mm" placeholder="Search for products...">
-        </form>
-      </div>
-      <ul class="page_menu_nav menu_mm">
-        <li class="page_menu_item has-children menu_mm">
-          <a href="index.html">Home<i class="fa fa-angle-down"></i></a>
-          <ul class="page_menu_selection menu_mm">
-            <li class="page_menu_item menu_mm"><a href="categories.html">Categories<i class="fa fa-angle-down"></i></a></li>
-            <li class="page_menu_item menu_mm"><a href="product.html">Product<i class="fa fa-angle-down"></i></a></li>
-            <li class="page_menu_item menu_mm"><a href="cart.html">Cart<i class="fa fa-angle-down"></i></a></li>
-            <li class="page_menu_item menu_mm"><a href="checkout.html">Checkout<i class="fa fa-angle-down"></i></a></li>
-            <li class="page_menu_item menu_mm"><a href="contact.html">Contact<i class="fa fa-angle-down"></i></a></li>
-          </ul>
-        </li>
-        <li class="page_menu_item has-children menu_mm">
-          <a href="categories.html">Categories<i class="fa fa-angle-down"></i></a>
-          <ul class="page_menu_selection menu_mm">
-            <li class="page_menu_item menu_mm"><a href="categories.html">Category<i class="fa fa-angle-down"></i></a></li>
-            <li class="page_menu_item menu_mm"><a href="categories.html">Category<i class="fa fa-angle-down"></i></a></li>
-            <li class="page_menu_item menu_mm"><a href="categories.html">Category<i class="fa fa-angle-down"></i></a></li>
-            <li class="page_menu_item menu_mm"><a href="categories.html">Category<i class="fa fa-angle-down"></i></a></li>
-          </ul>
-        </li>
-        <li class="page_menu_item menu_mm"><a href="index.html">Accessories<i class="fa fa-angle-down"></i></a></li>
-        <li class="page_menu_item menu_mm"><a href="#">Offers<i class="fa fa-angle-down"></i></a></li>
-        <li class="page_menu_item menu_mm"><a href="contact.html">Contact<i class="fa fa-angle-down"></i></a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="menu_close"><i class="fa fa-times" aria-hidden="true"></i></div>
-
-  <div class="menu_social">
-    <ul>
-      <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-      <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-      <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-      <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-    </ul>
-  </div>
-</div>
-
-<!-- Home -->
-
-<div class="home">
-  <div class="home_container">
-    <div class="home_background" style="background-image:url(images/categories.jpg)"></div>
-    <div class="home_content_container">
-      <div class="container">
-        <div class="row">
-          <div class="col">
-            <div class="home_content">
-              <div class="home_title">Smart Phones<span>.</span></div>
-              <div class="home_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec molestie eros. Sed viverra velit venenatis fermentum luctus.</p></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- Product Details -->
 
 <div class="product_details">
@@ -83,7 +10,7 @@
       <!-- Product Image -->
       <div class="col-lg-6">
         <div class="details_image">
-          <div class="details_image_large"><img src="images/details_1.jpg" alt=""><div class="product_extra product_new"><a href="categories.html">New</a></div></div>
+          <div class="details_image_large"><img src="images/{{ $product->path }}" alt=""><div class="product_extra product_new"><a href="categories.html">New</a></div></div>
           <div class="details_image_thumbnails d-flex flex-row align-items-start justify-content-between">
             <div class="details_image_thumbnail active" data-image="images/details_1.jpg"><img src="images/details_1.jpg" alt=""></div>
             <div class="details_image_thumbnail" data-image="images/details_2.jpg"><img src="images/details_2.jpg" alt=""></div>
@@ -97,8 +24,8 @@
       <div class="col-lg-6">
         <div class="details_content">
           <div class="details_name">Smart Phone</div>
-          <div class="details_discount">$890</div>
-          <div class="details_price">$670</div>
+          <!-- <div class="details_discount">$890</div> -->
+          <div class="details_price">{{ $product->price}}</div>
 
           <!-- In Stock -->
           <div class="in_stock_container">
@@ -106,7 +33,7 @@
             <span>In Stock</span>
           </div>
           <div class="details_text">
-            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Phasellus id nisi quis justo tempus mollis sed et dui. In hac habitasse platea dictumst. Suspendisse ultrices mauris diam. Nullam sed aliquet elit. Mauris consequat nisi ut mauris efficitur lacinia.</p>
+            <p>{{ $product->description}}</p>
           </div>
 
           <!-- Product Quantity -->
@@ -143,7 +70,7 @@
           <div class="reviews_title"><a href="#">Reviews <span>(1)</span></a></div>
         </div>
         <div class="description_text">
-          <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Phasellus id nisi quis justo tempus mollis sed et dui. In hac habitasse platea dictumst. Suspendisse ultrices mauris diam. Nullam sed aliquet elit. Mauris consequat nisi ut mauris efficitur lacinia.</p>
+          <p>{{ $product->description}}</p>
         </div>
       </div>
     </div>

@@ -104,19 +104,19 @@
 	<div>Category</div>
 	<div class="categories-container d-flex flex-lg-row flex-column align-items-start justify-content-between">
 		<div class="category">
-			<a id ="" href="{{ route('products',['category'=>'phone']) }}">
+			<a id ="" href="{{ route('products.index',['category'=>'phone']) }}">
 				<div class="category-background" style="background-image:url({{URL::to('/')}}/images/cat_phones.jpg)"></div>
 				<div class="category-title">Phones</div>
 			</a>
 		</div>
 		<div class="category">
-			<a id ="" href="{{ route('products',['category'=>'computer']) }}">
+			<a id ="" href="{{ route('products.index',['category'=>'computer']) }}">
 				<div class="category-background" style="background-image:url({{URL::to('/')}}/images/cat_computers.jpg)"></div>
 				<div class="category-title">Computers</div>
 			</a>
 		</div>
 		<div class="category">
-			<a id ="" href="{{ route('products',['category'=>'gaming']) }}">
+			<a id ="" href="{{ route('products.index',['category'=>'gaming']) }}">
 				<div class="category-background" style="background-image:url({{URL::to('/')}}/images/gaming.jpg)"></div>
 				<div class="category-title">Gaming</div>
 			</a>
@@ -135,19 +135,19 @@
 <div class="brands"> <p>Brand</p>
 	<div class="brands-container d-flex flex-lg-row flex-column align-items-start justify-content-between">
 		<div class="brand">
-			<a id ="" href="{{ route('products',['brand'=>'apple']) }}">
+			<a id ="" href="{{ route('products.index',['brand'=>'apple']) }}">
 				<div class="brand-background" style="background-image:url({{URL::to('/')}}/images/brand_apple2.jpg)"></div>
 				<div class="brand-title">Apple</div>
 			</a>
 		</div>
 		<div class="brand">
-			<a id ="" href="{{ route('products',['brand'=>'samsung']) }}">
+			<a id ="" href="{{ route('products.index',['brand'=>'samsung']) }}">
 				<div class="brand-background" style="background-image:url({{URL::to('/')}}/images/brand_samsung.jpg)"></div>
 				<div class="brand-title">Samsung</div>
 			</a>
 		</div>
 		<div class="brand">
-			<a id ="" href="{{ route('products',['brand'=>'sony']) }}">
+			<a id ="" href="{{ route('products.index',['brand'=>'sony']) }}">
 				<div class="brand-background" style="background-image:url({{URL::to('/')}}/images/brand_sony2.jpg)"></div>
 				<div class="brand-title">Sony</div>
 			</a>

@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+
 <!-- Header -->
 @include('header')
 
@@ -11,7 +12,7 @@
       <ul>
         @foreach($categories as $category)
         <li>
-          <a href="{{ route('products',['category'=>$category]) }}"> {{ $category }} </a>
+          <a href="{{ route('products.index',['category'=>$category]) }}"> {{ $category }} </a>
         </li>
         @endforeach
       </ul>
@@ -20,7 +21,7 @@
       <ul>
         @foreach($brands as $brand)
         <li>
-          <a href="{{ route('products',['brand'=>$brand]) }}"> {{ $brand }} </a>
+          <a href="{{ route('products.index',['brand'=>$brand]) }}"> {{ $brand }} </a>
         </li>
         @endforeach
       </ul>
@@ -48,16 +49,16 @@
         <div class="col-md-4 col-sm-8">
             <div class="product-grid6">
                 <div class="product-image6">
-                    <a href="#">
+                    <a href="{{ route('products.show',['id'=>$product->id]) }}">
                         <img class="pic-1" src="images/{{ $product->path }}" alt="product">
                     </a>
                 </div>
                 <div class="product-content">
-                    <h3 class="title"><a href="#">{{ $product->name }}</a></h3>
+                    <h3 class="title"><a href="{{ route('products.show',['id'=>$product->id]) }}">{{ $product->name }}</a></h3>
                     <div class="price">{{ $product->price }}</div>
                 </div>
                 <ul class="social">
-                    <li><a href="" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
+                    <li><a href="{{ route('products.show',['id'=>$product->id]) }}" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
                     <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
                     <li><a href="" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
                 </ul>

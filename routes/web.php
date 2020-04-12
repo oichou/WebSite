@@ -14,9 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('products', 'ProductsController@index')->name('products');
-Route::get('admin', function () {
+Route::get('/products', 'ProductsController@index')->name('products.index');
+Route::get('/products/{id}', 'ProductsController@show')->name('products.show');
+Route::get('/admin', function () {
     return view('admin');
 });
+Route::get('/cart', 'CartController@index')->name('cart.index');
 
 Auth::routes();

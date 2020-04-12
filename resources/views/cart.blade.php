@@ -1,210 +1,198 @@
 @extends('layouts.app')
+
 <!-- Header -->
+@section('extra-css')
+<style>
+body {
+  background: #eecda3;
+  background: -webkit-linear-gradient(to right, #eecda3, #ef629f);
+  background: linear-gradient(to right, #eecda3, #ef629f);
+  min-height: 100vh;
+}
+.qty .count {
+    color: #000;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 30px;
+    padding: 0 2px
+    ;min-width: 35px;
+    text-align: center;
+}
+.qty .plus {
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: top;
+    color: white;
+    width: 30px;
+    height: 30px;
+    font: 30px/1 Arial,sans-serif;
+    text-align: center;
+    border-radius: 50%;
+    }
+.qty .minus {
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: top;
+    color: white;
+    width: 30px;
+    height: 30px;
+    font: 30px/1 Arial,sans-serif;
+    text-align: center;
+    border-radius: 50%;
+    background-clip: padding-box;
+}
+div {
+    text-align: center;
+}
+.minus:hover{
+    background-color: #717fe0 ;
+}
+.plus:hover{
+    background-color: #717fe0 ;
+}
+/*Prevent text selection*/
+span{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+input{
+    border: 0;
+    width: 2%;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input:disabled{
+    background-color:white;
+}
+</style>
+@endsection
 @include('header')
 
-<!-- Menu -->
+@section('content')
+<div class="px-4 px-lg-0">
+<div class="pb-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-5">
 
-<div class="menu menu_mm trans_300">
-  <div class="menu_container menu_mm">
-    <div class="page_menu_content">
-
-      <div class="page_menu_search menu_mm">
-        <form action="#">
-          <input type="search" required="required" class="page_menu_search_input menu_mm" placeholder="Search for products...">
-        </form>
+          <!-- Shopping cart table -->
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="p-2 px-3 text-uppercase">Product</div>
+                  </th>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase">Price</div>
+                  </th>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase">Quantity</div>
+                  </th>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase">Remove</div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row" class="border-0">
+                    <div class="p-2">
+                      <img src="https://res.cloudinary.com/mhmd/image/upload/v1556670479/product-1_zrifhn.jpg" alt="" width="70" class="img-fluid rounded shadow-sm">
+                      <div class="ml-3 d-inline-block align-middle">
+                        <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle">Timex Unisex Originals</a></h5><span class="text-muted font-weight-normal font-italic d-block">Category: Watches</span>
+                      </div>
+                    </div>
+                  </th>
+                  <td class="border-0 align-middle"><strong>$79.00</strong></td>
+                  <td class="border-0 align-middle">
+                    <div class="qty mt-5">
+                        <span class="minus bg-dark">-</span>
+                        <input type="number" class="count" name="qty" value="1">
+                        <span class="plus bg-dark">+</span>
+                    </div>
+                  </td>
+                  <td class="border-0 align-middle"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a></td>
+                </tr>
+                <tr>
+                  <th scope="row">
+                    <div class="p-2">
+                      <img src="https://res.cloudinary.com/mhmd/image/upload/v1556670479/product-3_cexmhn.jpg" alt="" width="70" class="img-fluid rounded shadow-sm">
+                      <div class="ml-3 d-inline-block align-middle">
+                        <h5 class="mb-0"><a href="#" class="text-dark d-inline-block">Lumix camera lense</a></h5><span class="text-muted font-weight-normal font-italic">Category: Electronics</span>
+                      </div>
+                    </div>
+                  </th>
+                  <td class="align-middle"><strong>$79.00</strong></td>
+                  <td class="align-middle"><strong>3</strong></td>
+                  <td class="align-middle"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">
+                    <div class="p-2">
+                      <img src="https://res.cloudinary.com/mhmd/image/upload/v1556670479/product-2_qxjis2.jpg" alt="" width="70" class="img-fluid rounded shadow-sm">
+                      <div class="ml-3 d-inline-block align-middle">
+                        <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block">Gray Nike running shoe</a></h5><span class="text-muted font-weight-normal font-italic">Category: Fashion</span>
+                      </div>
+                    </div>
+                    <td class="align-middle"><strong>$79.00</strong></td>
+                    <td class="align-middle"><strong>3</strong></td>
+                    <td class="align-middle"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a>
+                    </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- End -->
+        </div>
       </div>
-      <ul class="page_menu_nav menu_mm">
-        <li class="page_menu_item has-children menu_mm">
-          <a href="index.html">Home<i class="fa fa-angle-down"></i></a>
-          <ul class="page_menu_selection menu_mm">
-            <li class="page_menu_item menu_mm"><a href="categories.html">Categories<i class="fa fa-angle-down"></i></a></li>
-            <li class="page_menu_item menu_mm"><a href="product.html">Product<i class="fa fa-angle-down"></i></a></li>
-            <li class="page_menu_item menu_mm"><a href="cart.html">Cart<i class="fa fa-angle-down"></i></a></li>
-            <li class="page_menu_item menu_mm"><a href="checkout.html">Checkout<i class="fa fa-angle-down"></i></a></li>
-            <li class="page_menu_item menu_mm"><a href="contact.html">Contact<i class="fa fa-angle-down"></i></a></li>
-          </ul>
-        </li>
-        <li class="page_menu_item has-children menu_mm">
-          <a href="categories.html">Categories<i class="fa fa-angle-down"></i></a>
-          <ul class="page_menu_selection menu_mm">
-            <li class="page_menu_item menu_mm"><a href="categories.html">Category<i class="fa fa-angle-down"></i></a></li>
-            <li class="page_menu_item menu_mm"><a href="categories.html">Category<i class="fa fa-angle-down"></i></a></li>
-            <li class="page_menu_item menu_mm"><a href="categories.html">Category<i class="fa fa-angle-down"></i></a></li>
-            <li class="page_menu_item menu_mm"><a href="categories.html">Category<i class="fa fa-angle-down"></i></a></li>
-          </ul>
-        </li>
-        <li class="page_menu_item menu_mm"><a href="index.html">Accessories<i class="fa fa-angle-down"></i></a></li>
-        <li class="page_menu_item menu_mm"><a href="#">Offers<i class="fa fa-angle-down"></i></a></li>
-        <li class="page_menu_item menu_mm"><a href="contact.html">Contact<i class="fa fa-angle-down"></i></a></li>
-      </ul>
-    </div>
-  </div>
 
-  <div class="menu_close"><i class="fa fa-times" aria-hidden="true"></i></div>
-
-  <div class="menu_social">
-    <ul>
-      <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-      <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-      <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-      <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-    </ul>
-  </div>
-</div>
-
-<!-- Home -->
-
-<div class="home">
-  <div class="home_container">
-    <div class="home_background" style="background-image:url(image_project/lens.jpg)"></div>
-    <div class="home_content_container">
-      <div class="container">
-        <div class="row">
-          <div class="col">
-            <div class="home_content">
-              <div class="breadcrumbs">
-                <ul>
-                  <li><a href="{{ url('home') }}">Home</a></li>
-                  <li><a href="{{ url('categories') }}">Categories</a></li>
-                  <li>Shopping Cart</li>
-                </ul>
+      <div class="row py-5 p-4 bg-white rounded shadow-sm">
+        <div class="col-lg-6">
+          <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Coupon code</div>
+          <div class="p-4">
+            <p class="font-italic mb-4">If you have a coupon code, please enter it in the box below</p>
+            <div class="input-group mb-4 border rounded-pill p-2">
+              <input type="text" placeholder="Apply coupon" aria-describedby="button-addon3" class="form-control border-0">
+              <div class="input-group-append border-0">
+                <button id="button-addon3" type="button" class="btn btn-dark px-4 rounded-pill"><i class="fa fa-gift mr-2"></i>Apply coupon</button>
               </div>
             </div>
           </div>
+          <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Instructions for seller</div>
+          <div class="p-4">
+            <p class="font-italic mb-4">If you have some information for the seller you can leave them in the box below</p>
+            <textarea name="" cols="30" rows="2" class="form-control"></textarea>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Order summary </div>
+          <div class="p-4">
+            <p class="font-italic mb-4">Shipping and additional costs are calculated based on values you have entered.</p>
+            <ul class="list-unstyled mb-4">
+              <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Order Subtotal </strong><strong>$390.00</strong></li>
+              <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Shipping and handling</strong><strong>$10.00</strong></li>
+              <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tax</strong><strong>$0.00</strong></li>
+              <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total</strong>
+                <h5 class="font-weight-bold">$400.00</h5>
+              </li>
+            </ul><a href="#" class="btn btn-dark rounded-pill py-2 btn-block">Procceed to checkout</a>
+          </div>
         </div>
       </div>
+
     </div>
   </div>
 </div>
-
-<!-- Cart Info -->
-
-<div class="cart_info">
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <!-- Column Titles -->
-        <div class="cart_info_columns clearfix">
-          <div class="cart_info_col cart_info_col_product">Product</div>
-          <div class="cart_info_col cart_info_col_price">Price</div>
-          <div class="cart_info_col cart_info_col_quantity">Quantity</div>
-          <div class="cart_info_col cart_info_col_total">Total</div>
-        </div>
-      </div>
-    </div>
-    <div class="row cart_items_row">
-      <div class="col">
-
-        <!-- Cart Item -->
-        <div class="cart_item d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
-          <!-- Name -->
-          <div class="cart_item_product d-flex flex-row align-items-center justify-content-start">
-            <div class="cart_item_image">
-              <div><img src="images/cart_1.jpg" alt=""></div>
-            </div>
-            <div class="cart_item_name_container">
-              <div class="cart_item_name"><a href="#">Smart Phone Deluxe Edition</a></div>
-              <div class="cart_item_edit"><a href="#">Edit Product</a></div>
-            </div>
-          </div>
-          <!-- Price -->
-          <div class="cart_item_price">$790.90</div>
-          <!-- Quantity -->
-          <div class="cart_item_quantity">
-            <div class="product_quantity_container">
-              <div class="product_quantity clearfix">
-                <span>Qty</span>
-                <input id="quantity_input" type="text" pattern="[0-9]*" value="1">
-                <div class="quantity_buttons">
-                  <div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
-                  <div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Total -->
-          <div class="cart_item_total">$790.90</div>
-        </div>
-
-      </div>
-    </div>
-    <div class="row row_cart_buttons">
-      <div class="col">
-        <div class="cart_buttons d-flex flex-lg-row flex-column align-items-start justify-content-start">
-          <div class="button continue_shopping_button"><a href="#">Continue shopping</a></div>
-          <div class="cart_buttons_right ml-lg-auto">
-            <div class="button clear_cart_button"><a href="#">Clear cart</a></div>
-            <div class="button update_cart_button"><a href="#">Update cart</a></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row row_extra">
-      <div class="col-lg-4">
-
-        <!-- Delivery -->
-        <div class="delivery">
-          <div class="section_title">Shipping method</div>
-          <div class="section_subtitle">Select the one you want</div>
-          <div class="delivery_options">
-            <label class="delivery_option clearfix">Next day delivery
-              <input type="radio" name="radio">
-              <span class="checkmark"></span>
-              <span class="delivery_price">$4.99</span>
-            </label>
-            <label class="delivery_option clearfix">Standard delivery
-              <input type="radio" name="radio">
-              <span class="checkmark"></span>
-              <span class="delivery_price">$1.99</span>
-            </label>
-            <label class="delivery_option clearfix">Personal pickup
-              <input type="radio" checked="checked" name="radio">
-              <span class="checkmark"></span>
-              <span class="delivery_price">Free</span>
-            </label>
-          </div>
-        </div>
-
-        <!-- Coupon Code -->
-        <div class="coupon">
-          <div class="section_title">Coupon code</div>
-          <div class="section_subtitle">Enter your coupon code</div>
-          <div class="coupon_form_container">
-            <form action="#" id="coupon_form" class="coupon_form">
-              <input type="text" class="coupon_input" required="required">
-              <button class="button coupon_button"><span>Apply</span></button>
-            </form>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-6 offset-lg-2">
-        <div class="cart_total">
-          <div class="section_title">Cart total</div>
-          <div class="section_subtitle">Final info</div>
-          <div class="cart_total_container">
-            <ul>
-              <li class="d-flex flex-row align-items-center justify-content-start">
-                <div class="cart_total_title">Subtotal</div>
-                <div class="cart_total_value ml-auto">$790.90</div>
-              </li>
-              <li class="d-flex flex-row align-items-center justify-content-start">
-                <div class="cart_total_title">Shipping</div>
-                <div class="cart_total_value ml-auto">Free</div>
-              </li>
-              <li class="d-flex flex-row align-items-center justify-content-start">
-                <div class="cart_total_title">Total</div>
-                <div class="cart_total_value ml-auto">$790.90</div>
-              </li>
-            </ul>
-          </div>
-          <div class="button checkout_button"><a href="#">Proceed to checkout</a></div>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
-
+@endsection
 
 <!-- Footer -->
 @include('footer')

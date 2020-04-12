@@ -18,6 +18,7 @@ class ProductsTableSeeder extends Seeder
           'brand' => 'apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'price' => 1000,
+          'quantity' => 10,
           'path' => '/macpro2.jpg',
         ]);
         Product::create([
@@ -26,6 +27,7 @@ class ProductsTableSeeder extends Seeder
           'brand' => 'samsung',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'price' => 1000,
+          'quantity' => 10, 
           'path' => '/macpro2.jpg',
         ]);
         Product::create([
@@ -34,6 +36,7 @@ class ProductsTableSeeder extends Seeder
           'brand' => 'apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'price' => 1000,
+          'quantity' => 10, 
           'path' => '/macpro2.jpg',
         ]);
         Product::create([
@@ -42,6 +45,7 @@ class ProductsTableSeeder extends Seeder
           'brand' => 'apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'price' => 1000,
+          'quantity' => 10, 
           'path' => '/macpro2.jpg',
         ]);
         Product::create([
@@ -50,6 +54,7 @@ class ProductsTableSeeder extends Seeder
           'brand' => 'apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'price' => 1000,
+          'quantity' => 10, 
           'path' => '/macpro2.jpg',
         ]);
         Product::create([
@@ -58,6 +63,7 @@ class ProductsTableSeeder extends Seeder
           'brand' => 'apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'price' => 1000,
+          'quantity' => 10, 
           'path' => '/macpro2.jpg',
         ]);
         Product::create([
@@ -66,6 +72,7 @@ class ProductsTableSeeder extends Seeder
           'brand' => 'apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'price' => 1000,
+          'quantity' => 10, 
           'path' => '/macpro2.jpg',
         ]);
         Product::create([
@@ -74,6 +81,7 @@ class ProductsTableSeeder extends Seeder
           'brand' => 'apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'price' => 1000,
+          'quantity' => 10, 
           'path' => '/macpro2.jpg',
         ]);
         Product::create([
@@ -82,6 +90,7 @@ class ProductsTableSeeder extends Seeder
           'brand' => 'apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'price' => 1000,
+          'quantity' => 10, 
           'path' => '/macpro2.jpg',
         ]);
         Product::create([
@@ -90,6 +99,7 @@ class ProductsTableSeeder extends Seeder
           'brand' => 'apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'price' => 1000,
+          'quantity' => 10, 
           'path' => '/macpro2.jpg',
         ]);
     }

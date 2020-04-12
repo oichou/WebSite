@@ -14,21 +14,21 @@
                 <li class="hassubs">
                   <a href="{{ url('categories')}}">Categories</a>
                   <ul>
-                    <li><a href="{{ route('products',['category'=>'phone']) }}">Phones</a></li>
-                    <li><a href="{{ route('products',['category'=>'laptop']) }}">Laptops</a></li>
-                    <li><a href="{{ route('products',['category'=>'camera']) }}">Cameras</a></li>
-                    <li><a href="{{ route('products',['category'=>'tablet']) }}">Tablets</a></li>
-                    <li><a href="{{ route('products',['category'=>'Gaming']) }}">Gaming</a></li>
+                    <li><a href="{{ route('products.index',['category'=>'phone']) }}">Phones</a></li>
+                    <li><a href="{{ route('products.index',['category'=>'laptop']) }}">Laptops</a></li>
+                    <li><a href="{{ route('products.index',['category'=>'camera']) }}">Cameras</a></li>
+                    <li><a href="{{ route('products.index',['category'=>'tablet']) }}">Tablets</a></li>
+                    <li><a href="{{ route('products.index',['category'=>'Gaming']) }}">Gaming</a></li>
                   </ul>
                 </li>
-                <li><a href="{{ route('products',['category'=>'accessorie']) }}">Accessories</a></li>
+                <li><a href="{{ route('products.index',['category'=>'accessorie']) }}">Accessories</a></li>
                 <li><a href="#">Offers</a></li>
                 <li><a href="{{ url('contact')}}">Contact</a></li>
               </ul>
             </nav>
             <div class="header_extra ml-auto">
               <div class="shopping_cart">
-                <a href="{{ url('cart')}}">
+                <a href="{{route('cart.index')}}">
                   <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                        viewBox="0 0 489 489" style="enable-background:new 0 0 489 489;" xml:space="preserve">
                     <g>

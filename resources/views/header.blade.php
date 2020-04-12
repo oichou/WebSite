@@ -8,20 +8,20 @@
             <div class="logo"><a href="/">OUSSAFA</a></div>
             <nav class="main_nav">
               <ul>
-                <li class="hassubs active">
-                  <a href="{{ url('home')}}">Home</a>
+                <li class="active">
+                  <a href="/">Home</a>
                 </li>
                 <li class="hassubs">
                   <a href="{{ url('categories')}}">Categories</a>
                   <ul>
-                    <li><a href="{{ url('categories')}}">Phones</a></li>
-                    <li><a href="{{ url('categories')}}">Laptops</a></li>
-                    <li><a href="{{ url('categories')}}">Cameras</a></li>
-                    <li><a href="{{ url('categories')}}">tablets</a></li>
-                    <li><a href="{{ url('categories')}}">Gaming</a></li>
+                    <li><a href="{{ route('products',['category'=>'phone']) }}">Phones</a></li>
+                    <li><a href="{{ route('products',['category'=>'laptop']) }}">Laptops</a></li>
+                    <li><a href="{{ route('products',['category'=>'camera']) }}">Cameras</a></li>
+                    <li><a href="{{ route('products',['category'=>'tablet']) }}">Tablets</a></li>
+                    <li><a href="{{ route('products',['category'=>'Gaming']) }}">Gaming</a></li>
                   </ul>
                 </li>
-                <li><a href="#">Accessories</a></li>
+                <li><a href="{{ route('products',['category'=>'accessorie']) }}">Accessories</a></li>
                 <li><a href="#">Offers</a></li>
                 <li><a href="{{ url('contact')}}">Contact</a></li>
               </ul>

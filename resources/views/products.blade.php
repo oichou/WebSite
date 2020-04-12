@@ -6,14 +6,23 @@
 @section('content')
 <div class="container products-section">
   <div class="sidebar">
+
       <h3>By Category</h3>
       <ul>
+        @foreach($categories as $category)
         <li>
-          <a href="#">hello</a>
+          <a href="{{ route('products',['category'=>$category]) }}"> {{ $category }} </a>
         </li>
+        @endforeach
+      </ul>
+
+      <h3>By Brand</h3>
+      <ul>
+        @foreach($brands as $brand)
         <li>
-          <a href="#">hello</a>
+          <a href="{{ route('products',['brand'=>$brand]) }}"> {{ $brand }} </a>
         </li>
+        @endforeach
       </ul>
       <h3>By Price</h3>
       <ul>
@@ -35,7 +44,7 @@
         </div>
     </div> -->
   <div class="row">
-    @foreach ($products as $product)
+    @forelse ($products as $product)
         <div class="col-md-4 col-sm-8">
             <div class="product-grid6">
                 <div class="product-image6">
@@ -54,7 +63,11 @@
                 </ul>
             </div>
         </div>
-        @endforeach
+        @empty
+        <div class="">
+          No product buddy
+        </div>
+        @endforelse
       </div>
 </div>
 </div>

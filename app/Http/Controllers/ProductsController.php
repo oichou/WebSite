@@ -13,8 +13,22 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Product::inRandomOrder()->take(9)->get();
-        return view('products')->with('products',$products);
+      if (request()->category) {
+        $products = Product::inRandomOrder()->select()->where('category','=',request()->category)->get();
+        // code...
+      }else if (request()->brand) {
+        $products = Product::inRandomOrder()->select()->where('brand','=',request()->brand)->get();
+      }else {
+        $products = Product::all()->get();
+      }
+        $categories = Product::select('category')->distinct()->pluck('category');
+        $brands = Product::select('brand')->distinct()->pluck('brand');
+        return view('products')->with([
+          'products'   => $products,
+          'categories' => $categories,
+          'brands'     => $brands,
+        ]);
+
     }
 
     /**

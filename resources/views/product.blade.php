@@ -46,7 +46,11 @@
                 <div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
               </div>
             </div>
-            <div class="button cart_button"><a href="#">Add to cart</a></div>
+            @if(  $product->quantity  >= 1 )
+            <div class="button cart_button"><a href="{{ route('cart.addProduct',['product'=>$product]) }}">Add to cart</a></div>
+            @else
+            <div class="button cart_button">Bientot disponible</div>
+            @endif
           </div>
 
           <!-- Share -->

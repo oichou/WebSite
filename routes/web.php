@@ -22,5 +22,6 @@ Route::get('/admin', function () {
 Route::get('/cart', 'CartController@index')->name('cart.index');
 
 Route::get('/cart/{product}', 'CartController@addProduct')->name('cart.addProduct');
-
+Route::get('/cart/remove/{product}', 'CartController@removeProduct')->name('cart.removeProduct');
+// this is the probleme i cant do both add and remove with the same url
 Auth::routes();

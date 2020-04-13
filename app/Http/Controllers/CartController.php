@@ -19,18 +19,20 @@ class CartController extends Controller
     public function index()
     {
         $products = [];
+        $total = 0;
         $cart     = Session::has('cart') ? Session::get('cart') : null;
-        // dd($cart);
         if($cart){
           foreach ($cart->products_id as $key => $value) {
             $qty = $value;
             $product = Product::find(intval($key));
             $products [] = [$product,$qty];
           }
+          $total = $cart->total_price;
         }
         // dd($products);
         return view('cart')->with([
-          'products' => $products
+          'products' => $products,
+          'total'    => $total,
 
         ]);
     }
@@ -58,6 +60,24 @@ class CartController extends Controller
         $mycart  = new Cart($oldcart);
         $mycart->add($product);
         Session::put('cart',$mycart);
+        return redirect()->route('cart.index');
+    }
+
+    /**
+     * add a newly product to the cart.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function removeProduct(Product $product)
+    {
+        $oldcart = Session::has('cart') ? Session::get('cart') : null;
+        // dd($oldcart);
+        $mycart  = new Cart($oldcart);
+        $mycart->remove($product);
+        Session::put('cart',$mycart);
+        // Session::forget('cart');
+
         return redirect()->route('cart.index');
     }
 

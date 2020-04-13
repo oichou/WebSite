@@ -61,11 +61,7 @@
                     <li><a href="{{ route('products.show',['id'=>$product->id]) }}" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
                     <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
                     <li>
-                      <!-- <form action="{{ route('cart.addProduct',['product'=>$product]) }}" method="POST"> -->
-                      <!-- @csrf -->
                       <a href="{{ route('cart.addProduct',['product'=>$product]) }}" data-tip="Add to Cart" onclick="parentNode.submit()"><i class="fa fa-shopping-cart"></i></a>
-                      <!-- <button type="submit" name="button">Add to Cart</button> -->
-                    <!-- </form> -->
                   </li>
                 </ul>
             </div>

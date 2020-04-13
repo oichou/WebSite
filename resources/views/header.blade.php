@@ -5,11 +5,11 @@
       <div class="row">
         <div class="col">
           <div class="header_content d-flex flex-row align-items-center justify-content-start">
-            <div class="logo"><a href="/">OUSSAFA</a></div>
+            <div class="logo"><a href="{{ route('home')}}">OUSSAFA</a></div>
             <nav class="main_nav">
               <ul>
                 <li class="active">
-                  <a href="/">Home</a>
+                  <a href="{{ route('home') }}">Home</a>
                 </li>
                 <li class="hassubs">
                   <a href="{{ url('categories')}}">Categories</a>
@@ -55,11 +55,14 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right dropdown_account" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('logout') }}"
+                        <li><a class="dropdown-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                          document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
-                        </a>
+                        </a></li>
+                        <li><a class="dropdown-item" href="{{ route('overview') }}">
+                            Settings
+                        </a></li>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
@@ -69,7 +72,7 @@
             @endguest
 
               </div>
-              <div class="search">
+              <!-- <div class="search">
                 <div class="search_icon">
                   <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                   viewBox="0 0 475.084 475.084" style="enable-background:new 0 0 475.084 475.084;"
@@ -89,7 +92,7 @@
                   </g>
                 </svg>
                 </div>
-              </div>
+              </div> -->
               <div class="hamburger"><i class="fa fa-bars" aria-hidden="true"></i></div>
             </div>
           </div>
@@ -99,7 +102,7 @@
   </div>
 
   <!-- Search Panel -->
-  <div class="search_panel trans_300">
+  <!-- <div class="search_panel trans_300">
     <div class="container">
       <div class="row">
         <div class="col">
@@ -111,7 +114,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!-- Social -->
   <!-- <div class="header_social">

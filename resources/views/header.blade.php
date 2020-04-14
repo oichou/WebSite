@@ -39,7 +39,7 @@
                         c0,7.5,6,13.5,13.5,13.5s13.5-6,13.5-13.5v-41h45.2l26.9,302.3C412.8,445.2,392.1,462,366.8,462z"/>
                     </g>
                   </svg>
-                  <div>Cart <span>(0)</span></div>
+                  <div>Cart <span class="badge" id="cart">{{ Session::has('cart') ? Session::get('cart')->total_product : 0}}</span></div>
                 </a>
               </div>
               <div class="user_login">

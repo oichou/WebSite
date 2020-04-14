@@ -73,6 +73,7 @@ input:disabled{
 }
 </style>
 @endsection
+
 @include('header')
 
 @section('content')
@@ -106,9 +107,11 @@ input:disabled{
                 <tr>
                   <th scope="row" >
                     <div class="p-2">
-                      <img src="images/{{$product[0]->path}}" alt="" width="70" class="img-fluid rounded shadow-sm">
+                      <a href="{{ route('products.show',['id'=>$product[0]->id]) }}">
+                        <img src="images/{{$product[0]->path}}" alt="" width="70" class="img-fluid rounded shadow-sm">
+                      </a>
                       <div class="ml-3 d-inline-block align-middle">
-                        <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle">{{$product[0]->name}}</a></h5><span class="text-muted font-weight-normal font-italic d-block">Category: {{$product[0]->category}}</span>
+                        <h5 class="mb-0"> <a href="{{ route('products.show',['id'=>$product[0]->id]) }}" class="text-dark d-inline-block align-middle">{{$product[0]->name}}</a></h5><span class="text-muted font-weight-normal font-italic d-block">Category: {{$product[0]->category}}</span>
                       </div>
                     </div>
                   </th>
@@ -117,11 +120,11 @@ input:disabled{
                     <div class="qty mt-5 quantity">
 
                         <span class="minus bg-dark">-</span>
-                        <input type="number" class="count" name="qty" value="{{$product[1]}}">
+                        <input readonly="readonly" type="number" class="count" name="qty" value="{{$product[1]}}">
                         <span class="plus bg-dark">+</span>
                     </div>
                   </td>
-                  <td class=" align-middle"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a></td>
+                  <td class=" align-middle"><a href="{{ route('cart.removeProduct',$product[0]) }}" class="text-dark"><i class="fa fa-trash"></i></a></td>
                 </tr>
                 @empty
                 <!-- <th scope="row" >
@@ -162,11 +165,11 @@ input:disabled{
           <div class="p-4">
             <p class="font-italic mb-4">Shipping and additional costs are calculated based on values you have entered.</p>
             <ul class="list-unstyled mb-4">
-              <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Order Subtotal </strong><strong>$390.00</strong></li>
-              <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Shipping and handling</strong><strong>$10.00</strong></li>
+              <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Order Subtotal </strong><strong>{{$total}}</strong></li>
+              <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Shipping and handling</strong><strong>Free</strong></li>
               <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tax</strong><strong>$0.00</strong></li>
-              <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total</strong>
-                <h5 class="font-weight-bold">$400.00</h5>
+              <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total</strong><strong>{{$total}}</strong>
+                <!-- <h5 class="font-weight-bold">$400.00</h5> -->
               </li>
             </ul><a href="#" class="btn btn-dark rounded-pill py-2 btn-block">Procceed to checkout</a>
           </div>
@@ -179,5 +182,38 @@ input:disabled{
 </div>
 @endsection
 
+@section('extra-js')
+<script>
+    document.querySelectorAll('.plus').forEach(item => {
+          item.addEventListener('click', event => {
+            if(item.previousElementSibling["value"] == 10)
+              alert("No more product like this!!");
+            else{
+              item.previousElementSibling["value"]++;
+              x=parseInt(document.querySelector('#cart').textContent);
+              x++;
+              document.querySelector('#cart').textContent = x;
+            }
+          })
+    })
+    document.querySelectorAll('.minus').forEach(item => {
+          item.addEventListener('click', event => {
+            if(item.nextElementSibling["value"] == 1)
+            {
+              var choice = confirm("Are you sure you want to remove the product ?");
+              if(choice == true)
+                document.location.href = "{{ route('home')}}";
+            }
+            else{
+              item.nextElementSibling["value"]--;
+              x=parseInt(document.querySelector('#cart').textContent);
+              x--;
+              document.querySelector('#cart').textContent = x;
+            }
+          })
+    })
+</script>
+
+@endsection
 <!-- Footer -->
 @include('footer')

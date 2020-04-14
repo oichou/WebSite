@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Product;
+use Illuminate\Support\Facades\Validator;
 
-class ProductsController extends Controller
+use App\Product;
+use App\Cart;
+use Session;
+
+class CartController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,22 +18,21 @@ class ProductsController extends Controller
      */
     public function index()
     {
-      if (request()->category) {
-        $products = Product::inRandomOrder()->select()->where('category','=',request()->category)->get();
-        // code...
-      }else if (request()->brand) {
-        $products = Product::inRandomOrder()->select()->where('brand','=',request()->brand)->get();
-      }else {
-        $products = Product::all();
-      }
-        $categories = Product::select('category')->distinct()->pluck('category');
-        $brands = Product::select('brand')->distinct()->pluck('brand');
-        return view('products')->with([
-          'products'   => $products,
-          'categories' => $categories,
-          'brands'     => $brands,
-        ]);
+        $products = [];
+        $cart     = Session::has('cart') ? Session::get('cart') : null;
+        // dd($cart);
+        if($cart){
+          foreach ($cart->products_id as $key => $value) {
+            $qty = $value;
+            $product = Product::find(intval($key));
+            $products [] = [$product,$qty];
+          }
+        }
+        // dd($products);
+        return view('cart')->with([
+          'products' => $products
 
+        ]);
     }
 
     /**
@@ -43,14 +46,19 @@ class ProductsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * add a newly product to the cart.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function addProduct(Product $product)
     {
-        //
+        $oldcart = Session::has('cart') ? Session::get('cart') : null;
+        // dd($oldcart);
+        $mycart  = new Cart($oldcart);
+        $mycart->add($product);
+        Session::put('cart',$mycart);
+        return redirect()->route('cart.index');
     }
 
     /**
@@ -61,11 +69,7 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        $product = Product::select()->where('id','=',request()->id)->firstOrFail();
-        // $mightAlsoLike = Product::where('slug', '!=', $slug)->mightAlsoLike()->get();
-        return view('product')->with([
-          'product'   => $product,
-        ]);
+        //
     }
 
     /**

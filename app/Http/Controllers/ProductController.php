@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 
-class ProductsController extends Controller
+
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,22 +15,12 @@ class ProductsController extends Controller
      */
     public function index()
     {
-      if (request()->category) {
-        $products = Product::inRandomOrder()->select()->where('category','=',request()->category)->get();
-        // code...
-      }else if (request()->brand) {
-        $products = Product::inRandomOrder()->select()->where('brand','=',request()->brand)->get();
-      }else {
-        $products = Product::all();
-      }
-        $categories = Product::select('category')->distinct()->pluck('category');
-        $brands = Product::select('brand')->distinct()->pluck('brand');
-        return view('products')->with([
-          'products'   => $products,
-          'categories' => $categories,
-          'brands'     => $brands,
+      if (request()->id)
+        $product = Product::select()->where('id','=',request()->id)->get();
+        dd($product);
+        return view('product')->with([
+          'product'   => $product,
         ]);
-
     }
 
     /**
@@ -61,11 +52,7 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        $product = Product::select()->where('id','=',request()->id)->firstOrFail();
-        // $mightAlsoLike = Product::where('slug', '!=', $slug)->mightAlsoLike()->get();
-        return view('product')->with([
-          'product'   => $product,
-        ]);
+        //
     }
 
     /**

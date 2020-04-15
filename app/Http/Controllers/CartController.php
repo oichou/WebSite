@@ -98,9 +98,62 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function changequantity()
     {
-        //
+
+      $id=(int)request()->id;
+      $quantity=(int)request()->quantity;
+      $product = Product::find($id);
+      $oldcart = Session::has('cart') ? Session::get('cart') : null;
+      $mycart  = new Cart($oldcart);
+      if(request()->c == 'p' && $quantity == $product->quantity)
+          return [
+            "error" => "no more product"
+          ];
+      if(request()->c == 'm' && $quantity <= 1)
+      {
+        return ["error" => "you should have at least one item or remove it",];
+        // return redirect()->action('CartController@removeProduct',$product);
+      }
+      if(request()->c == 'p')
+      $mycart->set_quantity($product,$quantity+1);
+      if(request()->c == 'm')
+      $mycart->set_quantity($product,$quantity-1);
+      // dd($mycart);
+      Session::put('cart',$mycart);
+      return [
+        "quantity"       => $mycart->products_id["$product->id"],
+        "total_price"    => $mycart->total_price,
+        "total_product"  => $mycart->total_product,
+      ];
+
+    }
+
+    public function discount() {
+      $oldcart = Session::has('cart') ? Session::get('cart') : null;
+      $mycart  = new Cart($oldcart);
+      $discount = request()->discount;
+      if($mycart->discountsused > 0)
+      {
+        return [
+          "error" => "you already have a discount",
+        ];
+      }
+      $price = $mycart->total_price;
+      $mycart->applydiscount($discount);
+      Session::put('cart',$mycart);
+      return [
+        "e"              => $mycart->discountsused,
+        "total_price"    => $mycart->total_price,
+        "coupon"         => $mycart->discounts["$discount"],
+        "discount"       => $price - $mycart->total_price,
+      ];
+
+
+    }
+    public function empty()
+    {
+      session()->forget('cart');
     }
 
     /**

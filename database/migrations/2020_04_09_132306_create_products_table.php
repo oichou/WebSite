@@ -18,11 +18,12 @@ class CreateProductsTable extends Migration
             $table->string('path');
             $table->string('name')->unique();
             $table->integer('quantity');
-            $table->string('category');
-            $table->string('brand');
+            $table->enum('category', ['Phone', 'Laptop', 'Computer','Accessory','TV','Tablet','Camera']);;
+            $table->enum('brand',['Apple','Samsung','Sony','Huwai','Other']);
             $table->longText('description');
             $table->float('price');
             $table->boolean('promo')->default(false);
+            $table->boolean('promo_percentage')->default(0);
             $table->timestamps();
         });
     }

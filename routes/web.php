@@ -14,10 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/products', 'ProductsController@index')->name('products.index');
 Route::get('/products/{id}', 'ProductsController@show')->name('products.show');
 Route::get('/overview','UserPanelController@index')->name('overview');
-Route::get('/profile','UserPanelController@getProfile')->name('profile');
+Route::get('/profile','UserPanelController@getProfile')->name('profile')->middleware('auth');;
 Route::get('/orders','UserPanelController@getOrders')->name('orders');
 Route::get('/admin', function () {
     return view('admin');

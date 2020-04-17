@@ -20,11 +20,12 @@ Route::get('/products/{id}', 'ProductsController@show')->name('products.show');
 Route::get('/overview','UserPanelController@index')->name('overview');
 Route::get('/profile','UserPanelController@getProfile')->name('profile')->middleware('auth');;
 Route::get('/orders','UserPanelController@getOrders')->name('orders');
-Route::get('/admin', function () {
-    return view('admin');
-})->middleware('auth');
+Route::get('/admin','AdminController@index')->name('admin.index');
+Route::get('/table','AdminController@showtable')->name('admin.showtable');
+
 
 Route::post('/cart/discount','CartController@discount')->name('cart.discount');
+Route::post('/product/discount','AdminController@productdiscount')->name('admin.productdiscount');
 
 
 Route::post('/cart/change','CartController@changequantity')->name('cart.changequantity');

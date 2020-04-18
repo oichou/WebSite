@@ -120,11 +120,26 @@ input:disabled{
                     <div class="qty mt-5 quantity">
 
                         <span class="minus bg-dark">-</span>
-                        <input readonly="readonly" type="number" class="count" name="qty" value="{{$product[1]}}">
-                        <span class="plus bg-dark">+</span>
+                        <input readonly="readonly" id="{{ $product[0]->name }}" type="number" max="{{ $product[0]->quantity }}" class="count prod-qty" name="qty" value="{{$product[1]}}" data-quantity="{{$product[1]}}" data-id="{{$product[0]->id}}" />
+                        <!-- <form class="" action="{{ route('cart.changequantity',$product[0]) }}" method="post">
+                          @method('put')
+                          @csrf -->
+                          <!-- <button type="submit" name="button"> -->
+                            <span class="plus bg-dark">+</span>
+                          <!-- </button> -->
+                        <!-- </form> -->
+
                     </div>
                   </td>
-                  <td class=" align-middle"><a href="{{ route('cart.removeProduct',$product[0]) }}" class="text-dark"><i class="fa fa-trash"></i></a></td>
+                  <form action="{{ route('cart.removeProduct',$product[0]) }}" method="POST">
+                      @method('delete')
+                      @csrf
+                      <td class=" align-middle">
+                        <!-- <a href="{{ route('cart.removeProduct',$product[0]) }}" class="text-dark"><i class="fa fa-trash"></i></a> -->
+                        <button type="submit" name="button" class="text-dark"><i class="fa fa-trash"></i></button>
+                      </td>
+                      <!-- <td></td> -->
+                  </form>
                 </tr>
                 @empty
                 <!-- <th scope="row" >
@@ -148,7 +163,7 @@ input:disabled{
           <div class="p-4">
             <p class="font-italic mb-4">If you have a coupon code, please enter it in the box below</p>
             <div class="input-group mb-4 border rounded-pill p-2">
-              <input type="text" placeholder="Apply coupon" aria-describedby="button-addon3" class="form-control border-0">
+              <input id="coupon" type="text" placeholder="Apply coupon" aria-describedby="button-addon3" class="form-control border-0">
               <div class="input-group-append border-0">
                 <button id="button-addon3" type="button" class="btn btn-dark px-4 rounded-pill"><i class="fa fa-gift mr-2"></i>Apply coupon</button>
               </div>
@@ -164,11 +179,11 @@ input:disabled{
           <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Order summary </div>
           <div class="p-4">
             <p class="font-italic mb-4">Shipping and additional costs are calculated based on values you have entered.</p>
-            <ul class="list-unstyled mb-4">
-              <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Order Subtotal </strong><strong>{{$total}}</strong></li>
+            <ul id="li-check" class="list-unstyled mb-4">
+              <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted total " >Order Subtotal </strong><strong>{{$total}}</strong></li>
               <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Shipping and handling</strong><strong>Free</strong></li>
               <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tax</strong><strong>$0.00</strong></li>
-              <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total</strong><strong>{{$total}}</strong>
+              <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted total ">Total</strong><strong>{{$total}}</strong>
                 <!-- <h5 class="font-weight-bold">$400.00</h5> -->
               </li>
             </ul><a href="#" class="btn btn-dark rounded-pill py-2 btn-block">Procceed to checkout</a>
@@ -183,36 +198,8 @@ input:disabled{
 @endsection
 
 @section('extra-js')
-<script>
-    document.querySelectorAll('.plus').forEach(item => {
-          item.addEventListener('click', event => {
-            if(item.previousElementSibling["value"] == 10)
-              alert("No more product like this!!");
-            else{
-              item.previousElementSibling["value"]++;
-              x=parseInt(document.querySelector('#cart').textContent);
-              x++;
-              document.querySelector('#cart').textContent = x;
-            }
-          })
-    })
-    document.querySelectorAll('.minus').forEach(item => {
-          item.addEventListener('click', event => {
-            if(item.nextElementSibling["value"] == 1)
-            {
-              var choice = confirm("Are you sure you want to remove the product ?");
-              if(choice == true)
-                document.location.href = "{{ route('home')}}";
-            }
-            else{
-              item.nextElementSibling["value"]--;
-              x=parseInt(document.querySelector('#cart').textContent);
-              x--;
-              document.querySelector('#cart').textContent = x;
-            }
-          })
-    })
-</script>
+<script defer src="{{ asset('js/cart.js') }}"></script>
+
 
 @endsection
 <!-- Footer -->

@@ -17,7 +17,7 @@ class ProductController extends Controller
     {
       if (request()->id)
         $product = Product::select()->where('id','=',request()->id)->get();
-        dd($product);
+        // dd($product);
         return view('product')->with([
           'product'   => $product,
         ]);
@@ -52,7 +52,10 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        // $product = Product::find($id)->firstOrFail();
+        // return view('product')->with([
+        //   'product'   => $product,
+        // ]);
     }
 
     /**

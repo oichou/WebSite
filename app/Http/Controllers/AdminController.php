@@ -1,0 +1,95 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Product;
+use App\Order;
+use App\User;
+use App\Ordersproduct;
+
+class AdminController extends Controller
+{
+  /**
+   * Display a listing of the resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function index()
+  {
+      $recent_order  = Product::join('ordersproducts','ordersproducts.product_id','=','products.id')
+                       ->join('orders','orders.id','=','ordersproducts.order_id')
+                       ->join('users','users.id','=','orders.user_id')
+                       ->orderByDesc('date_order')->select('first_name','last_name','path','orders.id')->paginate(4);
+      $total_order   = Order::count();
+      $total_income  = Order::sum('price');
+      $total_user    = User::count();
+      $total_product = Product::count();
+      $big_numbers   = Order::orderByDesc('price')->select('price','first_name','last_name','date_order')->join('users','users.id','=','orders.user_id')->paginate(6);
+      // $big_numbers = Ordersproduct::select('order_id')->groupBy('order_id')->sum('quantity');
+      // orderByDesc('price')->join('users','users.id','=','orders.user_id')
+      //                  -->get();
+                       // dd($big_numbers);
+      return view('/dashboard/admin')->with([
+        'recent_order'  => $recent_order,
+        'total_order'   => $total_order,
+        'total_user'    => $total_user,
+        'total_product' => $total_product,
+        'total_income'  => $total_income,
+        'big_numbers'   => $big_numbers,
+      ]);
+  }
+  public function showtable(Request $request){
+
+    switch ($request->table) {
+      case 'Product':
+        $table= new Product;
+        $table = $table->getTable();
+        $columns  = \Schema::getColumnListing($table);
+        $products = Product::get();
+        return view('/dashboard/table')->with([
+          'columns' => $columns,
+          'products' => $products,
+        ]);
+        // dd($columns);
+        break;
+      case 'Order':
+        dd(Order::count());
+        break;
+      case 'User':
+        dd(User::count());
+        break;
+
+      default:
+        // code...
+        break;
+    }
+      return view('/dashboard/table');
+  }
+  public function productdiscount() {
+    $type       = !filter_var(request()->type, FILTER_VALIDATE_BOOLEAN);
+    // dd($converted_res = !$type ? 'true' : 'false');
+    $id         = request()->id;
+    $promo      = request()->promo;
+    $product    = Product::find($id);
+    if($product == null){
+      return [
+        "error" => "Product no available",
+      ];
+    }
+    if($promo <= 0 || $promo >= 100){
+      return [
+        "error" => "Amount no available",
+      ];
+    }
+    // $new_price = $product->basic_price - ($product->basic_price * $promo / 100 );
+    $product->setpromotion($promo,$type);
+    $product->save();
+    return [
+      'new_price' => $product->price,
+      'type' => $type ? 'true' : 'false',
+      'promo' => "$product->promo_percentage",
+    ];
+
+  }
+}

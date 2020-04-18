@@ -14,10 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/products', 'ProductsController@index')->name('products.index');
 Route::get('/products/{id}', 'ProductsController@show')->name('products.show');
 Route::get('/overview','UserPanelController@index')->name('overview');
-Route::get('/profile','UserPanelController@getProfile')->name('profile');
+Route::get('/profile','UserPanelController@getProfile')->name('profile')->middleware('auth');;
 Route::get('/orders','UserPanelController@getOrders')->name('orders');
 Route::get('profile.fname', 'UserPanelController@updatefName')->name('profile.fname');
 Route::get('profile.lname', 'UserPanelController@updatelName')->name('profile.lname');
@@ -29,9 +30,24 @@ Route::get('profile.username', 'UserPanelController@updateUsername')->name('prof
 Route::get('/admin', function () {
     return view('admin');
 })->middleware('auth');
+
+Route::get('/admin','AdminController@index')->name('admin.index');
+Route::get('/table','AdminController@showtable')->name('admin.showtable');
+
+
+Route::post('/cart/discount','CartController@discount')->name('cart.discount');
+Route::post('/product/discount','AdminController@productdiscount')->name('admin.productdiscount');
+
+
+Route::post('/cart/change','CartController@changequantity')->name('cart.changequantity');
+// List articles
+
 Route::get('/cart', 'CartController@index')->name('cart.index');
 
+//add article to the carte
 Route::get('/cart/{product}', 'CartController@addProduct')->name('cart.addProduct');
-Route::get('/cart/remove/{product}', 'CartController@removeProduct')->name('cart.removeProduct');
+
+//remove an article from the cart
+Route::delete('/cart/{product}', 'CartController@removeProduct')->name('cart.removeProduct');
 // this is the probleme i cant do both add and remove with the same url
 Auth::routes();

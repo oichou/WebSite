@@ -36,7 +36,6 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/checkout_responsive.css') }}">') }}
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/categories.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/categories_responsive.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('styles/contact.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/contact_responsive.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/cart.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/cart_responsive.css') }}"> -->
@@ -71,7 +70,6 @@
       <script src="{{ asset('js/product.js') }}"></script>
       <script src="{{ asset('js/checkout.js') }}"></script>
       <script src="{{ asset('js/categories.js') }}"></script>
-      <script src="{{ asset('js/contact.js') }}"></script>
       <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
       <script src="{{ asset('js/cart.js') }}"></script>
       <script src="{{ asset('js/profile.js') }}"></script>

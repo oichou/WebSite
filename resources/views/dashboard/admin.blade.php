@@ -116,7 +116,7 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                          <table class="table table-striped">
+                          <table class="table table-striped table-hover">
                             <thead>
                                 <th>User</th>
                                 <th>Price</th>

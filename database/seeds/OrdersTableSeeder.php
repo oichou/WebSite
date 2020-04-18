@@ -15,43 +15,43 @@ class OrdersTableSeeder extends Seeder
       Order::create([
         'user_id' => 1,
         'date_order' => now(),
-        'date_delivery' => now(),
+        'date_delivery' => "2020-06-20 21:11:29",
       ]);
       Order::create([
         'user_id' => 2,
         'date_order' => now(),
-        'date_delivery' => now(),
+        'date_delivery' => "2020-06-20 21:11:29",
       ]);
       Order::create([
         'user_id' => 2,
         'date_order' => now(),
-        'date_delivery' => now(),
+        'date_delivery' => "2020-06-20 21:11:29",
       ]);
       Order::create([
         'user_id' => 2,
         'price' => 1234,
         'date_order' => now(),
-        'date_delivery' => now(),
+        'date_delivery' => "2020-06-20 21:11:29",
 
       ]);
       Order::create([
         'user_id' => 2,
         'price' => 4353,
         'date_order' => now(),
-        'date_delivery' => now(),
+        'date_delivery' => "2020-06-20 21:11:29",
 
       ]);
       Order::create([
         'user_id' => 2,
         'price' => 2345.45,
         'date_order' => now(),
-        'date_delivery' => now(),
+        'date_delivery' => "2020-06-20 21:11:29",
 
       ]);
       Order::create([
         'user_id' => 3,
         'date_order' => now(),
-        'date_delivery' => now(),
+        'date_delivery' => "2020-06-20 21:11:29",
       ]);
     }
 }

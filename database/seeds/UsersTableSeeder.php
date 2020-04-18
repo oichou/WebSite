@@ -17,6 +17,7 @@ class UsersTableSeeder extends Seeder
         'email' => 'ous@ous.com',
         'username' => 'ous@ous.com',
         'password' => 'ous@ous.com',
+        'salt' => 'rtdfg',
         'is_admin' => true,
       ]);
       User::create([
@@ -25,6 +26,7 @@ class UsersTableSeeder extends Seeder
         'email' => 'ous@ous.ous',
         'username' => 'ous@ous.ous',
         'password' => 'ous@ous.ous',
+        'salt' => 'dfg',
         'is_admin' => true,
       ]);
       User::create([
@@ -33,6 +35,7 @@ class UsersTableSeeder extends Seeder
         'email' => 'com@com.com',
         'username' => 'com@com.com',
         'password' => 'com@com.com',
+        'salt' => 'dfgh',
         'is_admin' => true,
       ]);
     }

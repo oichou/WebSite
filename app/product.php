@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class product extends Model
 {
-
+  protected $fillable = ['name','quantity','category','brand','description','basic_price','price','promo','promo_percentage','path' ];
     function setpromotion($promo,$etat){
       if($etat == true)
       {

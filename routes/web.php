@@ -15,19 +15,25 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
+
 Route::get('/products', 'ProductsController@index')->name('products.index');
 Route::get('/products/{id}', 'ProductsController@show')->name('products.show');
-Route::get('/overview','UserPanelController@index')->name('overview');
-Route::get('/profile','UserPanelController@getProfile')->name('profile')->middleware('auth');;
-Route::get('/orders','UserPanelController@getOrders')->name('orders');
-Route::get('/admin','AdminController@index')->name('admin.index');
-Route::get('/table','AdminController@showtable')->name('admin.showtable');
 
+Route::get('/overview','UserPanelController@index')->name('overview')->middleware('auth');
+Route::get('/profile','UserPanelController@getProfile')->name('profile')->middleware('auth');
+Route::get('/orders','UserPanelController@getOrders')->name('orders')->middleware('auth');
+
+Route::get('/admin','AdminController@index')->name('admin.index');
+Route::get('/admin/{table}','AdminController@showtable')->name('admin.showtable');
+Route::get('/admin/removefrom/{table}/{id}','AdminController@removefrom')->name('admin.removefrom');
+Route::post('/product/discount','AdminController@productdiscount')->name('admin.productdiscount');
+Route::get('/newproduct',function(){
+  return view('newproduct');
+})->name('newproduct');
+
+Route::post('/newproduct','ProductController@create')->name('product.create');
 
 Route::post('/cart/discount','CartController@discount')->name('cart.discount');
-Route::post('/product/discount','AdminController@productdiscount')->name('admin.productdiscount');
-
-
 Route::post('/cart/change','CartController@changequantity')->name('cart.changequantity');
 // List articles
 Route::get('/cart', 'CartController@index')->name('cart.index');

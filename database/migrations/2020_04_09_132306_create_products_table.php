@@ -16,7 +16,7 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('path');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->integer('quantity');
             $table->enum('category', ['Phone', 'Laptop', 'Computer','Accessory','TV','Tablet','Camera']);;
             $table->enum('brand',['Apple','Samsung','Sony','Huwai','Other']);

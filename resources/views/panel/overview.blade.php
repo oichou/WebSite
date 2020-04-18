@@ -12,7 +12,7 @@
     <ul>
       <li><a href="{{route('overview')}}"> Account Overview</a> </li>
       <li><a href="{{ route('profile')}}"> My Profile</a></li>
-      <li><a href="{{ route('overview')}}"> My Online Orders</a> </li>
+      <li><a href="{{ route('orders')}}"> My Online Orders</a> </li>
     </ul>
   </div>
 

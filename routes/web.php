@@ -19,6 +19,13 @@ Route::get('/products/{id}', 'ProductsController@show')->name('products.show');
 Route::get('/overview','UserPanelController@index')->name('overview');
 Route::get('/profile','UserPanelController@getProfile')->name('profile');
 Route::get('/orders','UserPanelController@getOrders')->name('orders');
+Route::get('profile.fname', 'UserPanelController@updatefName')->name('profile.fname');
+Route::get('profile.lname', 'UserPanelController@updatelName')->name('profile.lname');
+Route::get('profile.email', 'UserPanelController@updateEmail')->name('profile.email');
+Route::get('profile.phone', 'UserPanelController@updatePhone')->name('profile.phone');
+Route::get('profile.birth', 'UserPanelController@updateBirth')->name('profile.birth');
+Route::get('profile.username', 'UserPanelController@updateUsername')->name('profile.username');
+
 Route::get('/admin', function () {
     return view('admin');
 })->middleware('auth');

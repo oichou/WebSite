@@ -74,5 +74,6 @@
       <script src="{{ asset('js/contact.js') }}"></script>
       <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
       <script src="{{ asset('js/cart.js') }}"></script>
+      <script src="{{ asset('js/profile.js') }}"></script>
 </body>
 </html>

@@ -98,7 +98,7 @@
 </form>
 <form class="form-horizontal" method="get" action="{{ route('profile.birth') }}">
   <div class="form-group">
-      <label class="col-md-2 col-sm-3 col-xs-12 control-label">Your bithdar</label>
+      <label class="col-md-2 col-sm-3 col-xs-12 control-label">Your bithday</label>
       <div class="col-md-10 col-sm-9 col-xs-12">
           <input type="text" class="form-control" value="{{ Auth::user()->birth }}" readonly>
           <div class="dec">

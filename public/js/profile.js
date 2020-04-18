@@ -63,4 +63,21 @@ $(document).ready(function(){
    })
 
 
+
+   // Alert for the success of the modification :
+
+$('.btn-new').each(function(){
+  $(this).on('click', function(){
+      let val = $(this).prev().val();
+      let name = $(this).prev().attr('name');
+      if (val == "") {
+        alert('Oops ! You didn\'t make any modification.');
+      }
+      else {
+        alert('You changed your ' + name +' to : ' + val);
+      }
+  })
+})
+
+
 });

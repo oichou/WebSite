@@ -15,8 +15,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
+
+  // Routes for the contact page
+
+Route::get('/contact', 'contactController@index')->name('contact');
+Route::post('/sendemail/send', 'contactController@send');
+
+
 Route::get('/products', 'ProductsController@index')->name('products.index');
 Route::get('/products/{id}', 'ProductsController@show')->name('products.show');
+
+  // Routes for the UserPanel Page
 Route::get('/overview','UserPanelController@index')->name('overview');
 Route::get('/profile','UserPanelController@getProfile')->name('profile')->middleware('auth');;
 Route::get('/orders','UserPanelController@getOrders')->name('orders');

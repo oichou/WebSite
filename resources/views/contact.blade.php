@@ -2,166 +2,75 @@
 <!-- Header -->
 @include('header')
 
-<!-- Menu -->
+@section('content')
 
-<!-- Menu -->
+<div class="container-contact100">
+  <div class="contact100-map" id="google_map" data-map-x="40.722047" data-map-y="-73.986422" data-pin="images/icons/map-marker.png" data-scrollwhell="0" data-draggable="1"></div>
 
-<div class="menu menu_mm trans_300">
-  <div class="menu_container menu_mm">
-    <div class="page_menu_content">
+  <button class="contact100-btn-show">
+    <i class="fa fa-envelope-o" aria-hidden="true"></i>
+  </button>
 
-      <div class="page_menu_search menu_mm">
-        <form action="#">
-          <input type="search" required="required" class="page_menu_search_input menu_mm" placeholder="Search for products...">
-        </form>
-      </div>
-      <ul class="page_menu_nav menu_mm">
-        <li class="page_menu_item has-children menu_mm">
-          <a href="index.html">Home<i class="fa fa-angle-down"></i></a>
-          <ul class="page_menu_selection menu_mm">
-            <li class="page_menu_item menu_mm"><a href="categories.html">Categories<i class="fa fa-angle-down"></i></a></li>
-            <li class="page_menu_item menu_mm"><a href="product.html">Product<i class="fa fa-angle-down"></i></a></li>
-            <li class="page_menu_item menu_mm"><a href="cart.html">Cart<i class="fa fa-angle-down"></i></a></li>
-            <li class="page_menu_item menu_mm"><a href="checkout.html">Checkout<i class="fa fa-angle-down"></i></a></li>
-            <li class="page_menu_item menu_mm"><a href="contact.html">Contact<i class="fa fa-angle-down"></i></a></li>
-          </ul>
-        </li>
-        <li class="page_menu_item has-children menu_mm">
-          <a href="categories.html">Categories<i class="fa fa-angle-down"></i></a>
-          <ul class="page_menu_selection menu_mm">
-            <li class="page_menu_item menu_mm"><a href="categories.html">Category<i class="fa fa-angle-down"></i></a></li>
-            <li class="page_menu_item menu_mm"><a href="categories.html">Category<i class="fa fa-angle-down"></i></a></li>
-            <li class="page_menu_item menu_mm"><a href="categories.html">Category<i class="fa fa-angle-down"></i></a></li>
-            <li class="page_menu_item menu_mm"><a href="categories.html">Category<i class="fa fa-angle-down"></i></a></li>
-          </ul>
-        </li>
-        <li class="page_menu_item menu_mm"><a href="index.html">Accessories<i class="fa fa-angle-down"></i></a></li>
-        <li class="page_menu_item menu_mm"><a href="#">Offers<i class="fa fa-angle-down"></i></a></li>
-        <li class="page_menu_item menu_mm"><a href="contact.html">Contact<i class="fa fa-angle-down"></i></a></li>
+  <div class="wrap-contact100">
+    <button class="contact100-btn-hide">
+      <i class="fa fa-close" aria-hidden="true"></i>
+    </button>
+
+    @if(count($errors) > 0)
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert">x</button>
+      <ul>
+          @foreach($errors->all() as $error)
+            <li>{{ $error }}</li>
+          @endforeach
       </ul>
     </div>
-  </div>
+    @endif
 
-  <div class="menu_close"><i class="fa fa-times" aria-hidden="true"></i></div>
-
-  <div class="menu_social">
-    <ul>
-      <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-      <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-      <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-      <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-    </ul>
-  </div>
-</div>
-
-<!-- Home -->
-
-<div class="home">
-  <div class="home_container">
-    <div class="home_background" style="background-image:url(image_project/lens.jpg)"></div>
-    <div class="home_content_container">
-      <div class="container">
-        <div class="row">
-          <div class="col">
-            <div class="home_content">
-              <div class="breadcrumbs">
-                <ul>
-                  <li><a href="{{ url('home') }}">Home</a></li>
-                  <li>Contact</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
+    @if($message = Session::get('success'))
+      <div class="alert alert-success alert-block">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <strong>{{ $message }}</strong>
       </div>
-    </div>
-  </div>
-</div>
+    @endif
 
-<!-- Contact -->
+    <form class="contact100-form validate-form" method="post" action="{{ url('sendemail/send')}}">
+      {{ csrf_field() }}
+      <span class="contact100-form-title">
+        Contact Us
+      </span>
 
-<div class="contact">
-  <div class="container">
-    <div class="row">
-
-      <!-- Get in touch -->
-      <div class="col-lg-8 contact_col">
-        <div class="get_in_touch">
-          <div class="section_title">Get in Touch</div>
-          <div class="section_subtitle">Say hello</div>
-          <div class="contact_form_container">
-            <form action="#" id="contact_form" class="contact_form">
-              <div class="row">
-                <div class="col-xl-6">
-                  <!-- Name -->
-                  <label for="contact_name">First Name*</label>
-                  <input type="text" id="contact_name" class="contact_input" required="required">
-                </div>
-                <div class="col-xl-6 last_name_col">
-                  <!-- Last Name -->
-                  <label for="contact_last_name">Last Name*</label>
-                  <input type="text" id="contact_last_name" class="contact_input" required="required">
-                </div>
-              </div>
-              <div>
-                <!-- Subject -->
-                <label for="contact_company">Subject</label>
-                <input type="text" id="contact_company" class="contact_input">
-              </div>
-              <div>
-                <label for="contact_textarea">Message*</label>
-                <textarea id="contact_textarea" class="contact_input contact_textarea" required="required"></textarea>
-              </div>
-              <button class="button contact_button"><span>Send Message</span></button>
-            </form>
-          </div>
-        </div>
+      <div class="wrap-input100 rs1-wrap-input100 validate-input" data-validate="Name is required">
+        <span class="label-input100">Your Name</span>
+        <input class="input100" type="text" name="name" placeholder="Enter your name">
+        <span class="focus-input100"></span>
       </div>
 
-      <!-- Contact Info -->
-      <div class="col-lg-3 offset-xl-1 contact_col">
-        <div class="contact_info">
-          <div class="contact_info_section">
-            <div class="contact_info_title">Marketing</div>
-            <ul>
-              <li>Phone: <span>+53 345 7953 3245</span></li>
-              <li>Email: <span>yourmail@gmail.com</span></li>
-            </ul>
-          </div>
-          <div class="contact_info_section">
-            <div class="contact_info_title">Shippiing & Returns</div>
-            <ul>
-              <li>Phone: <span>+53 345 7953 3245</span></li>
-              <li>Email: <span>yourmail@gmail.com</span></li>
-            </ul>
-          </div>
-          <div class="contact_info_section">
-            <div class="contact_info_title">Information</div>
-            <ul>
-              <li>Phone: <span>+53 345 7953 3245</span></li>
-              <li>Email: <span>yourmail@gmail.com</span></li>
-            </ul>
-          </div>
-        </div>
+      <div class="wrap-input100 rs1-wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+        <span class="label-input100">Email</span>
+        <input class="input100" type="text" name="email" placeholder="Enter your email addess">
+        <span class="focus-input100"></span>
       </div>
-    </div>
-    <div class="row map_row">
-      <div class="col">
 
-        <!-- Google Map -->
-        <!-- <div class="map">
-          <div id="google_map" class="google_map">
-            <div class="map_container">
-              <div id="map"></div>
-            </div>
-          </div>
-        </div> -->
-
+      <div class="wrap-input100 validate-input" data-validate = "Message is required">
+        <span class="label-input100">Message</span>
+        <textarea class="input100" name="message" placeholder="Your message here..."></textarea>
+        <span class="focus-input100"></span>
       </div>
-    </div>
+
+      <div class="container-contact100-form-btn">
+        <input class="contact100-form-btn fa fa-long-arrow-right m-l-7" type="submit" name='sendemail' value="Send">
+      </div>
+    </form>
+
   </div>
 </div>
 
+
+
+<div id="dropDownSelect1"></div>
+
+@endsection
 
 <!-- Footer -->
 @include('footer')

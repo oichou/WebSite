@@ -44,10 +44,21 @@ Route::get('/admin','AdminController@index')->name('admin.index');
 Route::get('/table','AdminController@showtable')->name('admin.showtable');
 
 
-Route::post('/cart/discount','CartController@discount')->name('cart.discount');
+Route::get('/overview','UserPanelController@index')->name('overview')->middleware('auth');
+Route::get('/profile','UserPanelController@getProfile')->name('profile')->middleware('auth');
+Route::get('/orders','UserPanelController@getOrders')->name('orders')->middleware('auth');
+
+Route::get('/admin','AdminController@index')->name('admin.index');
+Route::get('/admin/{table}','AdminController@showtable')->name('admin.showtable');
+Route::get('/admin/removefrom/{table}/{id}','AdminController@removefrom')->name('admin.removefrom');
 Route::post('/product/discount','AdminController@productdiscount')->name('admin.productdiscount');
+Route::get('/newproduct',function(){
+  return view('newproduct');
+})->name('newproduct');
 
+Route::post('/newproduct','ProductController@create')->name('product.create');
 
+Route::post('/cart/discount','CartController@discount')->name('cart.discount');
 Route::post('/cart/change','CartController@changequantity')->name('cart.changequantity');
 // List articles
 

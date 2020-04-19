@@ -46,25 +46,53 @@ class AdminController extends Controller
         $table= new Product;
         $table = $table->getTable();
         $columns  = \Schema::getColumnListing($table);
-        $products = Product::get();
-        return view('/dashboard/table')->with([
-          'columns' => $columns,
-          'products' => $products,
-        ]);
-        // dd($columns);
+        $items = Product::get();
         break;
       case 'Order':
-        dd(Order::count());
+      $table= new Order;
+      $table = $table->getTable();
+      $columns  = \Schema::getColumnListing($table);
+      $items = Order::get();
         break;
       case 'User':
-        dd(User::count());
+      $table= new User;
+      $table = $table->getTable();
+      $columns  = \Schema::getColumnListing($table);
+      $items = User::get();
         break;
 
       default:
         // code...
         break;
     }
-      return view('/dashboard/table');
+    return view('/dashboard/table')->with([
+      'columns' => $columns,
+      'items'   => $items,
+      'table'   => $request->table,
+    ]);
+  }
+  public function removefrom(Request $request){
+    $id = $request->id;
+    switch ($request->table) {
+      case 'Product':
+      Product::find($id)->delete();
+      return redirect()->route('admin.showtable', ['table' => 'Product']);
+        break;
+      case 'Order':
+      Order::find($id)->delete();
+      return redirect()->route('admin.showtable', ['table' => 'Order']);
+        break;
+        break;
+      case 'User':
+      User::find($id)->delete();
+      return redirect()->route('admin.showtable', ['table' => 'User']);
+        break;
+        break;
+
+      default:
+        // code...
+        break;
+    }
   }
   public function productdiscount() {
     $type       = !filter_var(request()->type, FILTER_VALIDATE_BOOLEAN);
@@ -92,4 +120,9 @@ class AdminController extends Controller
     ];
 
   }
+  public function addproduct()
+  {
+    
+  }
+
 }

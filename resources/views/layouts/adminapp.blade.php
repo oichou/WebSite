@@ -2,7 +2,7 @@
 <html class="loading" lang="en" data-textdirection="ltr">
   <head>
     @yield('extra-css')
-    
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -174,7 +174,7 @@
       <!-- END PAGE VENDOR JS-->
       <!-- BEGIN CHAMELEON  JS-->
       <!-- <script src="theme-assets/js/core/app-menu-lite.js" type="text/javascript"></script> -->
-      <script src="{{ asset('theme-assets/js/core/app-lite.js') }}" type="text/javascript"></script>
+      <!-- <script src="{{ asset('theme-assets/js/core/app-lite.js') }}" type="text/javascript"></script> -->
       <!-- END CHAMELEON  JS-->
       <!-- BEGIN PAGE LEVEL JS-->
       <script src="{{ asset('theme-assets/js/scripts/pages/dashboard-lite.js') }}" type="text/javascript"></script>

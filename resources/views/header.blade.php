@@ -12,7 +12,7 @@
                   <a href="{{ route('home') }}">Home</a>
                 </li>
                 <li class="hassubs">
-                  <a href="{{ url('categories')}}">Categories</a>
+                  <a href="#">Categories</a>
                   <ul>
                     <li><a href="{{ route('products.index',['category'=>'phone']) }}">Phones</a></li>
                     <li><a href="{{ route('products.index',['category'=>'laptop']) }}">Laptops</a></li>

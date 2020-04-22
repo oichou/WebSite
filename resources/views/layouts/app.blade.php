@@ -18,6 +18,8 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
+    <link href="{{ asset('css/boxicons.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/home.css') }}" rel="stylesheet">
     <link href="{{ asset('css/contact.css') }}" rel="stylesheet">
     <link href="{{ asset('css/panel.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -75,6 +77,7 @@
       <script src="{{ asset('js/cart.js') }}"></script>
       <script src="{{ asset('js/profile.js') }}"></script>
       <script src="{{ asset('js/contact.js') }}"></script>
+      <script src="{{ asset('js/home.js') }}"></script>
       <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}

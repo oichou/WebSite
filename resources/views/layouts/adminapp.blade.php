@@ -180,7 +180,7 @@
       <!-- END PAGE VENDOR JS-->
       <!-- BEGIN CHAMELEON  JS-->
       <!-- <script src="theme-assets/js/core/app-menu-lite.js" type="text/javascript"></script> -->
-      <script src="{{ asset('theme-assets/js/core/app-lite.js') }}" type="text/javascript"></script>
+      <!-- <script src="{{ asset('theme-assets/js/core/app-lite.js') }}" type="text/javascript"></script> -->
       <!-- END CHAMELEON  JS-->
       <!-- BEGIN PAGE LEVEL JS-->
       <script src="{{ asset('theme-assets/js/scripts/pages/dashboard-lite.js') }}" type="text/javascript"></script>

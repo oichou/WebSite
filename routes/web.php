@@ -52,11 +52,16 @@ Route::get('/admin','AdminController@index')->name('admin.index');
 Route::get('/admin/{table}','AdminController@showtable')->name('admin.showtable');
 Route::get('/admin/removefrom/{table}/{id}','AdminController@removefrom')->name('admin.removefrom');
 Route::post('/product/discount','AdminController@productdiscount')->name('admin.productdiscount');
+Route::post('/admin/chmod','AdminController@chmod')->name('admin.chmod');
 Route::get('/newproduct',function(){
   return view('newproduct');
 })->name('newproduct');
 
+Route::get('/edit/{id}','ProductController@createform')->name('createformeditproduct');
+Route::post('/edit/{id}','ProductController@edit')->name('editproduct');
+
 Route::post('/newproduct','ProductController@create')->name('product.create');
+// Route::post('/editprodut/{id}', 'ProductController@edit')->name('product.edit');
 
 Route::post('/cart/discount','CartController@discount')->name('cart.discount');
 Route::post('/cart/change','CartController@changequantity')->name('cart.changequantity');

@@ -1,6 +1,5 @@
 @section('header')
 
-</header>
 <header id="header">
   <div class="container d-flex">
 

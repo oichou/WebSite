@@ -15,8 +15,7 @@ class AdminController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function index()
-  {
+  public function index() {
       $recent_order  = Product::join('ordersproducts','ordersproducts.product_id','=','products.id')
                        ->join('orders','orders.id','=','ordersproducts.order_id')
                        ->join('users','users.id','=','orders.user_id')
@@ -107,7 +106,7 @@ class AdminController extends Controller
     }
     if($promo <= 0 || $promo >= 100){
       return [
-        "error" => "Amount no available",
+        "error" => "Error Amount",
       ];
     }
     // $new_price = $product->basic_price - ($product->basic_price * $promo / 100 );
@@ -120,9 +119,29 @@ class AdminController extends Controller
     ];
 
   }
-  public function addproduct()
-  {
-    
+  public function chmod() {
+    // exemple de code a definir plus tard
+    if(request()->code == 1234)
+    {
+        $type       = !filter_var(request()->type, FILTER_VALIDATE_BOOLEAN);
+        $id         = request()->id;
+        $user       = User::find($id);
+        if($user == null){
+          return [
+            "error" => "Wrong User id",
+          ];
+        }
+        $user->setisadminattribute($type);
+        $user->save();
+        return [
+          'type' => $type ? 'true' : 'false',
+        ];
+    }
+    else {
+      return [
+        "error" => "Error Code !!",
+      ];
+    }
   }
 
 }

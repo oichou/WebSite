@@ -8,9 +8,9 @@
     <div class="content-header row">
     </div>
     <div class="content-body">
-      <h1>Create new product</h1>
+      <h1>Add new user</h1>
       <div class="login-dark container">
-        <form method="POST" action="{{route ('newproduct')}}" enctype="multipart/form-data">
+        <form method="POST" action="{{route ('newuser')}}" enctype="multipart/form-data">
           @csrf
             <div class="form-group">
               Product Name:

@@ -35,8 +35,8 @@
               @forelse($items as $item)
                 <tr scope="row">
                   <td>
-                    <a href="{{ route ('admin.removefrom' ,['table' => 'Product' , 'id' => $item->id ])}}"><i class="fa fa-trash"></i></a><br/>
-                    <a href=""><i class="fas fa-edit"></i></a><br/>
+                    <a href="{{ route ( 'admin.removefrom' ,[ 'table' => 'Product' , 'id' => $item->id ] ) }}"><i class="fa fa-trash"></i></a><br/>
+                    <a href="{{ route ( 'editproduct' ,[ 'id' => $item->id ] ) }} "><i class="fas fa-edit"></i></a><br/>
                   </td>
                   <td>{{$item->id}}</td>
                   <td><img class="avatar avatar-sm pull-up media-object rounded-circle no-border-top-radius no-border-bottom-radius" src="/images/{{$item->path}}" alt="{{$item->name}}"></td>
@@ -122,7 +122,7 @@
                 @php
                 $percent =75;
                 @endphp
-                <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar" style="width: {{ $percent}} %"  aria-valuemin="0" aria-valuemax="100">{{ $percent }}%</div>
+                <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar" style="width: 70%"  aria-valuemin="0" aria-valuemax="100">{{ $percent }}%</div>
               </div>
             </td>
             @empty

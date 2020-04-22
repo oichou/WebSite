@@ -21,14 +21,14 @@ class ProductController extends Controller
       {
           return Validator::make($data, [
               'name'              => ['required', 'string', 'max:255','unique:products'],
-              'quantity'          => ['required', 'integer', 'max:255'],
+              'quantity'          => ['required', 'numeric', 'max:255','min:1'],
               'category'          => ['required', 'string', 'max:255'],
               'brand'             => ['required', 'string', 'email', 'max:255'],
               'description'       => ['required', 'string', 'min:255'],
-              'basic_price'       => ['required', 'integer'],
-              'price'             => ['required', 'integer'],
+              'basic_price'       => ['required', 'numeric'],
+              'price'             => ['required', 'numeric','min:1'],
               'promo'             => ['required', 'boolean'],
-              'promo_percentage'  => ['required', 'integer'],
+              'promo_percentage'  => ['required', 'numeric','min:0','max:100'],
               'photo1'            => ['required|image|mimes:jpeg,png,jpg|max:5000'],
               'photo2'            => ['required|image|mimes:jpeg,png,jpg|max:5000'],
               'photo3'            => ['required|image|mimes:jpeg,png,jpg|max:5000'],
@@ -41,8 +41,7 @@ class ProductController extends Controller
        * @param  array  $data
        * @return \App\Product
        */
-      protected function create(Request $request)
-      {
+      protected function create(Request $request) {
         // dd($request->input('promo'));
         $promo = $request->input('promo') ? true : false;
           $produit = Product::create([
@@ -77,8 +76,7 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
       if (request()->id)
         $product = Product::select()->where('id','=',request()->id)->get();
         // dd($product);
@@ -120,7 +118,38 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::find($id);
+        $product->update(request()->all());
+        // $product->name              = $request->input('name');
+        // $product->path              = $request->input('name').'.jpg';
+        // $product->quantity          = $request->input('quantity');
+        // $product->category          = $request->input('category');
+        // $product->brand             = $request->input('brand');
+        // $product->description       = $request->input('description');
+        // $product->basic_price       = $request->input('basic_price');
+        // $product->price             = $request->input('price');
+        // $product->promo             = $promo;
+        // $product->promo_percentage  = $request->input('promo_percentage');
+        // $product->save();
+        return redirect()->route('admin.showtable', ['table' => 'Product']);
+
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function createform($id)
+    {
+        $product = Product::find($id);
+        $photos  = Productphoto::select()->where('product_id','=',$id)->get();
+        // dd($product);
+        return view('editproduct')->with([
+            'product' => $product,
+            'photo'   => $photos,
+        ]);
     }
 
     /**

@@ -13,7 +13,7 @@
       <ul>
         <li class="active"><a href="{{ url('home') }}">Home</a></li>
         <li><a href="{{ route('products.index',['category'=>'accessorie']) }}">Accessoires</a></li>
-        <li class="drop-down"><a href="">Categories</a>
+        <li class="drop-down"><a href="#">Categories</a>
           <ul>
             <li><a href="{{ route('products.index',['category'=>'phone']) }}">Phones</a></li>
             <li><a href="{{ route('products.index',['category'=>'laptop']) }}">Laptops</a></li>
@@ -22,7 +22,8 @@
             <li><a href="{{ route('products.index',['category'=>'Gaming']) }}">Gaming</a></li>
           </ul>
         </li>
-        <li><a href="#contact">Contact Us</a></li>
+        <li><a href="#">Offers</a></li>
+        <li><a href="#">Contact Us</a></li>
       </ul>
     </nav><!-- .nav-menu -->
 

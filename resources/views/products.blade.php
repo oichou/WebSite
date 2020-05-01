@@ -28,10 +28,10 @@
       <h3>By Price</h3>
       <ul>
         <li>
-          <a href="#">hello</a>
+          <a href="#">Low to high</a>
         </li>
         <li>
-          <a href="#">hello</a>
+          <a href="#">High to low</a>
         </li>
       </ul>
     </div> <!-- end sidebar -->
@@ -55,11 +55,11 @@
                 </div>
                 <div class="product-content">
                     <h3 class="title"><a href="{{ route('products.show',['id'=>$product->id]) }}">{{ $product->name }}</a></h3>
-                    <div class="price">{{ $product->price }}</div>
+                    <div class="price">$ {{ $product->price }}</div>
                 </div>
                 <ul class="social">
                     <li><a href="{{ route('products.show',['id'=>$product->id]) }}" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
-                    <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
+                    <!-- <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li> -->
                     <li>
                       <a href="{{ route('cart.addProduct',['product'=>$product]) }}" data-tip="Add to Cart" onclick="parentNode.submit()"><i class="fa fa-shopping-cart"></i></a>
                   </li>

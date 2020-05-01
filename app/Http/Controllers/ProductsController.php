@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Productphoto;
 
 class ProductsController extends Controller
 {
@@ -61,10 +62,15 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        $product = Product::select()->where('id','=',request()->id)->firstOrFail();
-        // $mightAlsoLike = Product::where('slug', '!=', $slug)->mightAlsoLike()->get();
+        $product       = Product::find($id);
+        $images        = Productphoto::select('path')->where('product_id','=',$id)->get();
+        $cat           = Product::find($id)->pluck('category');
+        $mightAlsoLike = Product::inRandomOrder()->where([['category','=',$cat],['id','<>',$id],])->paginate(4);
         return view('product')->with([
-          'product'   => $product,
+          'product'       => $product,
+          'mightAlsoLike' => $mightAlsoLike,
+          'images'        => $images
+
         ]);
     }
 

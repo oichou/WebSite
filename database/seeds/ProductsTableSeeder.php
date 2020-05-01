@@ -14,71 +14,71 @@ class ProductsTableSeeder extends Seeder
     {
         Product::create([
           'name' => 'Macbook Pro1',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
-          'basic_price' => 1000,'price' => 1000,
+          'basic_price' => 1234.321,'price' => 1234.321,
           'quantity' => 10,
-          'path' => '/macpro2.jpg',
+          'path' => '/macpro.jpg',
         ]);
         Product::create([
           'name' => 'Macbook Pro2',
-          'category' => 'phone',
-          'brand' => 'samsung',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
-          'basic_price' => 1000,'price' => 1000,
+          'basic_price' => 2342.23,'price' => 2342.23,
           'quantity' => 10,
-          'path' => '/macpro2.jpg',
+          'path' => '/mac_slide.jpg',
         ]);
         Product::create([
           'name' => 'Macbook Pro3',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
-          'basic_price' => 1000,'price' => 1000,
+          'basic_price' => 999.99,'price' => 999.99,
           'quantity' => 10,
           'path' => '/macpro2.jpg',
         ]);
         Product::create([
-          'name' => 'Macbook Pro4',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'name' => 'samsung s10 +',
+          'category' => 'Phone',
+          'brand' => 'Samsung',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
-          'basic_price' => 1000,'price' => 1000,
+          'basic_price' => 332.332,'price' => 332.332,
           'quantity' => 10,
-          'path' => '/macpro2.jpg',
+          'path' => '/cat_phones2.jpg',
         ]);
         Product::create([
-          'name' => 'Macbook Pro5',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'name' => 'samsung s10',
+          'category' => 'Phone',
+          'brand' => 'Samsung',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
-          'path' => '/macpro2.jpg',
+          'path' => '/brand_samsung.jpg',
         ]);
         Product::create([
-          'name' => 'Macbook Pro6',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'name' => 'Sony Camera',
+          'category' => 'Camera',
+          'brand' => 'Sony',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
-          'path' => '/macpro2.jpg',
+          'path' => '/brand_sony2.jpg',
         ]);
         Product::create([
-          'name' => 'Macbook Pro7',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'name' => 'iphone X',
+          'category' => 'Phone',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
-          'basic_price' => 1000,'price' => 1000,
+          'basic_price' => 24323.43,'price' => 24323.43,
           'quantity' => 10,
-          'path' => '/macpro2.jpg',
+          'path' => '/iphoneX.jpg',
         ]);
         Product::create([
           'name' => 'Macbook Pro8',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -86,53 +86,53 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro9',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Accessory',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
-          'basic_price' => 1000,'price' => 1000,
+          'basic_price' => 432.44,'price' => 432.44,
           'quantity' => 10,
-          'path' => '/macpro2.jpg',
+          'path' => '/Apple_watch.jpg',
         ]);
         Product::create([
-          'name' => 'Macbook Pro10',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'name' => 'Sony',
+          'category' => 'Gaming',
+          'brand' => 'Sony',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
-          'basic_price' => 1000,'price' => 1000,
+          'basic_price' => 98.54,'price' => 98.54,
           'quantity' => 10,
-          'path' => '/macpro2.jpg',
+          'path' => '/brand_sony.jpg',
         ]);
         Product::create([
-          'name' => 'Macbook Pro11',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'name' => 'Computer for games',
+          'category' => 'Computer',
+          'brand' => 'Other',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
-          'path' => '/macpro2.jpg',
+          'path' => '/cat_computers.jpg',
         ]);
         Product::create([
-          'name' => 'Macbook Pro12',
-          'category' => 'phone',
-          'brand' => 'samsung',
+          'name' => 'iphone 11',
+          'category' => 'Phone',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
-          'basic_price' => 1000,'price' => 1000,
+          'basic_price' => 678.44,'price' => 678.44,
           'quantity' => 10,
-          'path' => '/macpro2.jpg',
+          'path' => '/cat_phones.jpg',
         ]);
         Product::create([
-          'name' => 'Macbook Pro13',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'name' => 'dj board',
+          'category' => 'Other',
+          'brand' => 'Other',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
-          'basic_price' => 1000,'price' => 1000,
+          'basic_price' => 123.33,'price' => 123.33,
           'quantity' => 10,
-          'path' => '/macpro2.jpg',
+          'path' => '/studio.jpg',
         ]);
         Product::create([
           'name' => 'Macbook Pro14',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -140,8 +140,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro15',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -149,8 +149,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro16',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -158,8 +158,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro17',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -167,8 +167,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro18',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -176,8 +176,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro19',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -185,8 +185,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro2340',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -194,8 +194,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro21',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -212,8 +212,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro30',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -221,8 +221,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro40',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -230,8 +230,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro50',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -239,8 +239,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro60',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -248,8 +248,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro70',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -257,8 +257,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro80',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -266,8 +266,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro90',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -275,8 +275,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro1010',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -284,8 +284,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro1100',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -302,8 +302,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro300',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -311,8 +311,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro400',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -320,8 +320,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro500',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -329,8 +329,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro600',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -338,8 +338,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro700',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -347,8 +347,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro800',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -356,8 +356,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro900',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -365,8 +365,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro11010',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -374,8 +374,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro112',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -392,8 +392,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro3123',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -401,8 +401,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro412',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -410,8 +410,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro5123',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -419,8 +419,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro6123',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -428,8 +428,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro7123',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -437,8 +437,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro8123',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -446,8 +446,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro9123',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -455,8 +455,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro101234',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -464,8 +464,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro1123',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -482,8 +482,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro1233',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -491,8 +491,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro4234',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -500,8 +500,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro534',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -509,8 +509,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro346',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -518,8 +518,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro7534',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -527,8 +527,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro8546',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -536,8 +536,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro96453',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,
@@ -545,8 +545,8 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
           'name' => 'Macbook Pro10345',
-          'category' => 'laptop',
-          'brand' => 'apple',
+          'category' => 'Laptop',
+          'brand' => 'Apple',
           'description' => 'this is the description this is the description this is the description this is the description this is the description this is the description this is the description this is the description',
           'basic_price' => 1000,'price' => 1000,
           'quantity' => 10,

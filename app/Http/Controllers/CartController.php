@@ -19,7 +19,7 @@ class CartController extends Controller
     public function index()
     {
         $products = [];
-        $total = 0;
+        $total    = 0;
         $cart     = Session::has('cart') ? Session::get('cart') : null;
         if($cart){
           foreach ($cart->products_id as $key => $value) {
@@ -29,7 +29,7 @@ class CartController extends Controller
           }
           $total = $cart->total_price;
         }
-        // dd($products);
+
         return view('cart')->with([
           'products' => $products,
           'total'    => $total,

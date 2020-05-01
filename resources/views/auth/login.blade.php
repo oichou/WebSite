@@ -12,6 +12,7 @@
         </div>
 
         <div class="form-group">
+          
           <input id="Login" type="text" class="form-control @error('Login') is-invalid @enderror" name="Login" value="{{ old('Login') }}" required autocomplete="Login" placeholder="username ou email" autofocus>
 
           @error('Login')

@@ -1,17 +1,8 @@
-/**
-* Template Name: Shuffle - v2.0.0
-* Template URL: https://bootstrapmade.com/bootstrap-3-one-page-template-free-shuffle/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-!(function($) {
-  "use strict";
-
   // Stick the header at top on scroll
-  $("#header").sticky({
-    topSpacing: 0,
-    zIndex: '50'
-  });
+  // $("#header").sticky({
+  //   topSpacing: 0,
+  //   zIndex: '50'
+  // });
 
   // Smooth scroll for the navigation menu and links with .scrollto classes
   $(document).on('click', '.nav-menu a, .mobile-nav a, .scrollto', function(e) {
@@ -126,40 +117,44 @@
   });
 
   // Skills section
-  $('.skills-content').waypoint(function() {
-    $('.progress .progress-bar').each(function() {
-      $(this).css("width", $(this).attr("aria-valuenow") + '%');
-    });
-  }, {
-    offset: '80%'
-  });
+  // $('.skills-content').waypoint(function() {
+  //   $('.progress .progress-bar').each(function() {
+  //     $(this).css("width", $(this).attr("aria-valuenow") + '%');
+  //   });
+  // }, {
+  //   offset: '80%'
+  // });
 
   // jQuery counterUp
-  $('[data-toggle="counter-up"]').counterUp({
-    delay: 10,
-    time: 1000
-  });
+  // $('[data-toggle="counter-up"]').counterUp({
+  //   delay: 10,
+  //   time: 1000
+  // });
 
   // Porfolio isotope and filter
   $(window).on('load', function() {
-    var portfolioIsotope = $('.portfolio-container').isotope({
-      itemSelector: '.portfolio-item',
-      layoutMode: 'fitRows'
-    });
+    // var portfolioIsotope = $('.portfolio-container').isotope({
+    //   itemSelector: '.portfolio-item',
+    //   layoutMode: 'fitRows'
+    // });
+
+    // var grid = new Isotope('.portfolio-container', {
+    // 	itemSelector: '.portfolio-item',
+    // 	layoutMode: 'fitRows',
+    // });
 
     $('#portfolio-flters li').on('click', function() {
       $("#portfolio-flters li").removeClass('filter-active');
       $(this).addClass('filter-active');
-
-      portfolioIsotope.isotope({
-        filter: $(this).data('filter')
-      });
     });
+
+    //   grid.isotope({
+    //     filter: $(this).data('filter')
+    //   });
+    // });
 
     // Initiate venobox (lightbox feature used in portofilo)
-    $(document).ready(function() {
-      $('.venobox').venobox();
-    });
+    // $(document).ready(function() {
+    //   $('.venobox').venobox();
+    // });
   });
-
-})(jQuery);

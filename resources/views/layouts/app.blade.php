@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
 <head>
     <title>Oussafa</title>
     <meta charset="utf-8">
@@ -11,17 +11,18 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <!-- <script defer src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script> -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
     <!-- Styles -->
-    <link href="{{ asset('css/boxicons.css') }}" rel="stylesheet">
+    <!-- <link href="{{ asset('css/boxicons.css') }}" rel="stylesheet"> -->
     <link href="{{ asset('css/home.css') }}" rel="stylesheet">
     <link href="{{ asset('css/contact.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/header.css') }}" rel="stylesheet">
+    <!-- <link href="{{ asset('css/header.css') }}" rel="stylesheet"> -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
@@ -35,8 +36,6 @@
     <!-- <link rel="stylesheet" type="text/css" href="{{ asset('/styles/bootstrap4/bootstrap.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/product.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/product_responsive.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('styles/checkout.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('styles/checkout_responsive.css') }}">') }}
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/categories.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/categories_responsive.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/contact_responsive.css') }}">
@@ -54,10 +53,11 @@
           @yield('footer')
       </main>
       @yield('extra-js')
-
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      <script src="{{ asset('/js/jquery-3.2.1.min.js') }}"></script>
+      <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
       <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+      <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
+      <!-- <script src="{{ asset('/js/jquery-3.2.1.min.js') }}"></script> -->
       <script src="{{ asset('/css/bootstrap4/popper.js') }}"></script>
       <script src="{{ asset('/css/bootstrap4/bootstrap.min.js') }}"></script>
       <script src="{{ asset('/plugins/greensock/TweenMax.min.js') }}"></script>
@@ -73,11 +73,10 @@
       <script src="{{ asset('js/product.js') }}"></script>
       <script src="{{ asset('js/checkout.js') }}"></script>
       <script src="{{ asset('js/categories.js') }}"></script>
-      <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
       <script src="{{ asset('js/cart.js') }}"></script>
       <script src="{{ asset('js/profile.js') }}"></script>
       <script src="{{ asset('js/contact.js') }}"></script>
-      <script src="{{ asset('js/home.js') }}"></script>
+      <script src="{{ asset('js/main.js') }}"></script>
       <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}

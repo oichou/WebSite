@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/checkout', 'CheckoutController@index')->name('checkout');
 
   // Routes for the contact page
 
@@ -42,6 +43,9 @@ Route::get('/admin', function () {
 
 Route::get('/admin','AdminController@index')->name('admin.index');
 Route::get('/table','AdminController@showtable')->name('admin.showtable');
+
+Route::get('/addressform/{for}','AdressController@form')->name('adress.form');
+Route::post('/addressform/{for}','AdressController@create')->name('adress.create');
 
 
 Route::get('/overview','UserPanelController@index')->name('overview')->middleware('auth');

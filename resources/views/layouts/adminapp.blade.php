@@ -52,7 +52,7 @@
               </li>
               <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown"><span class="avatar avatar-online"><img src="theme-assets/images/portrait/small/parameters.png" alt="avatar"><i></i></span></a>
                 <div class="dropdown-menu dropdown-menu-right">
-                  <div class="arrow_box_right"><a class="dropdown-item" href="{{ url('home') }}"><span class="avatar avatar-online"><span class="user-name text-bold-700 ml-1">{{ Auth::user()->first_name}} {{ Auth::user()->last_name }}</span></span></a>
+                  <div class="arrow_box_right"><a class="dropdown-item" href="{{ url('home') }}"><span class="avatar avatar-online"><span class="user-name text-bold-700 ml-1"> Auth::user()->first_name Auth::user()->last_name </span></span></a>
                     <div class="dropdown-divider"></div><a class="dropdown-item" href="{{ url('profile') }}"><i class="ft-user"></i> Edit Profile</a>
                     <!-- <a class="dropdown-item" href="#"><i class="ft-mail"></i> My Inbox</a><a class="dropdown-item" href="#"><i class="ft-check-square"></i> Task</a><a class="dropdown-item" href="#"><i class="ft-message-square"></i> Chats</a> -->
                     <div class="dropdown-divider"></div>
@@ -60,7 +60,7 @@
                                   document.getElementById('logout-form').submit();"><i class="ft-power"></i> Logout</a>
                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                        @csrf
-                   </form>              
+                   </form>
                   </div>
                 </div>
               </li>

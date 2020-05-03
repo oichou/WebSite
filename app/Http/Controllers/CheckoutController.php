@@ -19,6 +19,22 @@ class CheckoutController extends Controller
    */
   public function index()
   {
+    $products = [];
+    $total    = 0;
+    $items    = 0;
+    $cart     = Session::has('cart') ? Session::get('cart') : null;
+    if($cart){
+      foreach ($cart->products_id as $key => $value) {
+        $product     = Product::find(intval($key));
+        if($product->quantity < $value)
+          return view('errors/outofstock');
+        $qty         = $value;
+        $products [] = [$product,$qty];
+      }
+      $total = $cart->total_price;
+      $items = $cart->total_product;
+    }
+
     $currentuser = Auth::user();
     $adr_id      = $currentuser->adress_id;
     if($adr_id === null)
@@ -27,19 +43,6 @@ class CheckoutController extends Controller
           return redirect()->route('adress.form',['for' => 'checkout']);
     }
     $adress = Address::find($adr_id);
-    $products = [];
-    $total    = 0;
-    $items    = 0;
-    $cart     = Session::has('cart') ? Session::get('cart') : null;
-    if($cart){
-      foreach ($cart->products_id as $key => $value) {
-        $qty         = $value;
-        $product     = Product::find(intval($key));
-        $products [] = [$product,$qty];
-      }
-      $total = $cart->total_price;
-      $items = $cart->total_product;
-    }
 
     return view('checkout')->with([
       'adress'      => $adress,

@@ -7,6 +7,7 @@ use App\Product;
 use App\Order;
 use App\User;
 use App\Ordersproduct;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -16,6 +17,10 @@ class AdminController extends Controller
    * @return \Illuminate\Http\Response
    */
   public function index() {
+      $user = Auth::user();
+      if(!$user->is_admin)
+        return redirect()->route('error',['whichone' => '403' ]);
+       // return redirect('/dashboard');
       $recent_order  = Product::join('ordersproducts','ordersproducts.product_id','=','products.id')
                        ->join('orders','orders.id','=','ordersproducts.order_id')
                        ->join('users','users.id','=','orders.user_id')
@@ -39,7 +44,9 @@ class AdminController extends Controller
       ]);
   }
   public function showtable(Request $request){
-
+    $user = Auth::user();
+    if(!$user->is_admin)
+      return redirect()->route('error',['whichone' => '403' ]);
     switch ($request->table) {
       case 'Product':
         $table= new Product;
@@ -71,6 +78,9 @@ class AdminController extends Controller
     ]);
   }
   public function removefrom(Request $request){
+    $user = Auth::user();
+    if(!$user->is_admin)
+      return redirect()->route('error',['whichone' => '403' ]);
     $id = $request->id;
     switch ($request->table) {
       case 'Product':
@@ -94,6 +104,9 @@ class AdminController extends Controller
     }
   }
   public function productdiscount() {
+    $user = Auth::user();
+    if(!$user->is_admin)
+      return redirect()->route('error',['whichone' => '403' ]);
     $type       = !filter_var(request()->type, FILTER_VALIDATE_BOOLEAN);
     // dd($converted_res = !$type ? 'true' : 'false');
     $id         = request()->id;
@@ -120,6 +133,9 @@ class AdminController extends Controller
 
   }
   public function chmod() {
+    $user = Auth::user();
+    if(!$user->is_admin)
+      return redirect()->route('error',['whichone' => '403' ]);
     // exemple de code a definir plus tard
     if(request()->code == 1234)
     {

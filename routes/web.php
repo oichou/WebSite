@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/checkout', 'CheckoutController@index')->name('checkout');
+Route::get('/checkout', 'CheckoutController@index')->name('checkout')->middleware('auth');
 
   // Routes for the contact page
 
@@ -28,7 +28,7 @@ Route::get('/products/{id}', 'ProductsController@show')->name('products.show');
 
   // Routes for the UserPanel Page
 Route::get('/overview','UserPanelController@index')->name('overview');
-Route::get('/profile','UserPanelController@getProfile')->name('profile')->middleware('auth');;
+Route::get('/profile','UserPanelController@getProfile')->name('profile')->middleware('auth');
 Route::get('/orders','UserPanelController@getOrders')->name('orders');
 Route::get('profile.fname', 'UserPanelController@updatefName')->name('profile.fname');
 Route::get('profile.lname', 'UserPanelController@updatelName')->name('profile.lname');
@@ -41,8 +41,14 @@ Route::get('/admin', function () {
     return view('admin');
 })->middleware('auth');
 
-Route::get('/admin','AdminController@index')->name('admin.index');
-Route::get('/table','AdminController@showtable')->name('admin.showtable');
+Route::get('/outofstock', function () {
+    return view('errors/outofstock');
+});
+
+Route::get('error/{whichone}','ErrorController@index')->name('error');
+
+Route::get('/admin','AdminController@index')->name('admin.index')->middleware('auth');
+Route::get('/table','AdminController@showtable')->name('admin.showtable')->middleware('auth');
 
 Route::get('/addressform/{for}','AdressController@form')->name('adress.form');
 Route::post('/addressform/{for}','AdressController@create')->name('adress.create');
@@ -52,11 +58,11 @@ Route::get('/overview','UserPanelController@index')->name('overview')->middlewar
 Route::get('/profile','UserPanelController@getProfile')->name('profile')->middleware('auth');
 Route::get('/orders','UserPanelController@getOrders')->name('orders')->middleware('auth');
 
-Route::get('/admin','AdminController@index')->name('admin.index');
-Route::get('/admin/{table}','AdminController@showtable')->name('admin.showtable');
-Route::get('/admin/removefrom/{table}/{id}','AdminController@removefrom')->name('admin.removefrom');
-Route::post('/product/discount','AdminController@productdiscount')->name('admin.productdiscount');
-Route::post('/admin/chmod','AdminController@chmod')->name('admin.chmod');
+Route::get('/admin','AdminController@index')->name('admin.index')->middleware('auth');
+Route::get('/admin/{table}','AdminController@showtable')->name('admin.showtable')->middleware('auth');
+Route::get('/admin/removefrom/{table}/{id}','AdminController@removefrom')->name('admin.removefrom')->middleware('auth');
+Route::post('/product/discount','AdminController@productdiscount')->name('admin.productdiscount')->middleware('auth');
+Route::post('/admin/chmod','AdminController@chmod')->name('admin.chmod')->middleware('auth');
 Route::get('/newproduct',function(){
   return view('newproduct');
 })->name('newproduct');

@@ -141,6 +141,7 @@ input:disabled{
                       <!-- <td></td> -->
                   </form>
                 </tr>
+
                 @empty
                 <!-- <th scope="row" >
                   <div class="p-2">
@@ -152,6 +153,9 @@ input:disabled{
                 @endforelse
               </tbody>
             </table>
+            @if($products)
+            <a href="{{ route('cart.empty' ,['name'=>'cart']) }}" class="btn btn-dark rounded-pill py-2 btn-block">Empty cart</a>
+            @endif
           </div>
           <!-- End -->
         </div>
@@ -180,13 +184,17 @@ input:disabled{
           <div class="p-4">
             <p class="font-italic mb-4">Shipping and additional costs are calculated based on values you have entered.</p>
             <ul id="li-check" class="list-unstyled mb-4">
-              <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted total " >Order Subtotal </strong><strong>{{$total}}</strong></li>
+              <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted total " >Order Subtotal </strong><strong>${{$total}}</strong></li>
               <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Shipping and handling</strong><strong>Free</strong></li>
               <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tax</strong><strong>$0.00</strong></li>
-              <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted total ">Total</strong><strong>{{$total}}</strong>
+              @if($discount)
+              <li  class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Discount {{$discount[0]}}%</strong><strong id='discount'>${{$discount[1]}}</strong></li>
+              @endif
+              <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted total ">Total</strong><strong>${{$total}}</strong>
                 <!-- <h5 class="font-weight-bold">$400.00</h5> -->
               </li>
-            </ul><a href="{{ route('checkout') }}" class="btn btn-dark rounded-pill py-2 btn-block">Procceed to checkout</a>
+            </ul>
+            <a href="{{ route('checkout') }}" class="btn btn-dark rounded-pill py-2 btn-block">Procceed to checkout</a>
           </div>
         </div>
       </div>

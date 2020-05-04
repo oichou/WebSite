@@ -19,23 +19,23 @@ $('.minus').each(function(){
         let quantity = elem.data('quantity');
         const id = elem.data('id');
 
-        if( quantity == 1 )
-        {
-          var choice = confirm("Are you sure you want to remove the product ?");
-          if( choice == true )
-          {
-
-              // var url = '{{ route("cart.removeProduct", ":slug") }}';
-              //
-              // url = url.replace(':slug', $("#"+elem_id).data('product'));
-              //
-              // document.location.href=url;
-              alert('f')
-          }
-        }
-        else{
+        // if( quantity == 1 )
+        // {
+        //   var choice = confirm("Are you sure you want to remove the product ?");
+        //   if( choice == true )
+        //   {
+        //
+        //       // var url = '{{ route("cart.removeProduct", ":slug") }}';
+        //       //
+        //       // url = url.replace(':slug', $("#"+elem_id).data('product'));
+        //       //
+        //       // document.location.href=url;
+        //       alert('f')
+        //   }
+        // }
+        // else{
           change_quantity(elem, id, quantity,'m');
-        }
+        // }
       })
 })
 function change_quantity(elem, id, quantity,c) {
@@ -47,14 +47,18 @@ function change_quantity(elem, id, quantity,c) {
         success : function(data){
 
                if (data.error) {
-                   alert(data.error);
+                 swal({
+                        title: data.error,
+                        icon: "error",
+                      });
                    return;
                }
 
                $(elem).data('quantity', data.quantity);
                elem.val(data.quantity);
-               $('.total').next().text(data.total_price);
+               $('.total').next().text("$"+data.total_price);
                $("#cart").text(data.total_product);
+               $('#discount').text('$'+data.discount)
         }
     })
 }
@@ -69,11 +73,13 @@ $("#button-addon3").on('click',function(){
       headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
       success : function(data){
         if (data.error) {
-            alert(data.error);
+          swal({
+                 title: data.error,
+                 icon: "error",
+               });
             return;
         }
-        $('.total').next().text(data.total_price);
-
+        $('.total').next().text("$"+data.total_price);
         var li = $("<li></li>");
         li.attr("class","d-flex justify-content-between py-3 border-bottom");
         // var licl = document.createAttribute("class");
@@ -88,10 +94,15 @@ $("#button-addon3").on('click',function(){
         strong1.text("discount "+data.coupon+" %")
         // var discount = document.createTextNode(data.discount);
         var strong2 = $("<strong></strong>");
-        strong2.text(data.discount)
+        strong2.attr("id","discount");
+        strong2.text("$"+data.discount)
         li.append(strong1);
         li.append(strong2);
         $("#li-check").children('li').last().before(li);
+        swal({
+               title: "you have now a discount of "+data.coupon+"%",
+               icon: "success",
+             });
  }
 })
 

@@ -81,7 +81,7 @@ Route::get('/cart', 'CartController@index')->name('cart.index');
 
 //add article to the carte
 Route::get('/cart/{product}', 'CartController@addProduct')->name('cart.addProduct');
-
+Route::get('/session/{name}','CartController@empty')->name('cart.empty');
 //remove an article from the cart
 Route::delete('/cart/{product}', 'CartController@removeProduct')->name('cart.removeProduct');
 // this is the probleme i cant do both add and remove with the same url

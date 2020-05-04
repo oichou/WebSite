@@ -3,6 +3,7 @@
 <head>
     <title>Oussafa</title>
     <meta charset="utf-8">
+    <script defer src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
@@ -73,7 +74,6 @@
       <script src="{{ asset('js/product.js') }}"></script>
       <script src="{{ asset('js/checkout.js') }}"></script>
       <script src="{{ asset('js/categories.js') }}"></script>
-      <script src="{{ asset('js/cart.js') }}"></script>
       <script src="{{ asset('js/profile.js') }}"></script>
       <script src="{{ asset('js/contact.js') }}"></script>
       <script src="{{ asset('js/main.js') }}"></script>

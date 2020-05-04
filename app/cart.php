@@ -7,6 +7,7 @@ class Cart
   public $products_id = null;
   public $total_product = 0;
   public $total_price = 0;
+  // public $payement = 0;
   public $discounts = ["hambouk"=>20];
   public $discountisused = false;
   public $discountused = '';
@@ -23,12 +24,12 @@ class Cart
       $this->products_id   = $oldcart->products_id;
       $this->total_product = $oldcart->total_product;
       $this->total_price   = $oldcart->total_price;
-      // $this->total_product = ($oldcart->total_product>=0) ? $oldcart->total_product : 0;
-      // $this->total_price   = ($oldcart->total_product>=0) ? $oldcart->total_price : 0;
       $this->discountisused = $oldcart->discountisused;
       $this->discountused   = $oldcart->discountused;
       $this->discounts      = $oldcart->discounts;
       $this->discountamount = $oldcart->discountamount;
+      // $this->total_product = ($oldcart->total_product>=0) ? $oldcart->total_product : 0;
+      // $this->total_price   = ($oldcart->total_product>=0) ? $oldcart->total_price : 0;
 
     }
   }

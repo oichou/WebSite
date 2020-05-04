@@ -184,7 +184,7 @@ input:disabled{
           <div class="p-4">
             <p class="font-italic mb-4">Shipping and additional costs are calculated based on values you have entered.</p>
             <ul id="li-check" class="list-unstyled mb-4">
-              <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted total " >Order Subtotal </strong><strong>${{$total}}</strong></li>
+              <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted total " >Order Subtotal </strong><strong>${{$subtotal}}</strong></li>
               <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Shipping and handling</strong><strong>Free</strong></li>
               <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tax</strong><strong>$0.00</strong></li>
               @if($discount)

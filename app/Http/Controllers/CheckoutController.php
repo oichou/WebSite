@@ -22,17 +22,21 @@ class CheckoutController extends Controller
     $products = [];
     $total    = 0;
     $items    = 0;
+    $subtotal = 0;
+    $discount = null;
     $cart     = Session::has('cart') ? Session::get('cart') : null;
     if($cart){
       foreach ($cart->products_id as $key => $value) {
         $product     = Product::find(intval($key));
         if($product->quantity < $value)
           return view('errors/outofstock');
-        $qty         = $value;
-        $products [] = [$product,$qty];
+        $products [] = [$product,$value];
+        $subtotal += $product->price * $value;
       }
       $total = $cart->total_price;
       $items = $cart->total_product;
+      if($cart->discountisused)
+        $discount = [$cart->discounts[$cart->discountused],$cart->discountamount];
     }
 
     $currentuser = Auth::user();
@@ -48,7 +52,9 @@ class CheckoutController extends Controller
       'adress'      => $adress,
       'user'        => $currentuser,
       'products'    => $products,
+      'subtotal'    => $subtotal,
       'total'       => $total,
+      'discount'    => $discount,
       'items'       => $items,
     ]);
   }

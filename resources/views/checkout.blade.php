@@ -8,19 +8,25 @@
   height: 24 px;
   filter:invert(100%); padding-top:2px;
 }
+
 .butcheck{
   padding-top: 20px;
 }
-.cc{
-  background:#16181a;  border-radius:14px; max-width: 100%; display:block; margin:auto;
-  padding:60px; padding-left:20px; padding-right:20px;box-shadow: 2px 10px 40px black; z-index:99;
-}
-
 .logo-card{max-width:50px; margin-bottom:15px; margin-top: -19px;}
 
 label{display:flex; font-size:10px; color:white; opacity:.4;}
 
-input{font-family: 'Work Sans', sans-serif;background:transparent; border:none; border-bottom:1px solid transparent; color:#dbdce0; transition: border-bottom .4s;}
+input{
+font-size: 16px;
+line-height: 18px;
+color: #fff;
+font-family: 'Work Sans', sans-serif;
+background:transparent;
+border:none;
+border-bottom:1px solid transparent;
+/* color:#dbdce0;  */
+transition: border-bottom .4s;
+}
 input:focus{border-bottom:1px solid #1abc9c; outline:none;}
 
 .cardnumber{display:block; font-size:20px; margin-bottom:8px; }
@@ -31,13 +37,10 @@ input:focus{border-bottom:1px solid #1abc9c; outline:none;}
 .ccv{width:50px; margin-top:-5px; font-size:15px;}
 
 .receipt{background: #dbdce0; border-radius:4px; padding:5%; padding-top:200px; max-width:600px; display:block; margin:auto; margin-top:-180px; z-index:-999; position:relative;}
-body{
-/* background: #00d2ff; */
-/* background: -webkit-linear-gradient(to right, #3a7bd5, #00d2ff); */
-/* background: linear-gradient(to right, #3a7bd5, #00d2ff); */
-  /* Thanks to uigradients :) */
-}
+
 body {
+  /* background: -webkit-linear-gradient(to right, #eecda3, #ef629f); */
+  /* background: linear-gradient(to right, #eecda3, #ef629f); */
   font-family: 'Work Sans', sans-serif;
   background: linear-gradient(110deg, #BBDEFB 60%, #42A5F5 60%)
 }
@@ -85,7 +88,16 @@ a:active {
   outline: none ;
   box-shadow: none
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
 .form-control-sm:focus {
   border: 1.5px solid #4bb8a9
 }
@@ -169,7 +181,149 @@ p {
       padding-left: 0
   }
 }
+/*  */
+.cc{
+width: 350px;
+height: 190px;
+  -webkit-perspective: 600px;
+  -moz-perspective: 600px;
+  perspective:600px;
+
+}
+
+.card__part{
+  box-shadow: 1px 1px #aaa3a3;
+  top: 0;
+  position: absolute;
+  z-index: 1000;
+  left: 0;
+  display: inline-block;
+    width: 320px;
+    height: 190px;
+    background-image: url('https://image.ibb.co/bVnMrc/g3095.png'), linear-gradient(to right bottom, #fd696b, #fa616e, #f65871, #f15075, #ec4879); /*linear-gradient(to right bottom, #fd8369, #fc7870, #f96e78, #f56581, #ee5d8a)*/
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 8px;
+
+    -webkit-transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    -moz-transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    -ms-transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    -o-transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+}
+
+.card__front{
+  padding: 18px;
+-webkit-transform: rotateY(0);
+-moz-transform: rotateY(0);
+}
+
+.card__back {
+  padding: 18px 0;
+-webkit-transform: rotateY(-180deg);
+-moz-transform: rotateY(-180deg);
+}
+
+.card__black-line {
+    margin-top: 5px;
+    height: 38px;
+    background-color: #303030;
+}
+
+.card__logo {
+    height: 16px;
+}
+
+.card__front-logo{
+      position: absolute;
+    top: 18px;
+    right: 18px;
+}
+.card__square {
+    border-radius: 5px;
+    height: 30px;
+}
+
+.card-number {
+    display: block;
+    width: 100%;
+    word-spacing: 4px;
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.card__space-75 {
+    width: 75%;
+    float: left;
+}
+
+.card__space-25 {
+    width: 25%;
+    float: left;
+}
+
+.card__label {
+    font-size: 10px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.8);
+    letter-spacing: 1px;
+}
+
+.card__info {
+    margin-bottom: 0;
+    margin-top: 5px;
+    font-size: 16px;
+    line-height: 18px;
+    color: #fff;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.card__back-content {
+    padding: 15px 15px 0;
+}
+.card__secret--last {
+    color: #303030;
+    text-align: right;
+    margin: 0;
+    font-size: 14px;
+    right : 100%;
+}
+
+.card__secret {
+    padding: 5px 12px;
+    background-color: #fff;
+    position:relative;
+}
+
+.card__secret:before{
+  content:'';
+  position: absolute;
+top: -3px;
+left: -3px;
+height: calc(100% + 6px);
+width: calc(100% - 42px);
+border-radius: 4px;
+  background: repeating-linear-gradient(45deg, #ededed, #ededed 5px, #f9f9f9 5px, #f9f9f9 10px);
+}
+
+
+.card__back-square {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+}
 </style>
+
 @endsection
 @include('header')
 
@@ -182,9 +336,10 @@ p {
                     <div class="col-12 mt-3 ">
                         <nav aria-label="breadcrumb" class="second ">
                             <ol class="breadcrumb indigo lighten-6 first ">
-                                <li class="breadcrumb-item font-weight-bold "><a class="black-text text-uppercase " href="#"><span class="mr-md-3 mr-1">BACK TO SHOP</span></a><i class="fa fa-angle-double-right " aria-hidden="true"></i></li>
-                                <li class="breadcrumb-item font-weight-bold"><a class="black-text text-uppercase" href="#"><span class="mr-md-3 mr-1">SHOPPING BAG</span></a><i class="fa fa-angle-double-right text-uppercase " aria-hidden="true"></i></li>
-                                <li class="breadcrumb-item font-weight-bold"><a class="black-text text-uppercase active-2" href="#"><span class="mr-md-3 mr-1">CHECKOUT</span></a></li>
+                                <li class="breadcrumb-item font-weight-bold "><a class="black-text text-uppercase " href="{{ route('home') }}"><span class="mr-md-3 mr-1">BACK TO SHOP</span></a><i class="fa fa-angle-double-right " aria-hidden="true"></i></li>
+                                <li class="breadcrumb-item font-weight-bold"><a class="black-text text-uppercase" href="{{route('cart.index')}}"><span class="mr-md-3 mr-1">SHOPPING BAG</span></a><i class="fa fa-angle-double-right text-uppercase " aria-hidden="true"></i></li>
+                                <li class="breadcrumb-item font-weight-bold"><a class="black-text text-uppercase" href="{{route('adress.form',['for' => 'checkout'])}}"><span class="mr-md-3 mr-1">Delivery address</span></a><i class="fa fa-angle-double-right text-uppercase " aria-hidden="true"></i></li>
+                                <li class="breadcrumb-item font-weight-bold"><a class="black-text text-uppercase active-2" ><span class="mr-md-3 mr-1">CHECKOUT</span></a></li>
                             </ol>
                         </nav>
                     </div>
@@ -219,20 +374,35 @@ p {
                                         <hr class="mt-0">
                                     </div>
                                 </div>
-                                <div class="cc">
-                                  <!-- <button class="proceed">
-                                    <i class="fa fa-arrow-right sendicon"></i> -->
-                                    <!-- <svg class="sendicon" width="24" height="24" viewBox="0 0 24 24">
-                                      <path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"></path>
-                                    </svg> -->
-                                  <!-- </button> -->
-                                  <img src="https://seeklogo.com/images/V/VISA-logo-62D5B26FE1-seeklogo.com.png" class="logo-card">
-                                  <label>Card number:</label>
-                                  <input id="user" type="text" class="input cardnumber"  placeholder="1234 5678 9101 1121">
-                                  <label>Name:</label>
-                                  <input class="input name"  placeholder="Edgar Pérez">
-                                  <label class="toleft">CCV:</label>
-                                  <input class="input toleft ccv" placeholder="321">
+                                <span>Double click to enter ccv</span>
+                                <div id='here' class="cc">
+                                  <div id="see" class="card__front card__part">
+                                    <img class="card__front-square card__square" src="https://image.ibb.co/cZeFjx/little_square.png">
+                                    <input id="user" type="number" class="input card-number"  placeholder="1234 5678 9101 1121" >
+                                    <!-- <p class="card-number">**** **** **** 6258</p> -->
+                                    <div class="card__space-75">
+                                      <span class="card__label">Card holder</span>
+                                      <input class="card__info"  placeholder="Oussama ICHOUA">
+                                      <!-- <p class="card__info">John Doe</p> -->
+                                    </div>
+                                    <div class="card__space-25">
+                                      <span class="card__label">Expires</span>
+                                      <input  id="expire" type="text" class="card__info"  placeholder="10/25" >
+                                      <!-- <p class="card__info">10/25</p> -->
+                                    </div>
+                                  </div>
+
+                                <div id="hide" class="card__back card__part">
+                                  <div class="card__black-line"></div>
+                                  <div class="card__back-content">
+                                    <div class="card__secret">
+                                      <p class="card__secret--last">
+                                        <input id="ccv" type="number" class="card__secret--last" placeholder="123"/>
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+
                               </div>
                                 <div class="butcheck row mb-md-5">
                                     <div class="col">
@@ -242,10 +412,13 @@ p {
                             </div>
                         </div>
                     </div>
+
                     <div class="col-md-5">
                         <div class="card border-0 ">
                             <div class="card-header card-2">
-                                <p class="card-text text-muted mt-md-4 mb-2 space">YOUR ORDER <span class=" small text-muted ml-2 cursor-pointer">EDIT SHOPPING BAG</span> </p>
+                                <p class="card-text text-muted mt-md-4 mb-2 space"><b>YOUR ORDER</b>
+                                  <!-- <span class=" small text-muted ml-2 cursor-pointer">EDIT SHOPPING BAG</span>  -->
+                                </p>
                                 <hr class="my-2">
                             </div>
                             <div class="card-body pt-0">
@@ -280,7 +453,7 @@ p {
                                                 <p class="mb-1"><b>Subtotal</b></p>
                                             </div>
                                             <div class="flex-sm-col col-auto">
-                                                <p class="mb-1"><b>179 SEK</b></p>
+                                                <p class="mb-1"><b>${{ $subtotal }}</b></p>
                                             </div>
                                         </div>
                                         <div class="row justify-content-between">
@@ -291,6 +464,16 @@ p {
                                                 <p class="mb-1"><b>Free</b></p>
                                             </div>
                                         </div>
+                                        @if($discount)
+                                        <div class="row justify-content-between">
+                                          <div class="col-4">
+                                            <p><b>Discount {{$discount[0]}}%</b></p>
+                                          </div>
+                                          <div class="flex-sm-col col-auto">
+                                            <p class="mb-1"><b>$ {{ $discount[1] }}</b></p>
+                                          </div>
+                                        </div>
+                                        @endif
                                         <div class="row justify-content-between">
                                             <div class="col-4">
                                                 <p><b>Total</b></p>
@@ -311,4 +494,7 @@ p {
         </div>
     </div>
 </div>
+@endsection
+@section('extra-js')
+<script defer src="{{ asset('js/checkout.js') }}"></script>
 @endsection

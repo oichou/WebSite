@@ -72,7 +72,6 @@
       <script src="{{ asset('/plugins/parallax-js-master/parallax.min.js') }}"></script>
       <script type="text/javascript" src="{{ asset('/js/custom.js')}}"></script>
       <script src="{{ asset('js/product.js') }}"></script>
-      <script src="{{ asset('js/checkout.js') }}"></script>
       <script src="{{ asset('js/categories.js') }}"></script>
       <script src="{{ asset('js/profile.js') }}"></script>
       <script src="{{ asset('js/contact.js') }}"></script>

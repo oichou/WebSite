@@ -21,13 +21,16 @@ class CartController extends Controller
         $products = [];
         $total    = 0;
         $discount = null;
+        $subtotal = 0;
         $cart     = Session::has('cart') ? Session::get('cart') : null;
 
         if($cart){
           foreach ($cart->products_id as $key => $value) {
             $product = Product::find(intval($key));
-            if($product->quantity >= $value)
+            if($product->quantity >= $value){
               $products [] = [$product,$value];
+              $subtotal += $product->price * $value;
+            }
           }
           $total = $cart->total_price;
           if($cart->discountisused)
@@ -37,6 +40,7 @@ class CartController extends Controller
         return view('cart')->with([
           'products' => $products,
           'total'    => $total,
+          'subtotal' => $subtotal,
           'discount' => $discount,
         ]);
     }

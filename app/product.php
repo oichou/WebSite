@@ -20,6 +20,9 @@ class Product extends Model
       }
     }
   public function setattributes(){
-    
+
   }
+  // public function update($product){
+  //   $this = $product;
+  // }
 }

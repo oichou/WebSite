@@ -375,40 +375,59 @@ border-radius: 4px;
                                     </div>
                                 </div>
                                 <span>Double click to enter ccv</span>
+                                <form action="{{ route('purchase') }}" method="post">
+                                  @csrf
                                 <div id='here' class="cc">
                                   <div id="see" class="card__front card__part">
                                     <img class="card__front-square card__square" src="https://image.ibb.co/cZeFjx/little_square.png">
-                                    <input id="user" type="number" class="input card-number"  placeholder="1234 5678 9101 1121" >
-                                    <!-- <p class="card-number">**** **** **** 6258</p> -->
+                                    <input name="card_number" type="number" class=" @error('card_number') is-invalid @enderror card-number"  placeholder="1234 5678 9101 1121" required autofocus>
+                                    @error('card_number')
+                                    <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                     <div class="card__space-75">
                                       <span class="card__label">Card holder</span>
-                                      <input class="card__info"  placeholder="Oussama ICHOUA">
-                                      <!-- <p class="card__info">John Doe</p> -->
+                                      <input name="holder" class=" @error('holder') is-invalid @enderror card__info"  placeholder="Oussama ICHOUA" required autofocus>
+                                      @error('holder')
+                                      <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                      </span>
+                                      @enderror
                                     </div>
                                     <div class="card__space-25">
                                       <span class="card__label">Expires</span>
-                                      <input  id="expire" type="text" class="card__info"  placeholder="10/25" >
-                                      <!-- <p class="card__info">10/25</p> -->
+                                      <input  name="expires" id="expire" type="text" class=" @error('expires') is-invalid @enderror card__info"  placeholder="10/25" required autofocus >
+                                      @error('expires')
+                                      <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                      </span>
+                                      @enderror
                                     </div>
                                   </div>
 
-                                <div id="hide" class="card__back card__part">
-                                  <div class="card__black-line"></div>
-                                  <div class="card__back-content">
-                                    <div class="card__secret">
-                                      <p class="card__secret--last">
-                                        <input id="ccv" type="number" class="card__secret--last" placeholder="123"/>
-                                      </p>
+                                  <div id="hide" class="card__back card__part">
+                                    <div class="card__black-line"></div>
+                                    <div class="card__back-content">
+                                      <div class="card__secret">
+                                        <p class="card__secret--last">
+                                          <input id='ccv' name="ccv" type="number" class=" @error('ccv') is-invalid @enderror card__secret--last" placeholder="123" required autofocus/>
+                                          @error('ccv')
+                                          <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                          </span>
+                                          @enderror
+                                        </p>
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
-
                               </div>
                                 <div class="butcheck row mb-md-5">
                                     <div class="col">
                                       <button type="submit" name="" id="" class="btn btn-block btn-outline-primary btn-lg">PURCHASE ${{$total}}</button>
                                     </div>
                                 </div>
+                              </form>
                             </div>
                         </div>
                     </div>

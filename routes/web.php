@@ -27,15 +27,15 @@ Route::get('/products', 'ProductsController@index')->name('products.index');
 Route::get('/products/{id}', 'ProductsController@show')->name('products.show');
 
   // Routes for the UserPanel Page
-Route::get('/overview','UserPanelController@index')->name('overview');
+Route::get('/overview','UserPanelController@index')->name('overview')->middleware('auth');
 Route::get('/profile','UserPanelController@getProfile')->name('profile')->middleware('auth');
-Route::get('/orders','UserPanelController@getOrders')->name('orders');
-Route::get('profile.fname', 'UserPanelController@updatefName')->name('profile.fname');
-Route::get('profile.lname', 'UserPanelController@updatelName')->name('profile.lname');
-Route::get('profile.email', 'UserPanelController@updateEmail')->name('profile.email');
-Route::get('profile.phone', 'UserPanelController@updatePhone')->name('profile.phone');
-Route::get('profile.birth', 'UserPanelController@updateBirth')->name('profile.birth');
-Route::get('profile.username', 'UserPanelController@updateUsername')->name('profile.username');
+Route::get('/orders','UserPanelController@getOrders')->name('orders')->middleware('auth');
+Route::get('profile.fname', 'UserPanelController@updatefName')->name('profile.fname')->middleware('auth');
+Route::get('profile.lname', 'UserPanelController@updatelName')->name('profile.lname')->middleware('auth');
+Route::get('profile.email', 'UserPanelController@updateEmail')->name('profile.email')->middleware('auth');
+Route::get('profile.phone', 'UserPanelController@updatePhone')->name('profile.phone')->middleware('auth');
+Route::get('profile.birth', 'UserPanelController@updateBirth')->name('profile.birth')->middleware('auth');
+Route::get('profile.username', 'UserPanelController@updateUsername')->name('profile.username')->middleware('auth');
 
 Route::get('/admin', function () {
     return view('admin');
@@ -45,13 +45,13 @@ Route::get('/outofstock', function () {
     return view('errors/outofstock');
 });
 
-Route::get('error/{whichone}','ErrorController@index')->name('error');
+Route::get('error/{whichone}','ErrorController@index')->name('error')->middleware('auth');
 
 Route::get('/admin','AdminController@index')->name('admin.index')->middleware('auth');
 Route::get('/table','AdminController@showtable')->name('admin.showtable')->middleware('auth');
 
-Route::get('/addressform/{for}','AdressController@form')->name('adress.form');
-Route::post('/addressform/{for}','AdressController@create')->name('adress.create');
+Route::get('/addressform/{for}','AdressController@form')->name('adress.form')->middleware('auth');
+Route::post('/addressform/{for}','AdressController@create')->name('adress.create')->middleware('auth');
 
 
 Route::get('/overview','UserPanelController@index')->name('overview')->middleware('auth');
@@ -65,12 +65,13 @@ Route::post('/product/discount','AdminController@productdiscount')->name('admin.
 Route::post('/admin/chmod','AdminController@chmod')->name('admin.chmod')->middleware('auth');
 Route::get('/newproduct',function(){
   return view('newproduct');
-})->name('newproduct');
+})->name('newproduct')->middleware('auth');
 
-Route::get('/edit/{id}','ProductController@createform')->name('createformeditproduct');
-Route::post('/edit/{id}','ProductController@edit')->name('editproduct');
 
-Route::post('/newproduct','ProductController@create')->name('product.create');
+Route::get('/edit/{id}','ProductController@createform')->name('createformeditproduct')->middleware('auth');
+Route::post('/edit/{id}','ProductController@edit')->name('editproduct')->middleware('auth');
+
+Route::post('/newproduct','ProductController@create')->name('product.create')->middleware('auth');
 // Route::post('/editprodut/{id}', 'ProductController@edit')->name('product.edit');
 
 Route::post('/cart/discount','CartController@discount')->name('cart.discount');
@@ -86,3 +87,12 @@ Route::get('/session/{name}','CartController@empty')->name('cart.empty');
 Route::delete('/cart/{product}', 'CartController@removeProduct')->name('cart.removeProduct');
 // this is the probleme i cant do both add and remove with the same url
 Auth::routes();
+// purchase blade
+// Route::get('/success','PurchaseController@purchase')->name('purchase.success');
+Route::post('/purchase','PurchaseController@purchase')->name('purchase')->middleware('auth');
+// Route::get('/echec',function(){
+//   return view('/purchase/echec');
+// })->name('purchase.success');
+
+Route::get('/order/{id}','OrderController@show')->name('order.show')->middleware('auth');
+Route::get('/order','OrderController@create')->name('order.create')->middleware('auth');

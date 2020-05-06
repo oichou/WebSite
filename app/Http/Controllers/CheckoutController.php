@@ -7,6 +7,8 @@ Use Cart;
 Use App\User;
 Use App\Product;
 Use App\Address;
+use Omnipay\Common\CreditCard;
+use Omnipay\Omnipay;
 use Session;
 use Illuminate\Support\Facades\Auth;
 
@@ -42,10 +44,7 @@ class CheckoutController extends Controller
     $currentuser = Auth::user();
     $adr_id      = $currentuser->adress_id;
     if($adr_id === null)
-    {
-      // return view('/addressform/checkout',);
-          return redirect()->route('adress.form',['for' => 'checkout']);
-    }
+        return redirect()->route('adress.form',['for' => 'checkout']);
     $adress = Address::find($adr_id);
 
     return view('checkout')->with([

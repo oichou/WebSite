@@ -10,7 +10,7 @@ class Ordersproduct extends Model
   protected $table = 'ordersproducts';
 
   protected $fillable = [
-        'order_id', 'product_id', 'quantity'
+        'order_id', 'product_id', 'quantity' , 'product_price'
     ];
 
   public function product()

@@ -4,6 +4,7 @@ namespace App;
 
 use Omnipay\Omnipay;
 use Omnipay\Common\CreditCard;
+use Omnipay\Common\GatewayFactory;
 class Payment
 {
     private $pay;
@@ -37,7 +38,7 @@ class Payment
         $gateway->setUsername('sb-gmnct1678850_api1.business.example.com');
         $gateway->setPassword('4R68X67Z488GMQ5J');
         $gateway->setSignature('AuRgsHGArD2dK6HMSGoC8GlvOyfGA.v6ndPjKlOfuJoR56ytEZDwlzp2');
-
+        $gateway->setTestMode(true);
         return $gateway;
     }
     // make the payment
@@ -52,9 +53,8 @@ class Payment
                     'amount'    => $value['amount'],
                     'currency'  => $value['currency'],
                     'card'      => $this->card,
-                    'returnUrl' => '/home',
-                    // 'cancelUrl' => $paypal->getCancelUrl($order),
-                    'cancelUrl' => '/home',
+                    'cancelUrl' => 'http://localhost:8000/check/echec',
+                    'returnUrl' => 'http://localhost:8000/check/success',
                 ]
             )->send();
 

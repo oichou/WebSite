@@ -103,7 +103,6 @@ $("#button-addon3").on('click',function(){
                title: "you have now a discount of "+data.coupon+"%",
                icon: "success",
              });
- }
-})
-
+           }
+         })
 });

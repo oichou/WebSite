@@ -126,13 +126,15 @@ class CartController extends Controller
         if($quantity >= $product->quantity)
           return ["error" => "no more product"];
         $mycart->set_quantity($product,$quantity+1);
-        $mycart->discountamount += $product->price*$mycart->discounts[$mycart->discountused]/100;
+        if($mycart->discountisused)
+          $mycart->discountamount += $product->price*$mycart->discounts[$mycart->discountused]/100;
       }
       if(request()->c == 'm'){
         if($quantity <= 1 )
           return ["error" => "you should have at least one item or remove it",];
         $mycart->set_quantity($product,$quantity-1);
-        $mycart->discountamount -= $product->price*$mycart->discounts[$mycart->discountused]/100;
+        if($mycart->discountisused)
+          $mycart->discountamount -= $product->price*$mycart->discounts[$mycart->discountused]/100;
       }
       Session::put('cart',$mycart);
       return [

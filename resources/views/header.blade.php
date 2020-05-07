@@ -59,7 +59,7 @@
                 <li><a class="dropdown-item" href="{{ route('overview') }}">
                     Settings
                 </a></li>
-                @if(Auth::user()->is_admin = true)
+                @if(Auth::user()->is_admin === true)
                 <li><a class="dropdown-item" href="{{ route('admin.index') }}">
                     Admin Panel
                 </a></li>

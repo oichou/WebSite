@@ -89,6 +89,14 @@ Route::delete('/cart/{product}', 'CartController@removeProduct')->name('cart.rem
 Auth::routes();
 // purchase blade
 // Route::get('/success','PurchaseController@purchase')->name('purchase.success');
+Route::get('/check/{check}','PurchaseController@check')->name('purchase.check');
+// Route::get('/check/{check}', function () {
+//     return 'Bonjour ' . $_GET['token'];
+// });
+// Route::get('/bonjour', function () {
+//     return 'Bonjour ' . $_GET['prenom'];
+// });
+
 Route::post('/purchase','PurchaseController@purchase')->name('purchase')->middleware('auth');
 // Route::get('/echec',function(){
 //   return view('/purchase/echec');
@@ -96,3 +104,4 @@ Route::post('/purchase','PurchaseController@purchase')->name('purchase')->middle
 
 Route::get('/order/{id}','OrderController@show')->name('order.show')->middleware('auth');
 Route::get('/order','OrderController@create')->name('order.create')->middleware('auth');
+// ajouter plus tard une verification pour les site avec argument abort 404

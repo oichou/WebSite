@@ -5,6 +5,7 @@ $('#here').on('dblclick',function(){
   $(see).css({"-moz-transform": "rotateY(180deg)", "-webkit-transform": "rotateY(180deg)"});
   // see.removeAttr('id')
   // hide.attr('id','here')
+  $('#change').text('Double click to enter '+$(see).data('part'))
   $(hide).attr('id','see')
   $(see).attr('id','hide')
 })
@@ -39,3 +40,4 @@ $('#expire').keypress(function(){
     return false;
   }
 })
+// Stripe

@@ -111,7 +111,7 @@ class PurchaseController extends Controller
                 break;
             }
         }
-        // You can set a custom data in a session
+        // set a custom data in a session
         Session::put('response',$response[0]);
         Session::put('ApiContext',$response[1]);
         Session::put('order',$order);
@@ -177,7 +177,7 @@ class PurchaseController extends Controller
     // dd($address);
     $order = Session::get('order');
 
-    // $ordersproduct = Ordersproduct::where('order_id','=',$order->id)->get();
+    $ordersproduct = Ordersproduct::where('order_id','=',$order->id)->get();
     // dd($ordersproduct);
       if($check === 'success'){
         // If $_GET data not available... no payments was made.
@@ -198,7 +198,7 @@ class PurchaseController extends Controller
         // dd($result);
 
         if($result->state == 'approved'){
-          $order->statut='received';
+          $order->statut='Received';
           $order->PayerID=$_GET['PayerID'];
           $order->transaction_id=$_GET['paymentId'];
           $order->save();
@@ -233,7 +233,15 @@ class PurchaseController extends Controller
           // ]);
         }
         else {
-
+            $order->statut='Echec';
+            $order->save();
+            foreach ($ordersproduct as $products) {
+                $ordersproduct = Ordersproduct::where('order_id','=',$order->id)->get();
+                $product = Product::find($products->product_id);
+                $product->quantity += $products->quantity;
+                $product->save();
+              }
+              return redirect()->action('PurchaseController@echec');
         }
       }
       elseif ($check === 'echec') {

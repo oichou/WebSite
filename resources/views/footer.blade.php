@@ -9,10 +9,10 @@
         <div class="col-lg-3 col-md-6 footer-info">
           <h3>Oussafa</h3>
           <!-- <p>
-            A108 Adam Street <br>
+            Oussafa <br>
             NY 535022, USA<br><br>
-            <strong>Phone:</strong> +1 5589 55488 55<br>
-            <strong>Email:</strong> info@example.com<br>
+            <strong>Phone:</strong> +33 5589 55488 <br>
+            <strong>Email:</strong> oussafa@oussafa.com<br>
           </p> -->
           <div class="social-links mt-3">
             <a href="#" class="twitter"><i class="fa fa-pinterest"></i></a>

@@ -4,193 +4,283 @@
     <meta charset="utf-8">
     <title></title>
     <style media="screen">
+    @import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+    html {
+      display: grid;
+      min-height: 100%;
+    }
+
     body {
-  background: rgb(213, 217, 233);
-  min-height: 100vh;
-  vertical-align: middle;
-  display: flex;
-  font-family: Muli;
-  font-size: 14px
-}
+      display: grid;
+      overflow: hidden;
+      font-family: 'Lato', sans-serif;
+      text-transform: uppercase;
+      text-align: center;
+    }
 
-.card {
-  margin: auto;
-  width: 320px;
-  max-width: 600px;
-  border-radius: 20px
-}
+    #container {
+      position: absolute;
+      margin: auto;
+      overflow: hidden;
+      width: 2200px;
+      height: 750px;
+      transform: translate(-15%, 0%) rotate(0deg);
+    }
 
-.mt-50 {
-  margin-top: 50px
-}
+    h1 {
+      font-size: 1.5em;
+      font-weight: 100px;
+      letter-spacing: 3px;
+      padding-top: 5px;
+      color: #FCFCFC;
+      padding-bottom: 5px;
+      text-transform: uppercase;
+    }
 
-.mb-50 {
-  margin-bottom: 50px
-}
+    .green {
+      color: darken(#99DBB4, 20%);
+    }
 
-@media(max-width:767px) {
-  .card {
-      width: 80%
-  }
-}
+    .red {
+      color: black;
+    }
 
-@media(height:1366px) {
-  .card {
-      width: 75%
-  }
-}
+    .alert {
+      font-weight: 700;
+      letter-spacing: 5px;
+    }
 
-#orderno {
-  padding: 1vh 2vh 0;
-  font-size: smaller
-}
+    p {
+      margin-top: -5px;
+      font-size: 0.5em;
+      font-weight: 100;
+      color: darken(#777777, 10%);
+      letter-spacing: 1px;
+    }
 
-.gap .col-2 {
-  background-color: rgb(213, 217, 233);
-  width: 1.2rem;
-  padding: 1.2rem;
-  margin-top: -2.5rem;
-  border-radius: 1.2rem
-}
+    button, .dot {
+      cursor: pointer;
+    }
 
-.title {
-  display: flex;
-  text-align: center;
-  font-size: 2rem;
-  font-weight: bold;
-  padding: 12%
-}
 
-.main {
-  padding: 0 2rem
-}
+    #error-box {
+      position: absolute;
+      width: 35%;
+      height: 100%;
+      right: 35%;
+      background: linear-gradient(to bottom left, #EF8D9C 40%, #FFC39E 100%);
+      border-radius: 20px;
+      box-shadow: 5px 5px 20px rgba(#CBCDD3, 10%);
+    }
 
-.main img {
-  border-radius: 7px
-}
+    .dot {
+      width: 8px;
+      height: 8px;
+      background: #FCFCFC;
+      border-radius: 50%;
+      position: absolute;
+      top: 4%;
+      right: 6%;
+      &:hover {
+        background: darken(#FCFCFC, 20%);
+      }
+    }
 
-.main p {
-  margin-bottom: 0;
-  font-size: 0.75rem
-}
+    .two {
+      right: 12%;
+      opacity: .5;
+    }
 
-#sub-title p {
-  margin: 1vh 0 2vh 0;
-  font-size: 1rem
-}
+    .face {
+      position: absolute;
+      width: 22%;
+      height: 22%;
+      background: #FCFCFC;
+      border-radius: 50%;
+      border: 1px solid #777777;
+      top: 21%;
+      left: 37.5%;
+      z-index: 2;
+      animation: bounce 1s ease-in infinite;
+    }
 
-.row-main {
-  padding: 1.5vh 0;
-  align-items: center
-}
+    .face2 {
+      position: absolute;
+      width: 22%;
+      height: 22%;
+      background: #FCFCFC;
+      border-radius: 50%;
+      border: 1px solid #777777;
+      top: 21%;
+      left: 37.5%;
+      z-index: 2;
+      animation: roll 3s ease-in-out infinite;
+    }
 
-hr {
-  margin: 1rem -1vh;
-  border-top: 1px solid rgb(214, 214, 214)
-}
+    .eye {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      background: #777777;
+      border-radius: 50%;
+      top: 40%;
+      left: 20%;
+    }
 
-.total {
-  font-size: 1rem
-}
+    .right {
+      left: 68%;
+    }
 
-@media(height: 1366px) {
-  .main p {
-      margin-bottom: 0;
-      font-size: 1.2rem
-  }
+    .mouth {
+      position:absolute;
+      top: 43%;
+      left: 41%;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+    }
+    .sad {
+      top: 49%;
+      border: 2px solid;
+      border-color: #777777 transparent transparent #777777;
+      transform: rotate(45deg);
+    }
 
-  .total {
-      font-size: 1.5rem
-  }
-}
+    .shadow {
+      position: absolute;
+      width: 21%;
+      height: 3%;
+      opacity: .5;
+      background: #777777;
+      left: 40%;
+      top: 43%;
+      border-radius: 50%;
+      z-index: 1;
+    }
 
-.btn {
-  background-color: rgb(3, 122, 219);
-  border-color: rgb(3, 122, 219);
-  color: white;
-  margin: 7vh 0;
-  border-radius: 7px;
-  width: 60%;
-  font-size: 0.8rem;
-  padding: 0.8rem;
-  justify-content: center
-}
+    .scale {
+      animation: scale 1s ease-in infinite;
+    }
+    .move {
+      animation: move 3s ease-in-out infinite;
+    }
 
-.btn:focus {
-  box-shadow: none;
-  outline: none;
-  box-shadow: none;
-  color: white;
-  -webkit-box-shadow: none;
-  -webkit-user-select: none;
-  transition: none
-}
 
-.btn:hover {
-  color: white
-}
+    .message {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      height: 40%;
+      top: 47%;
+    }
+
+    .button-box1 {
+      position: absolute;
+      background: #FCFCFC;
+      width: 42%;
+      height: 15%;
+      border-radius: 20px;
+      top: 73%;
+      right: 5%;
+      outline: 0;
+      border: none;
+      /* box-shadow: 2px 2px 10px rgba(#777777, .5); */
+      /* transition: all .5s ease-in-out; */
+
+    }
+    .button-box2 {
+      position: absolute;
+      background: #FCFCFC;
+      width: 42%;
+      height: 15%;
+      border-radius: 20px;
+      top: 73%;
+      left: 5%;
+      outline: 0;
+      border: none;
+      /* box-shadow: 2px 2px 10px rgba(#777777, .5); */
+      /* transition: all .5s ease-in-out; */
+
+    }
+
+    @keyframes bounce {
+      50% {
+         transform: translateY(-10px);
+      }
+    }
+
+    @keyframes scale {
+      50% {
+        transform: scale(0.9);
+      }
+    }
+
+    @keyframes roll {
+      0% {
+        transform: rotate(0deg);
+        left: 25%;
+      }
+      50% {
+        left: 60%;
+        transform: rotate(168deg);
+      }
+      100% {
+        transform: rotate(0deg);
+        left: 25%;
+      }
+    }
+
+    @keyframes move {
+      0% {
+        left: 25%;
+      }
+      50% {
+        left: 60%;
+      }
+      100% {
+        left: 25%;
+      }
+    }
+
+
+
     </style>
   </head>
   <body>
-    <div class="card mt-50 mb-50">
-    <div class="col d-flex"><span class="text-muted" id="orderno">order #546924</span></div>
-    <div class="gap">
-        <div class="col-2 d-flex mx-auto"> </div>
+    <div id="container">
+      <div id="error-box">
+        <div class="dot"></div>
+        <div class="dot two"></div>
+        <div class="face2">
+          <div class="eye"></div>
+          <div class="eye right"></div>
+          <div class="mouth sad"></div>
+        </div>
+        <div class="shadow move"></div>
+        <div class="message">
+          <h1 class="alert">Something went wrooooong with your payment!</h1>
+          <p><b>Please try again later</b> </p>
+        </div>
+        <div class="row">
+          <div class="col">
+            <a href="{{ route('home') }}">
+              <button class="button-box1">
+                <h1 class="red">Home</h1>
+              </button>
+            </a>
+          </div>
+
+          <div class="col">
+            <a href="{{ route('cart.index') }}">
+              <button class="button-box2">
+                <h1 class="red">Check Your cart</h1>
+              </button>
+            </a>
+          </div>
+        </div>
+
+      </div>
     </div>
-    <div class="title mx-auto"> Thank you for your order! </div>
-    <div class="main"> <span id="sub-title">
-            <p><b>Payment Summary</b></p>
-        </span>
-        <div class="row row-main">
-            <div class="col-3"> <img class="img-fluid" src="https://i.imgur.com/qSnCFIS.png"> </div>
-            <div class="col-6">
-                <div class="row d-flex">
-                    <p><b>iPhone XR</b></p>
-                </div>
-                <div class="row d-flex">
-                    <p class="text-muted">128GB White</p>
-                </div>
-            </div>
-            <div class="col-3 d-flex justify-content-end">
-                <p><b>$599</b></p>
-            </div>
-        </div>
-        <div class="row row-main">
-            <div class="col-3"> <img class="img-fluid" src="https://i.imgur.com/WuJwAJD.jpg"> </div>
-            <div class="col-6">
-                <div class="row d-flex">
-                    <p><b>Airpods</b></p>
-                </div>
-                <div class="row d-flex">
-                    <p class="text-muted">With charging case</p>
-                </div>
-            </div>
-            <div class="col-3 d-flex justify-content-end">
-                <p><b>$199</b></p>
-            </div>
-        </div>
-        <div class="row row-main">
-            <div class="col-3 "> <img class="img-fluid" src="https://i.imgur.com/hOsIes2.png"> </div>
-            <div class="col-6">
-                <div class="row d-flex">
-                    <p><b>Belkin Boost Up</b></p>
-                </div>
-                <div class="row d-flex">
-                    <p class="text-muted">Wireless charging pad</p>
-                </div>
-            </div>
-            <div class="col-3 d-flex justify-content-end">
-                <p><b>$49.95</b></p>
-            </div>
-        </div>
-        <hr>
-        <div class="total">
-            <div class="row">
-                <div class="col"> <b> Total:</b> </div>
-                <div class="col d-flex justify-content-end"> <b>$847.95</b> </div>
-            </div> <button class="btn d-flex mx-auto"> Track your order </button>
-        </div>
-    </div>
-</div>
+
   </body>
 </html>

@@ -16,11 +16,11 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
           $table->id();
           $table->integer('user_id');
-          $table->string('transaction_id')->nullable();
-          $table->string('PayerID')->nullable();
-          $table->string('statut')->nullable();
           $table->float('price')->default(100);
           $table->string('method')->default('Credit Card');
+          $table->string('transaction_id')->nullable();
+          $table->string('PayerID')->nullable();
+          $table->enum('statut',['Received', 'Echec', 'Delivered','Shipped','Delay','Refund'])->nullable();
           $table->dateTime('date_order');
           $table->dateTime('date_delivery');
           $table->timestamps();

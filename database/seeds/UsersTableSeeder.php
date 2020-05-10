@@ -42,7 +42,7 @@ class UsersTableSeeder extends Seeder
         'first_name' => 'david',
         'last_name' => 'igor',
         'email' => 'david@igor.com',
-        'username' => 'thebest',
+        'username' => 'thebests',
         'password' => Hash::make('angersalphabeta'),
         'salt' => 'angers',
         'is_admin' => true,

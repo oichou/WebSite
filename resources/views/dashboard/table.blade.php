@@ -23,9 +23,6 @@
             @foreach($columns as $th)
             <th>{{ $th }}</th>
             @endforeach
-            @if($table === 'Order')
-            <th colspan=2> Delivery update </th>
-            @endif
           </tr>
         </thead>
         <tbody>
@@ -113,18 +110,51 @@
             <td>{{$item->id}}</td>
             <td>{{$item->user_id}}</td>
             <td>{{$item->price}}</td>
+            <td>{{$item->method}}</td>
+            <td>{{$item->transaction_id}}</td>
+            <td>{{$item->PayerID}}</td>
+
+            @switch( $item->statut )
+
+                @case( 'Received' )
+                    <td class="text-primary"><p class="btn btn-primary">{{$item->statut}}</p></td>
+                    @break;
+                @endcase
+
+                @case( 'Echec' )
+                    <td class="text-danger"><p class="btn btn-danger">{{$item->statut}}</p></td>
+                    @break;
+                @endcase
+
+                @case( 'Delivered' )
+                    <td class="text-success"><p class="btn btn-success">{{$item->statut}}</p></td>
+                    @break;
+                @endcase
+
+                @case( 'Shipped' )
+                    <td class="text-info"><p class="btn btn-info">{{$item->statut}}</p></td>
+                    @break;
+                @endcasev
+
+                @case( 'Delay' )
+                    <td class="text-warning"><p class="btn btn-warning">{{$item->statut}}</p></td>
+                    @break;
+                @endcase
+
+                @case( 'Refund' )
+                    <td class="text-success"><p class="btn btn-success">{{$item->statut}}</p></td>
+                    @break;
+                @endcase
+
+                @default
+                    <td>no information</td>
+                    @break;
+                @endcase
+            @endswitch
             <td>{{$item->date_order}}</td>
             <td>{{$item->date_delivery}}</td>
             <td>{{$item->created_at}}</td>
             <td>{{$item->updated_at}}</td>
-            <td colspan=2 >
-              <div class="progress">
-                @php
-                $percent =75;
-                @endphp
-                <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar" style="width: 70%"  aria-valuemin="0" aria-valuemax="100">{{ $percent }}%</div>
-              </div>
-            </td>
             @empty
               No data base
             @endforelse

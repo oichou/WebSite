@@ -55,7 +55,7 @@ class Payments
 
         $gateway->setUsername('sb-gmnct1678850_api1.business.example.com');
         $gateway->setPassword('4R68X67Z488GMQ5J');
-        $gateway->setSignature('AuRgsHGArD2dK6HMSGoC8GlvOyfGA.v6ndPjKlOfuJoR56ytEZDwlzp2');
+        $gateway->setSignature($paypalkey);
         $gateway->setTestMode(true);
         return $gateway;
     }
@@ -96,13 +96,13 @@ class Payments
             return [$response,$this->initPaypal()];
 
         } catch (\PayPal\Exception\PPConnectionException $ex){
-            return 'kll';
+            // return 'kll';
             return back()->withError('Some error occur, sorry for inconvenient');
         } catch (\PayPal\Exception\PayPalConnectionException $ex){
-            return 'kll';
+            // return 'kll';
             return back()->withError('Some error occur, sorry for inconvenient');
         } catch (\PayPal\Exception\Exception $ex) {
-            return 'kll';
+            // return 'kll';
             return back()->withError('Some error occur, sorry for inconvenient');
         }
           // return $payment;

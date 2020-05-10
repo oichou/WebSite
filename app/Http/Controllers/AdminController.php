@@ -17,8 +17,8 @@ class AdminController extends Controller
    * @return \Illuminate\Http\Response
    */
   public function index() {
-      $user = Auth::user();
-      if(!$user->is_admin)
+      $admin = Auth::user();
+      if(!$admin->is_admin)
         return redirect()->route('error',['whichone' => '403' ]);
        // return redirect('/dashboard');
       $recent_order  = Product::join('ordersproducts','ordersproducts.product_id','=','products.id')
@@ -35,6 +35,7 @@ class AdminController extends Controller
       //                  -->get();
                        // dd($big_numbers);
       return view('/dashboard/admin')->with([
+        'admin'         => $admin,
         'recent_order'  => $recent_order,
         'total_order'   => $total_order,
         'total_user'    => $total_user,
@@ -44,8 +45,8 @@ class AdminController extends Controller
       ]);
   }
   public function showtable(Request $request){
-    $user = Auth::user();
-    if(!$user->is_admin)
+    $admin = Auth::user();
+    if(!$admin->is_admin)
       return redirect()->route('error',['whichone' => '403' ]);
     switch ($request->table) {
       case 'Product':
@@ -72,6 +73,7 @@ class AdminController extends Controller
         break;
     }
     return view('/dashboard/table')->with([
+      'admin'   => $admin,
       'columns' => $columns,
       'items'   => $items,
       'table'   => $request->table,

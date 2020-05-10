@@ -13,9 +13,9 @@
       <ul>
         <li class="active"><a href="{{ url('home') }}">Home</a></li>
         <li><a href="{{ route('products.index',['category'=>'accessorie']) }}">Accessoires</a></li>
-        <li class="drop-down"><a href="#">Categories</a>
+        <li class="drop-down"><a>Categories</a>
           <ul>
-            <li><a href="{{ route('products.index',['category'=>'phone']) }}">Phones</a></li>
+            <li><a href="{{ route('products.index',['category'=>'Phone']) }}">Phones</a></li>
             <li><a href="{{ route('products.index',['category'=>'laptop']) }}">Laptops</a></li>
             <li><a href="{{ route('products.index',['category'=>'tablet']) }}">Tablets</a></li>
             <li><a href="{{ route('products.index',['category'=>'camera']) }}">Cameras</a></li>
@@ -59,7 +59,7 @@
                 <li><a class="dropdown-item" href="{{ route('overview') }}">
                     Settings
                 </a></li>
-                @if(Auth::user()->is_admin === true)
+                @if(Auth::user()->is_admin == true)
                 <li><a class="dropdown-item" href="{{ route('admin.index') }}">
                     Admin Panel
                 </a></li>

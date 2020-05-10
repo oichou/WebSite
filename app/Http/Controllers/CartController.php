@@ -81,9 +81,11 @@ class CartController extends Controller
         $oldcart = Session::has('cart') ? Session::get('cart') : null;
         // dd($oldcart);
         $mycart  = new Cart($oldcart);
+        // dd(count($mycart->products_id));
+        if(count($mycart->products_id) <= 1)
+          return redirect()->route('cart.empty' ,['name'=>'cart']);
         $mycart->remove($product);
         Session::put('cart',$mycart);
-        // Session::forget('cart');
 
         return redirect()->route('cart.index');
     }

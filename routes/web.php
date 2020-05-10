@@ -89,7 +89,11 @@ Route::delete('/cart/{product}', 'CartController@removeProduct')->name('cart.rem
 Auth::routes();
 // purchase blade
 // Route::get('/success','PurchaseController@purchase')->name('purchase.success');
-Route::get('/check/{check}','PurchaseController@check')->name('purchase.check');
+Route::get('/checkpaypal/{check}','PurchaseController@checkpaypal')->name('purchase.checkpaypal')->middleware('auth');
+
+Route::get('/psuccess','PurchaseController@success')->name('purchase.success')->middleware('auth');
+Route::get('/perror','PurchaseController@echec')->name('purchase.echec')->middleware('auth');
+
 // Route::get('/check/{check}', function () {
 //     return 'Bonjour ' . $_GET['token'];
 // });

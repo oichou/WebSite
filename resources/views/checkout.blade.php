@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('extra-css')
+<script src="https://js.stripe.com/v2/"></script>
+<script src="https://js.stripe.com/v3/"></script>
 <style media="screen">
 @import url('https://fonts.googleapis.com/css?family=Work+Sans');
 .sendicon{
@@ -358,6 +360,50 @@ section .section-title {
     color: black;;
     font-size: 20px;
 }
+.stripe-errors{
+  color:black;
+}
+/*  loading */
+#load{
+  background-color: transparent;
+  border: transparent;
+  display: none;
+}
+.blob-1,.blob-2{
+	width:40px;
+	height:40px;
+	position:absolute;
+	background:yellow;
+	border-radius:50%;
+	transform:translate(-50%,-50%);
+}
+.blob-1{
+	left:20%;
+	animation:osc-l 2.5s ease infinite;
+}
+.blob-2{
+	left:80%;
+	animation:osc-r 2.5s ease infinite;
+	background:black;
+}
+@keyframes osc-l{
+	0%{left:20%;}
+	50%{left:50%;}
+	100%{left:20%;}
+}
+@keyframes osc-r{
+	0%{left:80%;}
+	50%{left:50%;}
+	100%{left:80%;}
+}
+/*  */
+/* input[type="radio"] {
+  height: 16px;
+  width: 16px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+} */
 </style>
 
 @endsection
@@ -394,7 +440,7 @@ section .section-title {
                                         <p><b>BBBootstrap Team Vasant Vihar 110020 New Delhi India</b></p>
                                     </div> -->
                                     <div class="col-auto">
-                                        <p><b>{{ $user->first_name }} {{ $user->last_name}}</b></p>
+                                        <p><b >{{ $user->first_name }} {{ $user->last_name}}</b></p>
                                         <p>
                                           <b>{{ $adress->street }}</b><br/>
                                           <b>{{ $adress->city }}</b>
@@ -410,7 +456,7 @@ section .section-title {
                                         <hr class="mt-0">
                                     </div>
                                 </div>
-                                <form action="{{ route('purchase') }}" method="post">
+                                <form action="{{ route('purchase') }}" method="post" id='formPayment'>
                                   @csrf
                                 <section id="tabs">
                                 	<div class="container">
@@ -418,8 +464,12 @@ section .section-title {
                                 			<div class="col-xs-12 ">
                                 				<nav>
                                 					<div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                                            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-cc" role="tab" aria-controls="nav-home" aria-selected="true"><i class="fa fa-credit-card"></i> Credit Card</a>
-                                						<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-Paypal" role="tab" aria-controls="nav-profile" aria-selected="false"><i class="fa fa-paypal"></i> Paypal</a>
+                                              <a class="nav-item nav-link active method" href="#nav-cc" id="nav-home-tab"  data-toggle="tab" role="tabpanel" aria-controls="nav-home" aria-selected="true" data-payement='cc'>
+                                                <i class="fa fa-credit-card"></i> Credit Card
+                                              </a>
+                                              <a class="nav-item nav-link  method" href="#nav-Paypal" id="nav-profile-tab"  data-toggle="tab" role="tab" aria-controls="nav-profile" aria-selected="false" data-payement='paypal'>
+                                                <i class="fa fa-paypal"></i> Paypal
+                                              </a>
                                 						<!-- <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-Virement" role="tab" aria-controls="nav-contact" aria-selected="false"><i class="fa fa-university"></i>Bank Transfer</a> -->
                                 						<!-- <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-Apple" role="tab" aria-controls="nav-about" aria-selected="false">Apple Pay</a> -->
                                 					</div>
@@ -427,10 +477,23 @@ section .section-title {
                                 				<div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
                                 					<div class="tab-pane fade show active" id="nav-cc" role="tabpanel" aria-labelledby="nav-home-tab">
                                 						<span id='change'>Double click to enter ccv</span>
-                                            <div id='here' class="cc">
+                                            <div id="stripe-errors">
+
+                                            </div>
+                                            <div id='cc' class="cc">
                                               <div data-part='card number'id="see" class="card__front card__part">
                                                 <img class="card__front-square card__square" src="https://image.ibb.co/cZeFjx/little_square.png">
-                                                <input name="card_number" type="number" class=" @error('card_number') is-invalid @enderror card-number"  placeholder="1234 5678 9101 1121" required autofocus>
+                                                <div class="form-group">
+                                    <!-- <label for="cardNumber">CARD NUMBER</label> -->
+                                    <div class="input-group">
+                                        <!-- <input
+                                            type="tel" class="form-control" name="cardNumber" placeholder="Valid Card Number" autocomplete="cc-number" required autofocus
+                                        /> -->
+                                        <input id='card_number' name="card_number" type="number" class=" @error('card_number') is-invalid @enderror card-number"  placeholder="1234 5678 9101 1121" required autofocus>
+                                        <!-- <span class="input-group-addon"><i class="fa fa-credit-card"></i></span> -->
+                                    </div>
+                                </div>
+                                                <!-- <input name="card_number" type="number" class=" @error('card_number') is-invalid @enderror card-number"  placeholder="1234 5678 9101 1121" required autofocus> -->
                                                 @error('card_number')
                                                 <span class="invalid-feedback" role="alert">
                                                   <strong>{{ $message }}</strong>
@@ -438,7 +501,7 @@ section .section-title {
                                                 @enderror
                                                 <div class="card__space-75">
                                                   <span class="card__label">Card holder</span>
-                                                  <input name="holder" class=" @error('holder') is-invalid @enderror card__info"  placeholder="Oussama ICHOUA" required autofocus>
+                                                  <input id='holder' name="holder" class=" @error('holder') is-invalid @enderror card__info"  placeholder="Oussama ICHOUA" data-stripe='number' required autofocus>
                                                   @error('holder')
                                                   <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -447,7 +510,7 @@ section .section-title {
                                                 </div>
                                                 <div class="card__space-25">
                                                   <span class="card__label">Expires</span>
-                                                  <input  name="expires" id="expire" type="text" class=" @error('expires') is-invalid @enderror card__info"  placeholder="10/25" required autofocus >
+                                                  <input  name="expires" id="expire" type="text" class=" @error('expires') is-invalid @enderror card__info"  placeholder="10/25" data-stripe='expire' required autofocus >
                                                   @error('expires')
                                                   <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -461,7 +524,7 @@ section .section-title {
                                                 <div class="card__back-content">
                                                   <div class="card__secret">
                                                     <p class="card__secret--last">
-                                                      <input id='ccv' name="ccv" type="number" class=" @error('ccv') is-invalid @enderror card__secret--last" placeholder="123" required autofocus/>
+                                                      <input id='ccv' name="ccv" type="number" class=" @error('ccv') is-invalid @enderror card__secret--last" placeholder="123" data-stripe='cvc' required autofocus/>
                                                       @error('ccv')
                                                       <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -474,7 +537,7 @@ section .section-title {
                                           </div>
                                 					</div>
                                 					<div class="tab-pane fade" id="nav-Paypal" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                						Paypal
+                                						<img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png" alt="paypal" width="100%">
                                 					</div>
                                 					<!-- <div class="tab-pane fade" id="nav-Virement" role="tabpanel" aria-labelledby="nav-contact-tab">
                                 						Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam. Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat. Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.
@@ -490,64 +553,15 @@ section .section-title {
                                 </section>
                                 <div class="butcheck row mb-md-5">
                                     <div class="col">
-                                      <button type="submit" name="" id="" class="btn btn-block btn-outline-primary btn-lg">PURCHASE ${{$total}}</button>
+                                      <button value="cc" type="submit" name="submit" id="purchase" class="btn btn-block btn-outline-primary btn-lg">PURCHASE ${{$total}}</button>
+                                      <button disabled id='load' class="btn btn-block btn-lg">
+                                      	<div class = "blob-1"></div>
+                                      	<div class = "blob-2"></div>
+                                      </button>
                                     </div>
                                 </div>
+                                <div class="stripe-errors"></div>
                               </form>
-                                <!-- <span id='change'>Double click to enter ccv</span>
-                                <form action="{{ route('purchase') }}" method="post">
-                                  @csrf
-                                <div id='here' class="cc">
-                                  <div data-part='card number'id="see" class="card__front card__part">
-                                    <img class="card__front-square card__square" src="https://image.ibb.co/cZeFjx/little_square.png">
-                                    <input name="card_number" type="number" class=" @error('card_number') is-invalid @enderror card-number"  placeholder="1234 5678 9101 1121" required autofocus>
-                                    @error('card_number')
-                                    <span class="invalid-feedback" role="alert">
-                                      <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                    <div class="card__space-75">
-                                      <span class="card__label">Card holder</span>
-                                      <input name="holder" class=" @error('holder') is-invalid @enderror card__info"  placeholder="Oussama ICHOUA" required autofocus>
-                                      @error('holder')
-                                      <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                      </span>
-                                      @enderror
-                                    </div>
-                                    <div class="card__space-25">
-                                      <span class="card__label">Expires</span>
-                                      <input  name="expires" id="expire" type="text" class=" @error('expires') is-invalid @enderror card__info"  placeholder="10/25" required autofocus >
-                                      @error('expires')
-                                      <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                      </span>
-                                      @enderror
-                                    </div>
-                                  </div>
-
-                                  <div data-part='ccv'id="hide" class="card__back card__part">
-                                    <div class="card__black-line"></div>
-                                    <div class="card__back-content">
-                                      <div class="card__secret">
-                                        <p class="card__secret--last">
-                                          <input id='ccv' name="ccv" type="number" class=" @error('ccv') is-invalid @enderror card__secret--last" placeholder="123" required autofocus/>
-                                          @error('ccv')
-                                          <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                          </span>
-                                          @enderror
-                                        </p>
-                                      </div>
-                                    </div>
-                                  </div>
-                              </div>
-                                <div class="butcheck row mb-md-5">
-                                    <div class="col">
-                                      <button type="submit" name="" id="" class="btn btn-block btn-outline-primary btn-lg">PURCHASE ${{$total}}</button>
-                                    </div>
-                                </div>
-                              </form> -->
                             </div>
                         </div>
                     </div>
@@ -631,7 +645,6 @@ section .section-title {
             </div>
         </div>
     </div>
-
 </div>
 
 @endsection

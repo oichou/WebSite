@@ -285,6 +285,11 @@
             </td>
         </tr>
     </table>
+    <script type="text/javascript">
+    // document.ready(function(){
+    //   window.location.href=window.location.href.split('?')[0];
+    // })
+    </script>
 </body>
 
 </html>

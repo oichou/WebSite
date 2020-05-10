@@ -11,12 +11,10 @@ Use App\User;
 Use App\Product;
 Use App\Address;
 Use App\order;
+use PayPal\Api\PaymentExecution;
+use PayPal\Api\Payment;
 use App\Ordersproduct;
-Use App\Payment;
-
-// use Omnipay\Common\CreditCard;
-// use Omnipay\Omnipay;
-// use Payment\Payment;
+Use App\Payments;
 
 class PurchaseController extends Controller
 {
@@ -38,6 +36,7 @@ class PurchaseController extends Controller
   }
 
   public function purchase(Request $request){
+          // total cart and modify our bdd
     $products = [];
     $total    = 0;
     $items    = 0;
@@ -52,7 +51,7 @@ class PurchaseController extends Controller
         $products [] = [$product,$value];
         $quantity = $product->quantity - $value;
         // if($quantity)
-        //   Product::where('id','=', $product->id)->update(['quantity' =>$quantity]);
+          Product::where('id','=', $product->id)->update(['quantity' =>$quantity]);
         // else
         //   Product::where('id', $product->id)->delete();
         $subtotal  += $product->price * $value;
@@ -65,7 +64,8 @@ class PurchaseController extends Controller
     // creer dans la table order ce quil faut
     // ajoute f checkout if he want to save cc or note
     //
-    // dd($request->input('card_number'));
+
+        // create order and ordersproduct
     $currentuser = Auth::user();
     $address = Address::find($currentuser->adress_id);
     $order = Order::create([
@@ -82,30 +82,71 @@ class PurchaseController extends Controller
           'quantity'      => $key[1],
         ]);
     }
-    $pay = new Payment();
-    $card['card'] = (int)$request->input('card_number');
-    $card['expiremonth'] = (int)$request->input('expires')[0].(int)$request->input('expires')[1];
-    $card['expireyear'] = '20'.(int)$request->input('expires')[3].(int)$request->input('expires')[4];
-    $card['cvv'] = (int)$request->input('ccv');
-    $check = $pay->setcard($card);
-    if($check){
-      $amount['amount'] = $total;
-      $amount['currency'] = "USD";
-      $response=$pay->makepayment($amount);
-      if($response->isSuccessful())
-        dd("ee");
-      elseif ($response->isRedirect()){
-        $order->token = $response->getData()['TOKEN'];
+            // checkout
+    $pay = new Payments();
+    $amount['amount'] = $total;
+    $amount['currency'] = "USD";
+    if($request->submit == 'cc'){
+      $order->method = 'Credit Card';
+      $order->save();
+      // $sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
+      // $payload = @file_get_contents('php://input');
+      // dd($request->_token);
+        // $card['card'] = (int)$request->input('card_number');
+        // $card['expiremonth'] = (int)$request->input('expires')[0].(int)$request->input('expires')[1];
+        // $card['expireyear'] = '20'.(int)$request->input('expires')[3].(int)$request->input('expires')[4];
+        // $card['cvv'] = (int)$request->input('ccv');
+        // $check = $pay->setcard($card);
+        $response = $pay->makeStripePayment($amount,$request->_token);
+        // dd($response);
+    }elseif ($request->submit == 'paypal') {
+        $response = $pay->makePaypalPayment($amount);
+        $order->method = 'paypal';
         $order->save();
-        $response->redirect();
+        // dd($response);
+        // We get 'approval_url' a paypal url to go to for payments.
+        foreach($response[0]->getLinks() as $link) {
+            if($link->getRel() == 'approval_url') {
+                $redirect_url = $link->getHref();
+                break;
+            }
+        }
+        // You can set a custom data in a session
+        Session::put('response',$response[0]);
+        Session::put('ApiContext',$response[1]);
+        Session::put('order',$order);
+        // We redirect to paypal tp make payment
+        if(isset($redirect_url)) {
+            return redirect($redirect_url);
+        }
+        // If we don't have redirect url, we have unknown error.
+        return redirect()->action('PurchaseController@echec');
       }
-      else
-        dd($response->getMessage().'rr');
-             // return $response->getMessage();
+      else {
+        return redirect()->action('PurchaseController@echec');
+      }
+        // $order->token = $response->getData()['TOKEN'];
+        // $order->save();
+        // $response->redirect();
     }
-    else{
-      dd($check);
-    }
+    // else {
+    //   // gestion erreur
+    // }
+    // if($check){
+    //   if($response->isSuccessful())
+    //     dd("ee");
+    //   elseif ($response->isRedirect()){
+    //     $order->token = $response->getData()['TOKEN'];
+    //     $order->save();
+    //     $response->redirect();
+    //   }
+    //   else
+    //     dd($response->getMessage().'rr');
+    //          // return $response->getMessage();
+    // }
+    // else{
+    //   dd($check);
+    // }
 
 
       // Session::forget('cart');
@@ -131,58 +172,120 @@ class PurchaseController extends Controller
     //     return view('purchase/echec');
     //   }
     // }
-  }
 
-  public function check($check){
-    $currentuser = Auth::user();
-    $address = Address::find($currentuser->adress_id);
+  public function checkpaypal($check){
     // dd($address);
-    $order = Order::where('token',$_GET['token'])->get();
-    // dd($order[0]->id);
-    $ordersproduct = Ordersproduct::where('order_id','=',$order[0]->id)->get();
+    $order = Session::get('order');
 
+    // $ordersproduct = Ordersproduct::where('order_id','=',$order->id)->get();
+    // dd($ordersproduct);
       if($check === 'success'){
-        if(true){
-          $cart     = Session::has('cart') ? Session::get('cart') : null;
-          $total_product=$cart->total_product;
-          $total_price=$cart->total_price;
-          $discountamount = 0;
-          $per = 0;
-          $discountisused = false;
-          if($cart->discountisused)
-          {
-          $per=$cart->discounts[$cart->discountused];
-          $discountamount=$cart->discountamount;
-          $discountisused = $cart->discountisused;
-          }
+        // If $_GET data not available... no payments was made.
+        if (!isset($_GET))
+              redirect()->action('PurchaseController@echec');
+
+        // We retrieve the payment from the paymentId.
+        $paymentId  = $_GET['paymentId'];
+        $apiContext = Session::get('ApiContext');
+        $payment = Payment::get($paymentId, $apiContext);
+
+        // We create a payment execution with the PayerId
+        $execution = new PaymentExecution();
+        $execution->setPayerId($_GET['PayerID']);
+
+        // Then we execute the payment.
+        $result = $payment->execute($execution, $apiContext);
+        // dd($result);
+
+        if($result->state == 'approved'){
+          $order->statut='received';
+          $order->PayerID=$_GET['PayerID'];
+          $order->transaction_id=$_GET['paymentId'];
+          $order->save();
+          return redirect()->action('PurchaseController@success');
+          // $cart     = Session::has('cart') ? Session::get('cart') : null;
+          // $total_product=$cart->total_product;
+          // $total_price=$cart->total_price;
+          // $discountamount = 0;
+          // $per = 0;
+          // $discountisused = false;
+          // if($cart->discountisused)
+          // {
+          // $per=$cart->discounts[$cart->discountused];
+          // $discountamount=$cart->discountamount;
+          // $discountisused = $cart->discountisused;
+          // }
           // Session::forget('cart');
-          return view('purchase/success')->with([
-            'user'          => $currentuser,
-            'address'       => $address,
-            'total_product' => $total_product,
-            'total_price'   => $total_price,
-            'order'         => $order[0],
-            'per'           => $per,
-            'discountamount'=> $discountamount,
-            'discountisused'=> $discountisused,
-            // 'products'      => $products,
-            // 'subtotal'      => $subtotal,
-          ]);
+          // Session::forget('response');
+          // Session::forget('ApiContext');
+          // Session::forget('order');
+          // return view('purchase/success')->with([
+          //   'user'          => $currentuser,
+          //   'address'       => $address,
+          //   'total_product' => $total_product,
+          //   'total_price'   => $total_price,
+          //   'order'         => $order,
+          //   'per'           => $per,
+          //   'discountamount'=> $discountamount,
+          //   'discountisused'=> $discountisused,
+          //   // 'products'      => $products,
+          //   // 'subtotal'      => $subtotal,
+          // ]);
         }
-        $_GET['PayerID'];
-        $_GET['token'];
+        else {
+
+        }
       }
       elseif ($check === 'echec') {
+        $order->statut='echec';
+        $order->save();
         foreach ($ordersproduct as $products) {
-            $product = Product::findOrNew($products->product_id);
-            // $product->update($key[0]);
-            $product->quantity = $products->quantity;
+            $ordersproduct = Ordersproduct::where('order_id','=',$order->id)->get();
+            $product = Product::find($products->product_id);
+            $product->quantity += $products->quantity;
             $product->save();
       }
-      $ordersproduct->delete();
-      $order->delete();
-      return view('purchase/echec');
+      return redirect()->action('PurchaseController@echec');
   }
 
 }
+
+  public function success() {
+    $currentuser    = Auth::user();
+    $address        = Address::find($currentuser->adress_id);
+    $cart           = Session::has('cart') ? Session::get('cart') : null;
+    $total_product  = $cart->total_product;
+    $total_price    = $cart->total_price;
+    $discountamount = 0;
+    $per            = 0;
+    $discountisused = false;
+
+    if($cart->discountisused) {
+    $per=$cart->discounts[$cart->discountused];
+    $discountamount=$cart->discountamount;
+    $discountisused = $cart->discountisused;
+    }
+
+    $order = Session::get('order');
+    // Session::forget('cart');
+    // Session::forget('response');
+    // Session::forget('ApiContext');
+    // Session::forget('order');
+    return view('purchase/success')->with([
+      'user'          => $currentuser,
+      'address'       => $address,
+      'total_product' => $total_product,
+      'total_price'   => $total_price,
+      'order'         => $order,
+      'per'           => $per,
+      'discountamount'=> $discountamount,
+      'discountisused'=> $discountisused,
+      // 'products'      => $products,
+      // 'subtotal'      => $subtotal,
+    ]);
+  }
+
+  public function echec() {
+    return view('purchase/echec');
+  }
 }

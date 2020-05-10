@@ -15,7 +15,6 @@ $('.plus').each(function(){
 $('.minus').each(function(){
       $(this).on('click',function(){
         const elem = $(this).next();
-        // const elem_id = elem["id"];
         let quantity = elem.data('quantity');
         const id = elem.data('id');
 
@@ -82,17 +81,9 @@ $("#button-addon3").on('click',function(){
         $('.total').next().text("$"+data.total_price);
         var li = $("<li></li>");
         li.attr("class","d-flex justify-content-between py-3 border-bottom");
-        // var licl = document.createAttribute("class");
-        // licl.value = "d-flex justify-content-between py-3 border-bottom";
-        // li.setAttributeNode(licl);
         var strong1 = $("<strong></strong>");
         strong1.attr("class","text-muted")
-        // var stcl = document.createAttribute("class");
-        // stcl.value = "text-muted";
-        // strong1.setAttributeNode(stcl);
-        // var coupon = document.createTextNode("discount "+data.coupon+" %");
         strong1.text("discount "+data.coupon+" %")
-        // var discount = document.createTextNode(data.discount);
         var strong2 = $("<strong></strong>");
         strong2.attr("id","discount");
         strong2.text("$"+data.discount)

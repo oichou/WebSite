@@ -66,12 +66,21 @@ button:hover:active:before {
 
 @section('content')
 <div class="login-dark">
+  @if(count($errors) > 0)
+  <div class="alert alert-danger">
+    <button type="button" class="close" data-dismiss="alert">x</button>
+    <ul>
+        @foreach($errors->all() as $error)
+          <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+  </div>
+  @endif
     <form method="POST" action="{{ route('login') }}">
       @csrf
         <div class="illustration">
           <i class="icon ion-ios-locked-outline"></i>
         </div>
-
         <div class="form-group">
 
           <input id="Login" type="text" class="form-control @error('Login') is-invalid @enderror" name="Login" value="{{ old('Login') }}" required autocomplete="Login" placeholder="username ou email" autofocus>

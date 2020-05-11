@@ -17,8 +17,8 @@ class ErrorController extends Controller
         case '403':
           return view('errors/403');
           break;
-        case '404':
-          // code...
+        case '504':
+          return view('errors/504');
           break;
         case '500':
           // code...

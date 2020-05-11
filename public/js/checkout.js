@@ -183,34 +183,34 @@ $('#expire').on('focus',function(){
 $('#ccv').on('focus',function(){
     $('#stripe-errors').text('');
 })
-$(document).ready(function(){
+// $(document).ready(function(){
   // var stripe = Stripe('pk_test_I0nrh7mc7F42ikMqu88Ff3za00etVYg0BT');
-  Stripe.setPublishableKey('pk_test_I0nrh7mc7F42ikMqu88Ff3za00etVYg0BT');
+  Stripe.setPublishableKey('pk_test_VarfriwlmLQEyxOGTmiJCL8E00fFFbOPpz');
   // var elements = stripe.elements();
 
-  $('#formPayment button').on('click',function(e){
-    // e.preventDefault();
-    var submit = $('#purchase');
-    $(submit).css('display','none');
-    $('#load').css('display','block');
+  $('#purchase').on('click',function(e){
+    e.preventDefault();
+
+    // var submitbutton = $('#purchase');
+    // $('#purchase').css('display','none');
+    // $('#load').css('display','block');
+
     if($('#purchase').val()=='paypal'){
-      $('#formPayment').submit()
-      // $(submit).attr('disabled','');
+      $('#formPayment').append($('<input type="hidden" name="method" />').val('paypal'))
+      $('#formPayment')[0].submit().att('name','jjj')
     }
+
     else {
-      // $(submit).attr('disabled','');
 
-    var submittxt = submit.text();
-
-    Stripe.card.createToken({
-      number: $('#card_number').val(),
-      exp_month: parseInt($('#expire').val()[0]+$('#expire').val()[1]),
-      exp_year: parseInt($('#expire').val()[3]+$('#expire').val()[4]),
-      cvc: $('#ccv').val(),
-      name: $('#holer').val(),
-    },stripeResponseHandler);
-  }
-  });
+      Stripe.card.createToken({
+        number: $('#card_number').val(),
+        exp_month: parseInt($('#expire').val()[0]+$('#expire').val()[1]),
+        exp_year: parseInt($('#expire').val()[3]+$('#expire').val()[4]),
+        cvc: $('#ccv').val(),
+        name: $('#holer').val(),
+      },stripeResponseHandler);
+    }
+  // });
 });
   function stripeResponseHandler(status, response) {
 
@@ -233,23 +233,28 @@ $(document).ready(function(){
              });
       // $('.stripe-errors').text(response.error.message).show();
       // $('#formPayment button').attr('disabled',false).text('buy');
-      $('#purchase').attr('disabled',false);
+      // $('#purchase').attr('disabled',false);
       $('#purchase').css('display','block');
       $('#load').css('display','none');
-      // $form.find('.payment-errors').text(response.error.message);
-      // $form.find('button').prop('disabled', false); // Re-enable submission
 
-    } else {
+      } else {
+
        // Token was created!
       console.log(response);
-      // Get the token ID:
-      var token = response.id;
-      // Insert the token into the form so it gets submitted to the server:
-      form.append($('<input type="hidden" name="stripeToken" />').val(token));
+
+      // Insert the token ID into the form so it gets submitted to the server:
+      form.append($('<input type="hidden" name="stripeToken" />').val(response.id));
+      form.append($('<input type="hidden" name="method" />').val('cc'))
       // form.append($('<input type="hidden" name="stripeToken" />').val(token));
+      // Add Stripe Token to hidden input
+      // var hiddenInput = document.createElement('input');
+      // hiddenInput.setAttribute('type', 'hidden');
+      // hiddenInput.setAttribute('name', 'stripeToken');
+      // hiddenInput.setAttribute('value', response.id);
+      // form.append(hiddenInput);
 
       // Submit the form:
-      form.submit()
+      form[0].submit()
 
     }
   }

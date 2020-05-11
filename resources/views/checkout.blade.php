@@ -539,12 +539,7 @@ section .section-title {
                                 					<div class="tab-pane fade" id="nav-Paypal" role="tabpanel" aria-labelledby="nav-profile-tab">
                                 						<img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png" alt="paypal" width="100%">
                                 					</div>
-                                					<!-- <div class="tab-pane fade" id="nav-Virement" role="tabpanel" aria-labelledby="nav-contact-tab">
-                                						Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam. Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat. Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.
-                                					</div>
-                                					<div class="tab-pane fade" id="nav-Apple" role="tabpanel" aria-labelledby="nav-about-tab">
-                                						Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam. Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat. Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.
-                                					</div> -->
+
                                 				</div>
 
                                 			</div>
@@ -553,7 +548,7 @@ section .section-title {
                                 </section>
                                 <div class="butcheck row mb-md-5">
                                     <div class="col">
-                                      <button value="cc" type="submit" name="submit" id="purchase" class="btn btn-block btn-outline-primary btn-lg">PURCHASE ${{$total}}</button>
+                                      <button value="cc" type="submit" name="method" id="purchase" class="btn btn-block btn-outline-primary btn-lg">PURCHASE ${{$total}}</button>
                                       <button disabled id='load' class="btn btn-block btn-lg">
                                       	<div class = "blob-1"></div>
                                       	<div class = "blob-2"></div>

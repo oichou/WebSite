@@ -130,15 +130,14 @@ class Payments
      *  @param $value
      */
      function makeStripePayment($value,$stripeToken){
-       Stripe::setApiKey(static::$stripekey);
-       Charge::create ([
-              "amount" =>  $value['amount'],
+       Stripe::setApiKey('sk_test_maAcvm6hGu3QiLvbp5eoq6Pv00XrGK4Av2');
+       $response = Charge::create ([
+              "amount" =>  $value['amount'] * 100,
               "currency" => $value['currency'],
               "source" => $stripeToken,
               "description" => "Test payment from oussafa"
-            ],
-              ["idempotency_key" => $stripeToken,]
-      );
+              ]);
+      return $response;
 
      }
 

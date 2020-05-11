@@ -67,7 +67,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.5s;
   z-index: 997;
   transition: all 0.5s;
-  padding: 25px 0;
+  padding: 10px 0;
   background: #fff;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
 }
@@ -1264,6 +1264,7 @@ section {
   padding: 0 0 30px 0;
   color: #fff;
   font-size: 14px;
+  margin-bottom: -30px;
 }
 
 #footer .footer-top {
@@ -1402,4 +1403,19 @@ section {
   text-align: center;
   font-size: 13px;
   color: #fff;
+}
+#butto {
+  float:right;
+  margin-bottom: auto;
+}
+#inp {
+  width: 500px;
+  height: 20px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: grey;
 }

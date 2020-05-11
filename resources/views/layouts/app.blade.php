@@ -21,6 +21,7 @@
 
     <!-- Styles -->
     <!-- <link href="{{ asset('css/boxicons.css') }}" rel="stylesheet"> -->
+    <link href="{{ asset('css/offers.css') }}" rel="stylesheet">    
     <link href="{{ asset('css/home.css') }}" rel="stylesheet">
     <link href="{{ asset('css/contact.css') }}" rel="stylesheet">
     <!-- <link href="{{ asset('css/header.css') }}" rel="stylesheet"> -->

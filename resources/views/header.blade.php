@@ -1,4 +1,6 @@
+
 @section('header')
+
 
 <header id="header">
   <div class="container d-flex">
@@ -22,7 +24,7 @@
             <li><a href="{{ route('products.index',['category'=>'Gaming']) }}">Gaming</a></li>
           </ul>
         </li>
-        <li><a href="#">Offers</a></li>
+        <li><a href="{{ route('offers') }}">Offers</a></li>
         <li><a href="#">Contact Us</a></li>
       </ul>
     </nav><!-- .nav-menu -->
@@ -80,6 +82,12 @@
   </div>
   </div>
 
+  </div>
+  <div class="search-container" style="width:450px;margin:auto;margin-top:-20px;">
+    <form action="{{ route('search') }}" method="get">
+      <input id="inp" type="text" placeholder="Search.." name="search" style="width:400px;margin:auto;">
+      <button id="butto" type="submit"><i class="fa fa-search" ></i></button>
+    </form>
   </div>
 </header><!-- End Header -->
 @endsection

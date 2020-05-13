@@ -1,8 +1,11 @@
+
 @section('header')
+
 
 <header id="header">
   <div class="container d-flex">
 
+    <a href="{{ route('home') }}"><img src="images/logo.jpeg" style="float:left;width:60px;height:50px;margin-right:10px;margin-top:10px"/></a>
     <div class="logo mr-auto">
       <h1 class="text-light"><a href="{{ route('home') }}"><span>OUSSAFA</span></a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
@@ -12,18 +15,18 @@
     <nav class="nav-menu d-none d-lg-block">
       <ul>
         <li class="active"><a href="{{ route('home') }}">Home</a></li>
-        <li><a href="{{ route('products.index',['category'=>'accessorie']) }}">Accessoires</a></li>
+        <li><a href="{{ route('accessoires') }}">Accessoires</a></li>
         <li class="drop-down"><a>Categories</a>
           <ul>
-            <li><a href="{{ route('products.index',['category'=>'Phone']) }}">Phones</a></li>
-            <li><a href="{{ route('products.index',['category'=>'laptop']) }}">Laptops</a></li>
-            <li><a href="{{ route('products.index',['category'=>'tablet']) }}">Tablets</a></li>
-            <li><a href="{{ route('products.index',['category'=>'camera']) }}">Cameras</a></li>
-            <li><a href="{{ route('products.index',['category'=>'Gaming']) }}">Gaming</a></li>
+            <li><a href="{{ route('phones') }}">Phones</a></li>
+            <li><a href="{{ route('laptops') }}">Laptops</a></li>
+            <li><a href="{{ route('tablets') }}">Tablets</a></li>
+            <li><a href="{{ route('cameras') }}">Cameras</a></li>
+            <li><a href="{{ route('gaming') }}">Gaming</a></li>
           </ul>
         </li>
-        <li><a href="#">Offers</a></li>
-        <li><a href="#">Contact Us</a></li>
+        <li><a href="{{ route('offers') }}">Offers</a></li>
+        <li><a href="{{ route('contact') }}">Contact Us</a></li>
       </ul>
     </nav><!-- .nav-menu -->
 
@@ -80,6 +83,12 @@
   </div>
   </div>
 
+  </div>
+  <div class="search-container" style="width:450px;margin:auto;margin-top:-20px;">
+    <form action="{{ route('search') }}" method="get">
+      <input id="inp" type="text" placeholder="Search.." name="search" style="width:400px;margin:auto;">
+      <button id="butto" type="submit"><i class="fa fa-search" ></i></button>
+    </form>
   </div>
 </header><!-- End Header -->
 @endsection

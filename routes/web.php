@@ -24,6 +24,7 @@ Route::post('/sendemail/send', 'contactController@send');
 
 
 Route::get('/products', 'ProductsController@index')->name('products.index');
+Route::get('/offers', 'ProductsController@offers')->name('offers');
 Route::get('/products/{id}', 'ProductsController@show')->name('products.show');
 
   // Routes for the UserPanel Page
@@ -90,6 +91,7 @@ Route::get('/session/{name}','CartController@empty')->name('cart.empty');
 Route::delete('/cart/{product}', 'CartController@removeProduct')->name('cart.removeProduct');
 // this is the probleme i cant do both add and remove with the same url
 Auth::routes();
+
 // purchase blade
 // Route::get('/success','PurchaseController@purchase')->name('purchase.success');
 Route::get('/checkpaypal/{check}','PurchaseController@checkpaypal')->name('purchase.checkpaypal')->middleware('auth');
@@ -104,6 +106,8 @@ Route::get('/perror','PurchaseController@echec')->name('purchase.echec')->middle
 //     return 'Bonjour ' . $_GET['prenom'];
 // });
 
+Route::post('/send','contactController@send')->name('send');
+
 Route::post('/purchase','PurchaseController@purchase')->name('purchase')->middleware('auth');
 // Route::get('/echec',function(){
 //   return view('/purchase/echec');
@@ -112,3 +116,14 @@ Route::post('/purchase','PurchaseController@purchase')->name('purchase')->middle
 Route::get('/order/{id}','OrderController@show')->name('order.show')->middleware('auth');
 Route::get('/order','OrderController@create')->name('order.create')->middleware('auth');
 // ajouter plus tard une verification pour les site avec argument abort 404
+
+//search some articles
+Route::get('/search','searchController@index')->name('search');
+
+// Routes about Categories:
+Route::get('/phones', function () { return redirect()->route('products.index', ['category'=>'phone']); })->name('phones');
+Route::get('/laptops', function () { return redirect()->route('products.index', ['category'=>'laptop']); })->name('laptops');
+Route::get('/tablets', function () { return redirect()->route('products.index', ['category'=>'tablet']); })->name('tablets');
+Route::get('/cameras', function () { return redirect()->route('products.index', ['category'=>'camera']); })->name('cameras');
+Route::get('/gaming', function () { return redirect()->route('products.index', ['category'=>'Gaming']); })->name('gaming');
+Route::get('/accessoires', function () { return redirect()->route('products.index', ['category'=>'accessorie']); })->name('accessoires');

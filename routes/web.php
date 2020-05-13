@@ -88,6 +88,7 @@ Route::get('/session/{name}','CartController@empty')->name('cart.empty');
 Route::delete('/cart/{product}', 'CartController@removeProduct')->name('cart.removeProduct');
 // this is the probleme i cant do both add and remove with the same url
 Auth::routes();
+
 // purchase blade
 // Route::get('/success','PurchaseController@purchase')->name('purchase.success');
 Route::get('/checkpaypal/{check}','PurchaseController@checkpaypal')->name('purchase.checkpaypal')->middleware('auth');
@@ -101,6 +102,8 @@ Route::get('/perror','PurchaseController@echec')->name('purchase.echec')->middle
 // Route::get('/bonjour', function () {
 //     return 'Bonjour ' . $_GET['prenom'];
 // });
+
+Route::post('/send','contactController@send')->name('send');
 
 Route::post('/purchase','PurchaseController@purchase')->name('purchase')->middleware('auth');
 // Route::get('/echec',function(){

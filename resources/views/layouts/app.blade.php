@@ -3,6 +3,7 @@
 <head>
     <title>Oussafa</title>
     <meta charset="utf-8">
+    <link rel="icon" type="image/png" href="images/logo.jpeg" />
     <script defer src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -20,8 +21,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
     <!-- Styles -->
-    <!-- <link href="{{ asset('css/boxicons.css') }}" rel="stylesheet"> -->
-    <link href="{{ asset('css/offers.css') }}" rel="stylesheet">    
+    <link href="{{ asset('css/panel.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/offers.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home.css') }}" rel="stylesheet">
     <link href="{{ asset('css/contact.css') }}" rel="stylesheet">
     <!-- <link href="{{ asset('css/header.css') }}" rel="stylesheet"> -->
@@ -60,6 +61,7 @@
       <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
       <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
       <!-- <script src="{{ asset('/js/jquery-3.2.1.min.js') }}"></script> -->
+
       <script src="{{ asset('/css/bootstrap4/popper.js') }}"></script>
       <script src="{{ asset('/css/bootstrap4/bootstrap.min.js') }}"></script>
       <script src="{{ asset('/plugins/greensock/TweenMax.min.js') }}"></script>

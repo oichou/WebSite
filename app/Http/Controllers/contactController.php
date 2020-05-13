@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\contact;
+use App\Mail\contactus;
+use App\Contact;
 
 class contactController extends Controller
 {
@@ -29,21 +30,45 @@ class contactController extends Controller
           'message'    =>    'required'
       ]);
 
-      $data = array(
-        'name'        =>    $request->name,
-        'message'     =>    $request->message
-      );
+      $client = $request->input('email');
+      $name = $request->input('name');
+      $message = $request->input('message');
 
       $admins = DB::table('users')
                 ->where('is_admin','true')
                 ->select('email')
                 ->get();
 
-      foreach ($admins as $admin) {
-        Mail::to($admin)
-              ->send(new contact($data));
-      }
-      return back()->with('success', 'Thank you for contacting us, we will be treating your message very soon !');
+      $data = [
+        'name'        =>    $name,
+        'message'     =>    $message,
+        'email'       =>    $client
+      ];
+
+      $contact = new Contact;
+
+      $contact->name = $name;
+      $contact->email = $client;
+      $contact->message = $message;
+
+      $contact->save();
+
+
+      // foreach ($admins as $admin) {
+        \Mail::to('malaklakkab7@gmail.com')
+              ->send(new contactus($data));
+      // }
+    //   foreach ($admins as $admin) {
+    //   echo "Email has been sent to $admin";
+    // }
+
+      // \Mail::send('emails.testmail', $data, function($message) use ($request)
+      //   {
+      //     $message->from($request->input('email'));
+      //     $message->to('safaalakkab7@gmail.com');
+      //   }
+      // );
+    return back()->with('success', 'Thank you for contacting us, we will be treating your message very soon !');
     }
 
 

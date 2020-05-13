@@ -34,7 +34,7 @@
       </div>
     @endif
 
-    <form class="contact100-form validate-form" method="post" action="{{ url('sendemail/send')}}">
+    <form class="contact100-form validate-form" method="post" action="{{ url('send')}}">
       {{ csrf_field() }}
       <span class="contact100-form-title">
         Contact Us

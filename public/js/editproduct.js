@@ -16,12 +16,12 @@ $('.readonly').each(function(){
     })
 })
 
-// $('.nan').on("keypress", function(e) {
-//   // console.log($(this).val());
-//   // if($(this).val().includes(e))
-//   //   alert('rr')
-//   // if(e.charCode == 44 )
-//   //   return ;
-//   if (e.charCode < "0".charCodeAt(0) || e.charCode > "9".charCodeAt(0))
-//     e.preventDefault();
-// })
+$('.nan').on("keypress", function(e) {
+  // console.log($(this).val());
+  // if($(this).val().includes(e))
+  //   alert('rr')
+  // if(e.charCode == 44 )
+  //   return ;
+  if (e.charCode < "0".charCodeAt(0) || e.charCode > "9".charCodeAt(0))
+    e.preventDefault();
+})

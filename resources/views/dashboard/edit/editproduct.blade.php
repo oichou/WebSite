@@ -20,8 +20,9 @@
   <main class="content-wrapper">
     <h1>Edit product</h1>
     <div class="login-dark container">
-      <form method="POST" action="{{route ('editproduct',['id' => $product->id])}}" enctype="multipart/form-data">
+      <form method="POST" action="{{route ('updateproduct',['id' => $product->id])}}" enctype="multipart/form-data">
         @csrf
+
           <div class="form-group">
             Product Name:
             <input readonly type="text" class="form-control readonly" value="{{ $product->name }}" autofocus data-name="name" name="name">
@@ -44,8 +45,8 @@
             @enderror
           </div>
           <div class="form-group">
-            <input readonly type="number" class="form-control readonly"  value="{{ $product->quantity }}" autofocus data-name="quantity" name="quantity">
-            <input id="quantity" type="number" class="next form-control @error('quantity') is-invalid @enderror"  autocomplete="quantity" placeholder="Quantity" autofocus>
+            <input readonly type="number" class="nan form-control readonly"  value="{{ $product->quantity }}" autofocus data-name="quantity" name="quantity">
+            <input id="quantity" type="number" class="nan next form-control @error('quantity') is-invalid @enderror"  autocomplete="quantity" placeholder="Quantity" autofocus>
 
             @error('quantity')
                 <span class="invalid-feedback" role="alert">
@@ -55,7 +56,7 @@
           </div>
           <div class="form-group">
             <input readonly class="form-control readonly" value="{{ $product->basic_price }}"   autofocus data-name="basic_price" name="basic_price">
-            <input id="basic_price" type="number" class="next form-control @error('basic_price') is-invalid @enderror"  autocomplete="basic_price" placeholder="Officiel price" autofocus>
+            <input id="basic_price" type="number" class="nan next form-control @error('basic_price') is-invalid @enderror"  autocomplete="basic_price" placeholder="Officiel price" autofocus>
 
             @error('basic_price')
                 <span class="invalid-feedback" role="alert">
@@ -64,8 +65,8 @@
             @enderror
           </div>
           <div class="form-group">
-            <input readonly type="number" class="form-control readonly" value="{{ $product->price }}"  autocomplete="price" placeholder="{{ $product->price}}" autofocus data-name="price" name="price">
-            <input id="price" type="number" class="next form-control @error('price') is-invalid @enderror"  autocomplete="price" placeholder="Price" autofocus>
+            <input readonly type="number" class="nan form-control readonly" value="{{ $product->price }}"  autocomplete="price" placeholder="{{ $product->price}}" autofocus data-name="price" name="price">
+            <input id="price" type="number" class="nan next form-control @error('price') is-invalid @enderror"  autocomplete="price" placeholder="Price" autofocus>
 
             @error('price')
                 <span class="invalid-feedback" role="alert">
@@ -75,7 +76,11 @@
           </div>
           <div class="form-group">
             <div class="switchToggle">
-            <input class="next form-control @error('promo') is-invalid @enderror admin" type="checkbox" id="promo" name="promo"/>
+              @if( $product->promo  == true)
+              <input checked class="next form-control @error('promo') is-invalid @enderror admin" type="checkbox" id="promo" name="promo"/>
+              @else
+              <input class="next form-control @error('promo') is-invalid @enderror admin" type="checkbox" id="promo" name="promo"/>
+              @endif
             <label for="promo"></label>
           </div>
             @error('promo')
@@ -86,7 +91,7 @@
           </div>
           <div class="form-group">
             <input readonly class="form-control readonly" value="{{$product->promo_percentage }}"   autofocus data-name="promo_percentage" name="promo_percentage">
-            <input id="promo_percentage" type="number" class="next form-control @error('promo_percentage') is-invalid @enderror"  autocomplete="promo_percentage" placeholder="Promo Percentage" autofocus>
+            <input id="promo_percentage" type="number" class="nan next form-control @error('promo_percentage') is-invalid @enderror"  autocomplete="promo_percentage" placeholder="Promo Percentage" autofocus>
 
             @error('promo_percentage')
                 <span class="invalid-feedback" role="alert">

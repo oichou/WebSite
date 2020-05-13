@@ -33,7 +33,7 @@
                 <tr scope="row">
                   <td>
                     <a href="{{ route ( 'admin.removefrom' ,[ 'table' => 'Product' , 'id' => $item->id ] ) }}"><i class="fa fa-trash"></i></a><br/>
-                    <a href="{{ route ( 'editproduct' ,[ 'id' => $item->id ] ) }} "><i class="fas fa-edit"></i></a><br/>
+                    <a href="{{ route ( 'updateproduct' ,[ 'id' => $item->id ] ) }} "><i class="fas fa-edit"></i></a><br/>
                   </td>
                   <td>{{$item->id}}</td>
                   <td><img class="avatar avatar-sm pull-up media-object rounded-circle no-border-top-radius no-border-bottom-radius" src="/images/{{$item->path}}" alt="{{$item->name}}"></td>
@@ -104,12 +104,12 @@
             @forelse ($items as $item)
                 <tr scope="row">
                   <td>
-                    <a href="{{ route ('admin.removefrom' ,['table' => 'Order' , 'id' => $item->id ])}}"><i class="fa fa-trash"></i></a><br/>
-                    <a href=""><i class="fas fa-edit"></i></a><br/>
+                    <a href="{{ route ('admin.removefrom' , ['table' => 'Order' , 'id' => $item->id ])}}"><i class="fa fa-trash"></i></a><br/>
+                    <a href="{{ route ( 'updateorder' ,       [ 'id' => $item->id ] ) }}"><i class="fas fa-edit"></i></a><br/>
                   </td>
             <td>{{$item->id}}</td>
             <td>{{$item->user_id}}</td>
-            <td>{{$item->price}}</td>
+            <td>${{$item->price}}</td>
             <td>{{$item->method}}</td>
             <td>{{$item->transaction_id}}</td>
             <td>{{$item->PayerID}}</td>
@@ -117,32 +117,32 @@
             @switch( $item->statut )
 
                 @case( 'Received' )
-                    <td class="text-primary"><p class="btn btn-primary">{{$item->statut}}</p></td>
+                    <td class=" text-primary"><p class="statut btn btn-primary">{{$item->statut}}</p></td>
                     @break;
                 @endcase
 
                 @case( 'Echec' )
-                    <td class="text-danger"><p class="btn btn-danger">{{$item->statut}}</p></td>
+                    <td class=" text-danger"><p class="statut btn btn-danger">{{$item->statut}}</p></td>
                     @break;
                 @endcase
 
                 @case( 'Delivered' )
-                    <td class="text-success"><p class="btn btn-success">{{$item->statut}}</p></td>
+                    <td class=" text-success"><p class="statut btn btn-success">{{$item->statut}}</p></td>
                     @break;
                 @endcase
 
                 @case( 'Shipped' )
-                    <td class="text-info"><p class="btn btn-info">{{$item->statut}}</p></td>
+                    <td class=" text-info"><p class="statut btn btn-info">{{$item->statut}}</p></td>
                     @break;
                 @endcasev
 
                 @case( 'Delay' )
-                    <td class="text-warning"><p class="btn btn-warning">{{$item->statut}}</p></td>
+                    <td class=" text-warning"><p class="statut btn btn-warning">{{$item->statut}}</p></td>
                     @break;
                 @endcase
 
                 @case( 'Refund' )
-                    <td class="text-success"><p class="btn btn-success">{{$item->statut}}</p></td>
+                    <td class=" text-success"><p class="statut btn btn-success">{{$item->statut}}</p></td>
                     @break;
                 @endcase
 

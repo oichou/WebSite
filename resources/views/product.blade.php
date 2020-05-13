@@ -294,7 +294,7 @@ h2{
   </div>
     <h2> You might also like </h2>
   <div class="row">
-      @foreach($mightAlsoLike as $mal)
+      @forelse($mightAlsoLike as $mal)
       <div class="col-md-3 col-sm-8">
           <div class="product-grid6">
               <div class="product-image6">
@@ -315,8 +315,42 @@ h2{
               </ul>
           </div>
       </div>
-      @endforeach
+      @empty
+        <div class="col-md-3 col-sm-8">
+          it s our only product wich category id : {{$mal->category}}!!
+        </div>
+      @endforelse
   </div>
+  <h2> what you may buy with this product </h2>
+<div class="row">
+    @forelse($mightAlsoBuy as $mab)
+    <div class="col-md-3 col-sm-8">
+        <div class="product-grid6">
+            <div class="product-image6">
+                <a href="{{ route('products.show',['id'=>$mab->id]) }}">
+                    <img class="pic-1" src="/images/{{ $mab->path }}" alt="{{ $mab->path }}">
+                </a>
+            </div>
+            <div class="product-content">
+                <h3 class="title"><a href="{{ route('products.show',['id'=>$mab->id]) }}">{{ $mab->name }}</a></h3>
+                <div class="price">{{ $mab->price }}</div>
+            </div>
+            <ul class="social">
+                <li><a href="{{ route('products.show',['id'=>$mab->id]) }}" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
+                <!-- <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li> -->
+                <li>
+                  <a href="{{ route('cart.addProduct',['product'=>$mab]) }}" data-tip="Add to Cart" onclick="parentNode.submit()"><i class="fa fa-shopping-cart"></i></a>
+              </li>
+            </ul>
+        </div>
+    </div>
+    @empty
+      <div class="col-md-3 col-sm-8">
+        Your are going to be our first client to buy this Product hope you like it!!
+      </div>
+    @endforelse
+</div>
+
   </div>
 @endsection
 <!-- Footer -->

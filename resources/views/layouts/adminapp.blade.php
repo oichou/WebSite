@@ -5,7 +5,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <script defer src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,600,600i,700,700i%7CComfortaa:300,400,700" rel="stylesheet">
     <!-- <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css" rel="stylesheet"> -->
     <!-- BEGIN VENDOR CSS-->
@@ -52,7 +52,7 @@
               </li>
               <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown"><span class="avatar avatar-online"><img src="theme-assets/images/portrait/small/parameters.png" alt="avatar"><i></i></span></a>
                 <div class="dropdown-menu dropdown-menu-right">
-                  <div class="arrow_box_right"><a class="dropdown-item" href="{{ url('home') }}"><span class="avatar avatar-online"><span class="user-name text-bold-700 ml-1">  {{$admin->first_name}} {{$admin->last_name}}</span></span></a>
+                  <div class="arrow_box_right"><a class="dropdown-item" href="{{ route('home') }}"><span class="avatar avatar-online"><span class="user-name text-bold-700 ml-1">  {{Auth::user()->first_name}} {{Auth::user()->last_name}}</span></span></a>
                     <div class="dropdown-divider"></div><a class="dropdown-item" href="{{ url('profile') }}"><i class="ft-user"></i> Edit Profile</a>
                     <!-- <a class="dropdown-item" href="#"><i class="ft-mail"></i> My Inbox</a><a class="dropdown-item" href="#"><i class="ft-check-square"></i> Task</a><a class="dropdown-item" href="#"><i class="ft-message-square"></i> Chats</a> -->
                     <div class="dropdown-divider"></div>
@@ -186,6 +186,7 @@
       <script src="{{ asset('theme-assets/js/scripts/pages/dashboard-lite.js') }}" type="text/javascript"></script>
       <!-- END PAGE LEVEL JS-->
     <script src="https://use.fontawesome.com/releases/v5.9.0/js/all.js" data-auto-replace-svg="nest"></script></body>
+
 
 </body>
 </html>

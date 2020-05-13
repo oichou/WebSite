@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Productphoto;
+use App\Ordersproduct;
 
 class ProductsController extends Controller
 {
@@ -62,13 +63,28 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        $product       = Product::find($id);
-        $images        = Productphoto::select('path')->where('product_id','=',$id)->get();
-        $cat           = Product::find($id)->pluck('category');
-        $mightAlsoLike = Product::inRandomOrder()->where([['category','=',$cat],['id','<>',$id],])->paginate(4);
+        $product        = Product::find($id);
+        $images         = Productphoto::select('path')->where('product_id','=',$id)->get();
+        $cat            = $product->category;
+        // dd($cat);
+        $mightAlsoLike  = Product::inRandomOrder()->where([['category','=',$cat],['id','<>',$id],])->paginate(4);
+        // dd($mightAlsoLike);
+        $theid          = Ordersproduct::where('product_id',$id)->pluck('order_id');
+        // dd($theids);
+        if($theid){
+            $alsobought  = Ordersproduct::inRandomOrder()->where('order_id','=',$theid)->paginate(4)->pluck('product_id');
+          }
+          // dd($alsobought);
+          $mightAlsoBuy = [];
+          foreach ($alsobought as $ab) {
+            $p = Product::find($ab);
+            if($p)
+              $mightAlsoBuy [] = $p;
+          }
         return view('product')->with([
           'product'       => $product,
           'mightAlsoLike' => $mightAlsoLike,
+          'mightAlsoBuy'  => $mightAlsoBuy,
           'images'        => $images
 
         ]);

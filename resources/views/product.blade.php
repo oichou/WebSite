@@ -58,13 +58,13 @@ p{
   /*border: 1px dotted #aaa;*/
 }
 
-.product-image .bg{
+/* .product-image .bg{
   background-image: url('/images/{{ $product->path }}');
   background-size: cover;
   background-position: center top;
   width: 100%;
   min-height: 420px;
-}
+} */
 
 .product-image .indicator{
   text-align:center;
@@ -256,9 +256,37 @@ h2{
   <div class="col-1-2 product-image">
     <div class="bg"></div>
     <div class="indicator">
+      		<div class="carousel slide" id="main-carousel" data-ride="carousel">
+      <ol class="carousel-indicators">
+				<li data-target="#main-carousel" data-slide-to="0" class="active"></li>
+				<li data-target="#main-carousel" data-slide-to="1"></li>
+				<li data-target="#main-carousel" data-slide-to="2"></li>
+			</ol>
+      <div class="carousel-inner">
+        <?= $i=0 ?>
       @foreach($images as $image)
-      <div class="dot"></div>
+        @if($i==0)
+          <div class="carousel-item active">
+          <img class="d-block img-fluid" src="/images/{{$image}}" alt="{{$product->name}}">
+          </div>
+        @else
+          <div class="carousel-item">
+          <img class="d-block img-fluid" src="/images/{{$image}}" alt="{{$product->name}}">
+          </div>
+        @endif
+        <?= $i++ ?>
       @endforeach
+      </div>
+      <!-- /.carousel-inner -->
+      <a href="#main-carousel" class="carousel-control-prev" data-slide="prev">
+				<span class="carousel-control-prev-icon"></span>
+				<span class="sr-only" aria-hidden="true">Prev</span>
+			</a>
+			<a href="#main-carousel" class="carousel-control-next" data-slide="next">
+				<span class="carousel-control-next-icon"></span>
+				<span class="sr-only" aria-hidden="true">Next</span>
+			</a>
+    </div>
     </div>
   </div>
   <div class="col-1-2 product-info">
@@ -294,7 +322,7 @@ h2{
   </div>
     <h2> You might also like </h2>
   <div class="row">
-      @foreach($mightAlsoLike as $mal)
+      @forelse($mightAlsoLike as $mal)
       <div class="col-md-3 col-sm-8">
           <div class="product-grid6">
               <div class="product-image6">
@@ -315,8 +343,42 @@ h2{
               </ul>
           </div>
       </div>
-      @endforeach
+      @empty
+        <div class="col-md-3 col-sm-8">
+          it s our only product wich category: {{$product->category}}!!
+        </div>
+      @endforelse
   </div>
+  <h2> what you may buy with this product </h2>
+<div class="row">
+    @forelse($mightAlsoBuy as $mab)
+    <div class="col-md-3 col-sm-8">
+        <div class="product-grid6">
+            <div class="product-image6">
+                <a href="{{ route('products.show',['id'=>$mab->id]) }}">
+                    <img class="pic-1" src="/images/{{ $mab->path }}" alt="{{ $mab->path }}">
+                </a>
+            </div>
+            <div class="product-content">
+                <h3 class="title"><a href="{{ route('products.show',['id'=>$mab->id]) }}">{{ $mab->name }}</a></h3>
+                <div class="price">{{ $mab->price }}</div>
+            </div>
+            <ul class="social">
+                <li><a href="{{ route('products.show',['id'=>$mab->id]) }}" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
+                <!-- <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li> -->
+                <li>
+                  <a href="{{ route('cart.addProduct',['product'=>$mab]) }}" data-tip="Add to Cart" onclick="parentNode.submit()"><i class="fa fa-shopping-cart"></i></a>
+              </li>
+            </ul>
+        </div>
+    </div>
+    @empty
+      <div class="col-md-3 col-sm-8">
+        Your are going to be our first client to buy this Product hope you like it!!
+      </div>
+    @endforelse
+</div>
+
   </div>
 @endsection
 <!-- Footer -->

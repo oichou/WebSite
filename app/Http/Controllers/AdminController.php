@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Product;
 use App\Order;
 use App\User;
@@ -69,7 +70,7 @@ class AdminController extends Controller
         break;
 
       default:
-        // code...
+        // return redirect()->route('error',['whichone' => '404' ]);
         break;
     }
     return view('/dashboard/table')->with([
@@ -86,22 +87,20 @@ class AdminController extends Controller
     $id = $request->id;
     switch ($request->table) {
       case 'Product':
-      Product::find($id)->delete();
-      return redirect()->route('admin.showtable', ['table' => 'Product']);
-        break;
+        Product::find($id)->delete();
+        return redirect()->route('admin.showtable', ['table' => 'Product']);
+      break;
       case 'Order':
-      Order::find($id)->delete();
-      return redirect()->route('admin.showtable', ['table' => 'Order']);
-        break;
-        break;
+        Order::find($id)->delete();
+        return redirect()->route('admin.showtable', ['table' => 'Order']);
+      break;
       case 'User':
-      User::find($id)->delete();
-      return redirect()->route('admin.showtable', ['table' => 'User']);
-        break;
-        break;
+        User::find($id)->delete();
+        return redirect()->route('admin.showtable', ['table' => 'User']);
+      break;
 
       default:
-        // code...
+        // return redirect()->route('error',['whichone' => '404' ]);
         break;
     }
   }
@@ -114,34 +113,36 @@ class AdminController extends Controller
     $id         = request()->id;
     $promo      = request()->promo;
     $product    = Product::find($id);
-    if($product == null){
+    if($product == null || $product->quantity <= 0){
       return [
-        "error" => "Product no available",
+        "error" => "Product no longer available",
+        // 'type' => $type ? 'false' : 'true',
       ];
     }
-    if($promo <= 0 || $promo >= 100){
+    if($promo < 0 || $promo >= 100){
       return [
-        "error" => "Error Amount",
+        "error" => "Error percentage",
+        // 'type' => $type ? 'false' : 'true',
       ];
     }
     // $new_price = $product->basic_price - ($product->basic_price * $promo / 100 );
+    // dd($product);
     $product->setpromotion($promo,$type);
     $product->save();
     return [
       'new_price' => $product->price,
-      'type' => $type ? 'true' : 'false',
-      'promo' => "$product->promo_percentage",
+      'type'      => $type ? "true" : "false",
+      'promo'     => "$product->promo_percentage",
     ];
-
   }
   public function chmod() {
     $user = Auth::user();
     if(!$user->is_admin)
       return redirect()->route('error',['whichone' => '403' ]);
     // exemple de code a definir plus tard
+    $type           = !filter_var(request()->type, FILTER_VALIDATE_BOOLEAN);
     if(request()->code == 1234)
     {
-        $type       = !filter_var(request()->type, FILTER_VALIDATE_BOOLEAN);
         $id         = request()->id;
         $user       = User::find($id);
         if($user == null){

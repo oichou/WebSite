@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Productphoto;
+use App\Ordersproduct;
 
 class ProductsController extends Controller
 {
@@ -17,7 +18,6 @@ class ProductsController extends Controller
     {
       if (request()->category) {
         $products = Product::inRandomOrder()->select()->where('category','=',request()->category)->get();
-        // code...
       }else if (request()->brand) {
         $products = Product::inRandomOrder()->select()->where('brand','=',request()->brand)->get();
       }else {
@@ -34,8 +34,9 @@ class ProductsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Display a listing of the resource where promo = true.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
      public function offers(Request $request)
@@ -186,13 +187,29 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        $product       = Product::find($id);
-        $images        = Productphoto::select('path')->where('product_id','=',$id)->get();
-        $cat           = Product::find($id)->pluck('category');
-        $mightAlsoLike = Product::inRandomOrder()->where([['category','=',$cat],['id','<>',$id],])->paginate(4);
+        $product         = Product::find($id);
+        $images          = Productphoto::where('product_id','=',$id)->pluck('path');
+        // dd($images);
+        $cat             = $product->category;
+        $mightAlsoLike   = Product::inRandomOrder()->where([['category','=',$cat],['id','<>',$id],])->paginate(4);
+        $theid           = Ordersproduct::where('product_id',$id);
+        $mightAlsoBuy    = [];
+        if($theid->exists()){
+            $theid       =  $theid->pluck('order_id');
+            $alsobought  = Ordersproduct::inRandomOrder()->where('order_id','=',$theid)->paginate(4)->pluck('product_id');
+          if($alsobought){
+
+          foreach ($alsobought as $ab) {
+            $p = Product::find($ab);
+            if($p)
+              $mightAlsoBuy [] = $p;
+          }
+        }
+      }
         return view('product')->with([
           'product'       => $product,
           'mightAlsoLike' => $mightAlsoLike,
+          'mightAlsoBuy'  => $mightAlsoBuy,
           'images'        => $images
 
         ]);

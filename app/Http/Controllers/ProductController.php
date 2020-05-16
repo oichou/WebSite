@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+
 use App\Product;
 use App\Productphoto;
 
@@ -19,19 +22,41 @@ class ProductController extends Controller
        */
       protected function validator(array $data)
       {
+          // $regex = "/^(?=.+)(?:[1-9]\d*|0)?(?:\.\d+)?$/";
           return Validator::make($data, [
-              'name'              => ['required', 'string', 'max:255','unique:products'],
-              'quantity'          => ['required', 'numeric', 'max:255','min:1'],
-              'category'          => ['required', 'string', 'max:255'],
-              'brand'             => ['required', 'string', 'email', 'max:255'],
-              'description'       => ['required', 'string', 'min:255'],
-              'basic_price'       => ['required', 'numeric'],
-              'price'             => ['required', 'numeric','min:1'],
+              'name'              => ['required', 'string', 'Max:255','unique:products'],
+              'quantity'          => ['required', 'numeric', 'Max:255','Min:1'],
+              'category'          => ['required', 'string', 'Max:255'],
+              'brand'             => ['required', 'string', 'Max:255'],
+              'description'       => ['required', 'string', 'Max:255'],
+              'basic_price'       => ['required', 'numeric', 'Min:1'],
+              'price'             => ['required', 'numeric', 'Min:1'],
               'promo'             => ['required', 'boolean'],
-              'promo_percentage'  => ['required', 'numeric','min:0','max:100'],
-              'photo1'            => ['required|image|mimes:jpeg,png,jpg|max:5000'],
-              'photo2'            => ['required|image|mimes:jpeg,png,jpg|max:5000'],
-              'photo3'            => ['required|image|mimes:jpeg,png,jpg|max:5000'],
+              'promo_percentage'  => ['required', 'numeric','Min:0','Max:100'],
+              'photo1'            => ['required','image','mimes:jpeg,png,jpg','Max:5000'],
+              'photo2'            => ['required','image','mimes:jpeg,png,jpg','Max:5000'],
+              'photo3'            => ['required','image','mimes:jpeg,png,jpg','Max:5000'],
+          ]);
+      }
+      /**
+       * Get a validator for an incoming registration request.
+       *
+       * @param  array  $data
+       * @return \Illuminate\Contracts\Validation\Validator
+       */
+      protected function validatorforupdate(array $data)
+      {
+          // $regex = "/^(?=.+)(?:[1-9]\d*|0)?(?:\.\d+)?$/";
+          return Validator::make($data, [
+              'name'              => ['required', 'string', 'Max:255'],
+              'quantity'          => ['required', 'numeric','Min:1'],
+              'category'          => ['required', 'string', 'Max:255'],
+              'brand'             => ['required', 'string', 'Max:255'],
+              'description'       => ['required', 'string', 'Max:255'],
+              'basic_price'       => ['required', 'numeric', 'Min:1'],
+              'price'             => ['required', 'numeric', 'Min:1'],
+              'promo'             => ['required', 'boolean'],
+              'promo_percentage'  => ['required', 'numeric','Min:0','Max:100'],
           ]);
       }
 
@@ -42,7 +67,16 @@ class ProductController extends Controller
        * @return \App\Product
        */
       protected function create(Request $request) {
-        // dd($request->input('promo'));
+        $admin = Auth::user();
+        if(!$admin->is_admin)
+          return redirect()->route('error',['whichone' => '403' ]);
+          $promo = $request->input('promo') ? true : false;
+          $request['promo'] = $request->input('promo') ? true : false;
+          $validator = $this->validator($request->all());
+          if($validator->fails())
+              $validator->validate();
+          else{
+
         $promo = $request->input('promo') ? true : false;
           $produit = Product::create([
               'name'              => $request->input('name'),
@@ -65,10 +99,10 @@ class ProductController extends Controller
             'path'       => $request->input('name').'2.jpg'
           ]);
           $request->photo1->move(public_path('images'), $request->input('name').'.jpg');
-          // $request->('image')->move(public_path('images'), $request->input('name').'jpg');
           $request->photo2->move(public_path('images'), $request->input('name').'1.jpg');
           $request->photo3->move(public_path('images'), $request->input('name').'2.jpg');
           return redirect()->route('admin.showtable',['table'=>'Product']);
+        }
       }
 
     /**
@@ -77,12 +111,14 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-      if (request()->id)
+      if (request()->id){
         $product = Product::select()->where('id','=',request()->id)->get();
         // dd($product);
         return view('product')->with([
           'product'   => $product,
         ]);
+      }
+      return redirect()->route('error/outofstock');
     }
 
     /**
@@ -116,37 +152,16 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        $product = Product::find($id);
-        $product->update(request()->all());
-        // $product->name              = $request->input('name');
-        // $product->path              = $request->input('name').'.jpg';
-        // $product->quantity          = $request->input('quantity');
-        // $product->category          = $request->input('category');
-        // $product->brand             = $request->input('brand');
-        // $product->description       = $request->input('description');
-        // $product->basic_price       = $request->input('basic_price');
-        // $product->price             = $request->input('price');
-        // $product->promo             = $promo;
-        // $product->promo_percentage  = $request->input('promo_percentage');
-        // $product->save();
-        return redirect()->route('admin.showtable', ['table' => 'Product']);
-
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function createform($id)
     {
+      $admin = Auth::user();
+      if(!$admin->is_admin)
+        return redirect()->route('error',['whichone' => '403' ]);
         $product = Product::find($id);
         $photos  = Productphoto::select()->where('product_id','=',$id)->get();
         // dd($product);
-        return view('editproduct')->with([
+        return view('dashboard/edit/editproduct')->with([
+            'admin'   => $admin,
             'product' => $product,
             'photo'   => $photos,
         ]);
@@ -161,7 +176,23 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $admin = Auth::user();
+      if(!$admin->is_admin)
+        return redirect()->route('error',['whichone' => '403' ]);
+
+      $request['promo'] = $request->input('promo') ? true : false;
+      $validator = $this->validatorforupdate($request->all());
+      // dd($request->all());
+      if($validator->fails())
+          $validator->validate();
+      else{
+        $product = Product::find($id);
+        $product->update(request()->all());
+        // $product->updated_at = now();
+        // $product->save();
+        // dd($product);
+        return redirect()->route('admin.showtable', ['table' => 'Product']);
+      }
     }
 
     /**
@@ -172,6 +203,8 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $admin = Auth::user();
+      if(!$admin->is_admin)
+        return redirect()->route('error',['whichone' => '403' ]);
     }
 }

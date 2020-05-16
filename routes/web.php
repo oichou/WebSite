@@ -77,8 +77,11 @@ Route::get('/newproduct',function(){
 })->name('newproduct')->middleware('auth');
 
 
-Route::get('/edit/{id}','ProductController@createform')->name('createformeditproduct')->middleware('auth');
-Route::post('/edit/{id}','ProductController@edit')->name('editproduct')->middleware('auth');
+Route::get('/update/product/{id}','ProductController@createform')->name('createformeditproduct')->middleware('auth');
+Route::post('/update/product/{id}','ProductController@update')->name('updateproduct')->middleware('auth');
+
+Route::get('/update/order/{id}','OrderController@createform')->name('createformeditorder')->middleware('auth');
+Route::post('/update/order/{id}','OrderController@update')->name('updateorder')->middleware('auth');
 
 Route::post('/newproduct','ProductController@create')->name('product.create')->middleware('auth');
 // Route::post('/editprodut/{id}', 'ProductController@edit')->name('product.edit');

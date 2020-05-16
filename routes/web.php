@@ -37,6 +37,8 @@ Route::get('profile.email', 'UserPanelController@updateEmail')->name('profile.em
 Route::get('profile.phone', 'UserPanelController@updatePhone')->name('profile.phone')->middleware('auth');
 Route::get('profile.birth', 'UserPanelController@updateBirth')->name('profile.birth')->middleware('auth');
 Route::get('profile.username', 'UserPanelController@updateUsername')->name('profile.username')->middleware('auth');
+Route::get('change-password', 'ChangePasswordController@index')->name('change-password');
+Route::post('change-password', 'ChangePasswordController@change')->name('change.password');
 
 Route::get('/admin', function () {
     return view('admin');
@@ -45,6 +47,12 @@ Route::get('/admin', function () {
 Route::get('/outofstock', function () {
     return view('errors/outofstock');
 });
+
+// Route::get('/changepass', function() {
+//   return Auth::user()->username;
+// })->name('changepass');
+
+Route::post('/changepass','ChangePasswordController@change')->name('changepass');
 
 Route::get('error/{whichone}','ErrorController@index')->name('error')->middleware('auth');
 

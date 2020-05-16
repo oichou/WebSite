@@ -119,7 +119,7 @@
     <!-- <div class="col-md-10 col-sm-9 col-xs-12 col-md-push-2 col-sm-push-3 col-xs-push-0">
         <input class="btn btn-primary" type="submit" value="Set your password">
     </div> -->
-    <a class="btn btn-link forgot" href="{{ route('password.request') }}">
+    <a class="btn btn-link forgot" href="{{ route('change-password') }}">
         {{ __('Change password') }}
     </a>
 </div>

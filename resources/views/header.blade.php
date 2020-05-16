@@ -27,6 +27,7 @@
         </li>
         <li><a href="{{ route('offers') }}">Offers</a></li>
         <li><a href="{{ route('contact') }}">Contact Us</a></li>
+        <li><a href="{{ route('game.index') }}">Try Me</a></li>
       </ul>
     </nav><!-- .nav-menu -->
 

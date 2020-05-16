@@ -20,11 +20,11 @@ class ErrorController extends Controller
         case '504':
           return view('errors/504');
           break;
-        case '500':
-          // code...
+        case 'outofstock':
+          return view('errors/outofstock');
           break;
-        case '403':
-          // code...
+        case 'gameover':
+          return view('errors/gameover');
           break;
         case '403':
           // code...

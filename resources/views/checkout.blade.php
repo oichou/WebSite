@@ -23,7 +23,7 @@ font-size: 16px;
 line-height: 18px;
 color: #fff;
 font-family: 'Work Sans', sans-serif;
-background:transparent;
+background :transparent;
 border:none;
 border-bottom:1px solid transparent;
 /* color:#dbdce0;  */
@@ -99,6 +99,7 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+  background: transparent;
 }
 .form-control-sm:focus {
   border: 1.5px solid #4bb8a9
@@ -510,7 +511,7 @@ section .section-title {
                                                 </div>
                                                 <div class="card__space-25">
                                                   <span class="card__label">Expires</span>
-                                                  <input  name="expires" id="expire" type="text" class=" @error('expires') is-invalid @enderror card__info"  placeholder="10/25" data-stripe='expire' required autofocus >
+                                                  <input  name="expires" id="expire"  class=" @error('expires') is-invalid @enderror card__info"  placeholder="10/25" data-stripe='expire' required autofocus />
                                                   @error('expires')
                                                   <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>

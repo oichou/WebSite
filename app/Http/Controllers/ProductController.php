@@ -118,7 +118,7 @@ class ProductController extends Controller
           'product'   => $product,
         ]);
       }
-      return redirect()->route('error/outofstock');
+      return redirect()->route('error',['whichone' => 'outofstock' ]);
     }
 
     /**

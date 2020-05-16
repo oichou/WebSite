@@ -8,7 +8,7 @@ class Cart
   public $total_product = 0;
   public $total_price = 0;
   // public $payement = 0;
-  public $discounts = ["hambouk"=>20];
+  public $discounts = ["hambouk"=>20,"angers"=>15,"XAEA-12"=>33,"n7bkrbk"=>5];
   public $discountisused = false;
   public $discountused = '';
   public $discountamount = 0;

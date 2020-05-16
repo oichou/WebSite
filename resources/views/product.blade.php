@@ -263,18 +263,13 @@ h2{
 				<li data-target="#main-carousel" data-slide-to="2"></li>
 			</ol>
       <div class="carousel-inner">
-        <?= $i=0 ?>
+        <div class="carousel-item active">
+          <img class="d-block img-fluid" src="/images/{{$product->path}}" alt="{{$product->name}}">
+        </div>
       @foreach($images as $image)
-        @if($i==0)
-          <div class="carousel-item active">
-          <img class="d-block img-fluid" src="/images/{{$image}}" alt="{{$product->name}}">
-          </div>
-        @else
           <div class="carousel-item">
           <img class="d-block img-fluid" src="/images/{{$image}}" alt="{{$product->name}}">
           </div>
-        @endif
-        <?= $i++ ?>
       @endforeach
       </div>
       <!-- /.carousel-inner -->

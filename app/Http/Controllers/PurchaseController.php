@@ -49,7 +49,7 @@ class PurchaseController extends Controller
         $product     = Product::find(intval($key));
 
         if($product->quantity < $value)
-          return view('errors/outofstock');
+          return redirect()->route('error',['whichone' => 'outofstock' ]);
 
         $products [] = [$product,$value];
         $quantity    = $product->quantity - $value;
@@ -99,15 +99,56 @@ class PurchaseController extends Controller
     // dd($_POST['stripeToken']);
     if($request->method == 'cc') {
 
-      $response = $pay->makeStripePayment($amount,$request->stripeToken);
+      try {
+
+          $response = $pay->makeStripePayment($amount,$request->stripeToken);
+          $statut = $response->status;
+      } catch(\Stripe\Exception\CardException $e) {
+        // Since it's a decline, \Stripe\Exception\CardException will be caught
+        $statut = null;
+      } catch (\Stripe\Exception\RateLimitException $e) {
+        // Too many requests made to the API too quickly
+        $statut = null;
+      } catch (\Stripe\Exception\InvalidRequestException $e) {
+        // Invalid parameters were supplied to Stripe's API
+        $statut = null;
+      } catch (\Stripe\Exception\AuthenticationException $e) {
+        // Authentication with Stripe's API failed
+        // (maybe you changed API keys recently)
+        $statut = null;
+      } catch (\Stripe\Exception\ApiConnectionException $e) {
+        // Network communication with Stripe failed
+        $statut = null;
+      } catch (\Stripe\Exception\ApiErrorException $e) {
+        // Display a very generic error to the user, and maybe send
+        // yourself an email
+        $statut = null;
+      } catch (Exception $e) {
+        // Something else happened, completely unrelated to Stripe
+        $statut = null;
+      }
       $order->method = 'Credit Card';
       $order->save();
 
-      if($response->status == 'succeeded')
+      if($statut == 'succeeded'){
         return redirect()->action('PurchaseController@success');
+        $order->statut = 'Received';
+        $order->save();
+      }
 
-      else
+      else{
+        $order->statut = 'Echec';
+        $order->save();
+        $ordersproduct = Ordersproduct::where('order_id','=',$order->id)->get();
+        foreach ($ordersproduct as $products) {
+
+            $ordersproduct      = Ordersproduct::where('order_id','=',$order->id)->get();
+            $product            = Product::find($products->product_id);
+            $product->quantity += $products->quantity;
+            $product->save();
         return redirect()->action('PurchaseController@echec');
+      }
+    }
 
     } elseif ($request->method == 'paypal') {
 

@@ -234,7 +234,7 @@
 			@foreach($products as $product)
 					<div class="col-lg-4 col-md-6 portfolio-item filter-card">
 						<div class="portfolio-wrap">
-							<img src="images/{{ $product->path }}" class="img-fluid" alt="{{ $product->name }}">
+							<img src="images/{{ $product->path }}" class="img-fluid" alt="{{ $product->name }}" style="height:250px;">
 							<div class="portfolio-info">
 								<h4>{{ $product->name }}</h4>
 								<p>{{ $product->category }}</p>

@@ -53,7 +53,7 @@ class RegisterController extends Controller
             'fname'      => ['required', 'string', 'max:255'],
             'lname'      => ['required', 'string', 'max:255'],
             'username'   => ['required', 'string', 'max:255','unique:users'],
-            'email'      => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email'      => ['required', 'string', 'email', 'max:255', 'unique:users','regex:/(.*)@gmail\.com|(.*)@outlook\.com|(.*)@hotmail\.com|(.*)@hotmail\.fr|(.*)@hotmail\.fr/'],
             'password'   => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 use App\Mail\contactus;
 use App\Contact;
 
@@ -35,9 +36,10 @@ class contactController extends Controller
       $message = $request->input('message');
 
       $admins = DB::table('users')
-                ->where('is_admin','true')
+                ->where('is_admin','=','true')
                 ->select('email')
-                ->get();
+                ->get()
+                ->toArray();
 
       $data = [
         'name'        =>    $name,
@@ -53,22 +55,33 @@ class contactController extends Controller
 
       $contact->save();
 
+      $result = array_map(function ($value) {
+        return (array)$value;
+      }, $admins);
+
+      for ($i=0; $i <count($result) ; $i++) {
+        \Mail::to($result[$i]['email'])
+        ->from($request->get('email'))
+        ->send(new contactus($data));
+
+      }
 
       // foreach ($admins as $admin) {
-        \Mail::to('malaklakkab7@gmail.com')
-              ->send(new contactus($data));
       // }
     //   foreach ($admins as $admin) {
     //   echo "Email has been sent to $admin";
     // }
 
-      // \Mail::send('emails.testmail', $data, function($message) use ($request)
-      //   {
-      //     $message->from($request->input('email'));
-      //     $message->to('safaalakkab7@gmail.com');
-      //   }
       // );
     return back()->with('success', 'Thank you for contacting us, we will be treating your message very soon !');
+    // $array = [];
+    //
+    // foreach ($admins as $key => $value) {
+    //
+    //   $array[$key][] = $value;
+    // }
+
+    // return $result[0]['email'];
     }
 
 

@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::group(['middleware'=>['visitors']],function(){
+//
+// });
+
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/checkout', 'CheckoutController@index')->name('checkout')->middleware('auth');
@@ -46,9 +50,9 @@ Route::get('/admin', function () {
     return view('admin');
 })->middleware('auth');
 
-Route::get('/outofstock', function () {
-    return view('errors/outofstock');
-});
+// Route::get('/outofstock', function () {
+//     return view('errors/outofstock');
+// });
 
 // Route::get('/changepass', function() {
 //   return Auth::user()->username;
@@ -137,3 +141,7 @@ Route::get('/tablets', function () { return redirect()->route('products.index', 
 Route::get('/cameras', function () { return redirect()->route('products.index', ['category'=>'camera']); })->name('cameras');
 Route::get('/gaming', function () { return redirect()->route('products.index', ['category'=>'Gaming']); })->name('gaming');
 Route::get('/accessoires', function () { return redirect()->route('products.index', ['category'=>'Accessory']); })->name('accessoires');
+
+Route::get('/game','TictactoeController@index')->name('game.index')->middleware('auth');
+Route::post('/game/winner','TictactoeController@getdiscount')->name('game.getdiscount')->middleware('auth');
+Route::post('/game/newgame','TictactoeController@newgame')->name('game.newgame')->middleware('auth');

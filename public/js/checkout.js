@@ -8,6 +8,7 @@ $('#cc').on('dblclick',function(){
   $(see).attr('id','hide')
 })
 
+//
 $('.card-number').on("keypress", function(e) {
   if (e.charCode < "0".charCodeAt(0) || e.charCode > "9".charCodeAt(0))
     e.preventDefault();
@@ -21,14 +22,20 @@ $('.card-number').keypress(function(){
     return false;
   }
 })
-$('#ccv').keypress(function(){
-  if($(this).val().length >=3 ){
-    swal({
-         title: '3 max a lhmar',
-         icon: 'error',
-       });
-    return false;
-  }
+$('#card_number').on('blur',function(){
+  if(!Stripe.card.validateCardNumber($(this).val()))
+    $('#stripe-errors').text('invalide card number');
+})
+
+
+$('#card_number').on('focus',function(){
+    $('#stripe-errors').text('');
+})
+
+//
+$('#expire').on("keypress", function(e) {
+  if (e.charCode < "0".charCodeAt(0) || e.charCode > "9".charCodeAt(0))
+    e.preventDefault();
 })
 $('#expire').keyup(function(){
   if($(this).val().length == 2)
@@ -43,6 +50,40 @@ $('#expire').keypress(function(){
     return false;
   }
 })
+$('#expire').on('focus',function(){
+    $('#stripe-errors').text('');
+})
+$('#expire').on('blur',function(){
+  const m = parseInt($(this).val()[0]+$(this).val()[1]);
+  const y = parseInt($(this).val()[3]+$(this).val()[4]);
+  if(!Stripe.card.validateExpiry(m,y))
+    $('#stripe-errors').text('invalide Expiry date');
+})
+//
+$('#ccv').on("keypress", function(e) {
+  if (e.charCode < "0".charCodeAt(0) || e.charCode > "9".charCodeAt(0))
+    e.preventDefault();
+})
+$('#ccv').keypress(function(){
+  if($(this).val().length >=3 ){
+    swal({
+         title: '3 max a lhmar',
+         icon: 'error',
+       });
+    return false;
+  }
+})
+$('#ccv').on('focus',function(){
+    $('#stripe-errors').text('');
+})
+$('#ccv').on('blur',function(){
+  if(!Stripe.card.validateCVC($(this).val()))
+    $('#stripe-errors').text('invalide CVC');
+})
+//
+
+
+
 
 $('.method').each(function(){
   $(this).on('click',function(){
@@ -160,29 +201,9 @@ $('.method').each(function(){
 //         }
 //     }
 
-$('#card_number').on('blur',function(){
-  if(!Stripe.card.validateCardNumber($(this).val()))
-    $('#stripe-errors').text('invalide card number');
-})
-$('#expire').on('blur',function(){
-  const m = parseInt($(this).val()[0]+$(this).val()[1]);
-  const y = parseInt($(this).val()[3]+$(this).val()[4]);
-  if(!Stripe.card.validateExpiry(m,y))
-    $('#stripe-errors').text('invalide Expiry date');
-})
-$('#ccv').on('blur',function(){
-  if(!Stripe.card.validateCVC($(this).val()))
-    $('#stripe-errors').text('invalide CVC');
-})
-$('#card_number').on('focus',function(){
-    $('#stripe-errors').text('');
-})
-$('#expire').on('focus',function(){
-    $('#stripe-errors').text('');
-})
-$('#ccv').on('focus',function(){
-    $('#stripe-errors').text('');
-})
+
+
+
 // $(document).ready(function(){
   // var stripe = Stripe('pk_test_I0nrh7mc7F42ikMqu88Ff3za00etVYg0BT');
   Stripe.setPublishableKey('pk_test_VarfriwlmLQEyxOGTmiJCL8E00fFFbOPpz');
@@ -192,8 +213,8 @@ $('#ccv').on('focus',function(){
     e.preventDefault();
 
     // var submitbutton = $('#purchase');
-    // $('#purchase').css('display','none');
-    // $('#load').css('display','block');
+    $('#purchase').css('display','none');
+    $('#load').css('display','block');
 
     if($('#purchase').val()=='paypal'){
       $('#formPayment').append($('<input type="hidden" name="method" />').val('paypal'))

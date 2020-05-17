@@ -31,7 +31,7 @@ class CheckoutController extends Controller
       foreach ($cart->products_id as $key => $value) {
         $product     = Product::find(intval($key));
         if($product->quantity < $value)
-          return view('errors/outofstock');
+          return redirect()->route('error',['whichone' => 'outofstock' ]);
         $products [] = [$product,$value];
         $subtotal += $product->price * $value;
       }

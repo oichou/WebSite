@@ -63,9 +63,9 @@ class OrderController extends Controller
         $order       = Order::find($id);
         // dd($order->id);
         if(!$order)
-          return view('errors/outofstock');
+          return redirect()->route('error',['whichone' => 'outofstock' ]);
         if($order->user_id != $currentuser->id)
-          return view('errors/403');
+          return redirect()->route('error',['whichone' => '403' ]);
         $details = Ordersproduct::where('order_id','=',$order->id)->get();
         $ppqs = [];
         // dd($details);

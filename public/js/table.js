@@ -87,13 +87,9 @@ function chmod(elem,type,id) {
       buttons: true,
       dangerMode: true,
     })
-
-// if(type === "true" || type == true)
-
     .then((change) => {
       console.log(change);
       if (change) {
-        // console.log(code);
         swal({
             content: {
               element: "input",

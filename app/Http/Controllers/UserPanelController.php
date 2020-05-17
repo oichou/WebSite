@@ -29,7 +29,7 @@ class UserPanelController extends Controller
       $orders = DB::table('products')
                   ->join('ordersproducts','ordersproducts.product_id','=','products.id')
                   ->join('orders','orders.id','=','ordersproducts.order_id')
-                  ->where('orders.id','=',Auth::user()->id)
+                  ->where('orders.user_id','=',Auth::user()->id)
                   ->select('products.*','ordersproducts.quantity')
                   ->get();
 

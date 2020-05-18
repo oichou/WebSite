@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+<title>OUSSAFA</title>
+@endsection
+
 @section('extra-css')
 <style >
 	#header{

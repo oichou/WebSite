@@ -1,45 +1,32 @@
 @extends('layouts.app')
 
-@include('header')
-@section('extra-css')
-<style media="screen">
-.second a:hover {
-  color: rgb(92, 92, 92)
-}
-.breadcrumb>li+li:before {
-  content: ""
-}
+@section('title')
+<title>Check Your Adress </title>
+@endsection
 
-.breadcrumb {
-  padding: 0px;
-  font-size: 10px;
-  color: #aaa
-}
-.first {
-  background-color: white
-}
-/* .disabled {
-    pointer-events: none;
-    cursor: default;
-} */
-</style>
+@include('header')
+
+@section('extra-css')
+<link href="{{ asset('css/addressform.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
 <div class="container">
       <div class="py-5 text-center">
         <h2>Address form</h2>
+        @if( $forcheckout === true )
         <div class="col-12 mt-3 ">
             <nav aria-label="breadcrumb" class="second ">
                 <ol class="breadcrumb indigo lighten-6 first ">
-                    <li class="breadcrumb-item font-weight-bold "><a class="black-text text-uppercase " href="#"><span class="mr-md-3 mr-1">BACK TO SHOP</span></a><i class="fa fa-angle-double-right " aria-hidden="true"></i></li>
-                    <li class="breadcrumb-item font-weight-bold"><a class="black-text text-uppercase" href="#"><span class="mr-md-3 mr-1">SHOPPING BAG</span></a><i class="fa fa-angle-double-right text-uppercase " aria-hidden="true"></i></li>
+                    <li class="breadcrumb-item font-weight-bold "><a class="black-text text-uppercase " href="{{route('home')}}"><span class="mr-md-3 mr-1">BACK TO SHOP</span></a><i class="fa fa-angle-double-right " aria-hidden="true"></i></li>
+                    <li class="breadcrumb-item font-weight-bold"><a class="black-text text-uppercase" href="{{route('cart.index')}}"><span class="mr-md-3 mr-1">SHOPPING BAG</span></a><i class="fa fa-angle-double-right text-uppercase " aria-hidden="true"></i></li>
                     <li class="breadcrumb-item font-weight-bold"><a class="black-text text-uppercase" href="#"><span class="mr-md-3 mr-1">Delivery Adress </span></a><i class="fa fa-angle-double-right text-uppercase " aria-hidden="true"></i></li>
                     <li class="breadcrumb-item font-weight-bold"><a class=" disabledblack-text text-uppercase active-2"><span class="mr-md-3 mr-1">CHECKOUT</span></a></li>
                 </ol>
             </nav>
         </div>
-        <p class="lead">zafrner rvrenfnv fnreiolnfoeirn crfnien</p>
+        @endif
+        <p class="lead">Please enter you address</p>
       </div>
 
       <div class="row">

@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+<title>Check our promo</title>
+@endsection
+
 @section('extra-css')
 <link href="{{ asset('css/offers.css') }}" rel="stylesheet">
 

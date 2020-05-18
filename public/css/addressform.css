@@ -1,0 +1,15 @@
+.second a:hover {
+  color: rgb(92, 92, 92)
+}
+.breadcrumb>li+li:before {
+  content: ""
+}
+
+.breadcrumb {
+  padding: 0px;
+  font-size: 10px;
+  color: #aaa
+}
+.first {
+  background-color: white
+}

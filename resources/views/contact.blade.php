@@ -1,4 +1,9 @@
 @extends('layouts.app')
+
+@section('title')
+<title>Contact us </title>
+@endsection
+
 <!-- Header -->
 @include('header')
 

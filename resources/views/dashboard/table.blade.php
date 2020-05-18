@@ -15,7 +15,13 @@
   <div class="mdc-card p-0">
     <h6 class="card-title card-padding pb-0">{{$table}}s Table</h6>
     <div class="table-responsive">
-      <a href="{{ route('newproduct') }}" class="btn btn-outline-primary btn-lg">ADD </a>
+      @if($table === "Product")
+      <a href="{{ route('newproduct') }}" class="btn btn-outline-primary btn-lg">ADD Product</a>
+      @elseif($table === "User")
+      <a href="#" class="btn btn-outline-primary btn-lg">ADD User</a>
+      @else
+      <a href="#" class="btn btn-outline-primary btn-lg">ADD Order</a>
+      @endif
       <table class="table table-striped table-bordered table-hover">
         <thead class="thead-dark">
           <tr>

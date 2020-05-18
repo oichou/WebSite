@@ -30,7 +30,7 @@
                       <h5 class="font-weight-light pb-2 mb-1 border-bottom">{{$total_user}} Users</h5>
                       <!-- <p class="tx-12 text-muted">48% target reached</p> -->
                       <div class="card-icon-wrapper">
-                        <i class="material-icons">user</i>
+                        <i class="material-icons"><i class="fa fa-user"></i></i>
                       </div>
                     </div>
                   <!-- </div> -->
@@ -46,7 +46,7 @@
                       <h5 class="font-weight-light pb-2 mb-1 border-bottom">{{ $total_product }} Product</h5>
                       <!-- <p class="tx-12 text-muted">48% target reached</p> -->
                       <div class="card-icon-wrapper">
-                        <i class="material-icons">Prod</i>
+                        <i class="material-icons"><i class="fa fa-laptop"></i></i>
                       </div>
                     </div>
                   <!-- </div> -->
@@ -63,7 +63,7 @@
                       <h5 class="font-weight-light pb-2 mb-1 border-bottom">{{$total_order}} Order</h5>
                       <!-- <p class="tx-12 text-muted">48% target reached</p> -->
                       <div class="card-icon-wrapper">
-                        <i class="material-icons">order</i>
+                        <i class="material-icons"><i class="fa fa-truck"></i></i>
                       </div>
                     </div>
                   <!-- </div> -->
@@ -120,19 +120,18 @@
                             <thead>
                                 <th>User</th>
                                 <th>Price</th>
-                                <th>Nb Product</th>
+                                <th>Statut</th>
                                 <th>Created at</th>
                             </thead>
                             <tbody>
                               @foreach($big_numbers as $bn)
                               <tr>
-                                <td>{{$bn->first_name}} {{$bn->last_name}}</td>
-                                <td>{{$bn->price}}</td>
-                                <td>a faiire plus tard</td>
-                                <td>{{$bn->date_order}}</td>
+                                <td>{{ $bn->first_name }} {{$bn->last_name}}</td>
+                                <td>{{ $bn->price }}</td>
+                                <td>{{ $bn->statut }}</td>
+                                <td>{{ $bn->date_order }}</td>
                               </tr>
                               @endforeach
-
                             </tbody>
                           </table>
                             <!-- <h4 class="card-title">Content title</h4>
@@ -166,7 +165,7 @@
                 <div class="card-content">
                     <div id="recent-buyers" class="media-list">
                       @foreach ($recent_order as $ro)
-                        <a href="#" class="media border-0">
+                        <a href="{{route('order.show',['id' => $ro[0]->id] ) }}" class="media border-0">
                             <!-- <div class="media-left pr-1">
                                 <span class="avatar avatar-md avatar-online">
                                     <img class="media-object rounded-circle" src="theme-assets/images/portrait/small/avatar-s-7.png" alt="Generic placeholder image">
@@ -174,17 +173,19 @@
                                 </span>
                             </div> -->
                             <div class="media-body w-100">
-                                <span class="list-group-item-heading">{{$ro->first_name}} {{$ro->last_name}}
+                                <span class="list-group-item-heading">{{$ro[0]->first_name}} {{$ro[0]->last_name}}
 
                                 </span>
                                 <ul class="list-unstyled users-list m-0 float-right">
-                                    <li data-toggle="tooltip" data-popup="tooltip-custom"  class="avatar avatar-sm pull-up">
-                                        <img class="media-object rounded-circle no-border-top-radius no-border-bottom-radius" src="images/{{$ro->path}}"
+                                        @foreach($ro[1] as $path)
+                                        <li data-toggle="tooltip" data-popup="tooltip-custom"  class="avatar avatar-sm pull-up">
+                                        <img href="" class="media-object rounded-circle no-border-top-radius no-border-bottom-radius" src="images/{{$path}}"
                                             alt="Avatar">
-                                    </li>
+                                          </li>
+                                        @endforeach
                                 </ul>
                                 <p class="list-group-item-text mb-0">
-                                    <span class="blue-grey lighten-2 font-small-3"> Order N : {{$ro->id}}</span>
+                                    <span class="blue-grey lighten-2 font-small-3"> Order N : {{$ro[0]->id}}</span>
                                 </p>
                             </div>
                         </a>

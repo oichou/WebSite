@@ -189,14 +189,14 @@ class ProductsController extends Controller
     {
         $product         = Product::find($id);
         $images          = Productphoto::where('product_id','=',$id)->pluck('path');
-        // dd($images);
         $cat             = $product->category;
         $mightAlsoLike   = Product::inRandomOrder()->where([['category','=',$cat],['id','<>',$id],])->paginate(4);
         $theid           = Ordersproduct::where('product_id',$id);
         $mightAlsoBuy    = [];
         if($theid->exists()){
             $theid       =  $theid->pluck('order_id');
-            $alsobought  = Ordersproduct::inRandomOrder()->where('order_id','=',$theid)->paginate(4)->pluck('product_id');
+            $alsobought  = Ordersproduct::inRandomOrder()->where([['order_id','=',$theid],['product_id','<>',$id],])->paginate(4)->pluck('product_id');
+            // dd($alsobought);
           if($alsobought){
 
           foreach ($alsobought as $ab) {

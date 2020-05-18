@@ -286,6 +286,23 @@ color: white
         </div>
         @endforeach
         <hr>
+        @if($missing)
+          @foreach($missing as $ms)
+          <div class="row row-main">
+            <div class="col-6">
+                <div class="row d-flex">
+                    this product is missing
+                </div>
+                <div class="row d-flex">
+                    does not exist any more in our database
+                </div>
+            </div>
+            <div class="col-3 d-flex justify-content-end">
+                id : {{$ms}}
+            </div>
+          </div>
+          @endforeach
+        @endif
         <div class="total">
             <div class="row">
                 <div class="col"> <b> Total:</b> </div>

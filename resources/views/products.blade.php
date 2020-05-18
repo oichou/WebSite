@@ -58,11 +58,14 @@
                     <div class="price">$ {{ $product->price }}</div>
                 </div>
                 <ul class="social">
-                    <li><a href="{{ route('products.show',['id'=>$product->id]) }}" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
-                    <!-- <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li> -->
-                    <li>
-                      <a href="{{ route('cart.addProduct',['product'=>$product]) }}" data-tip="Add to Cart" onclick="parentNode.submit()"><i class="fa fa-shopping-cart"></i></a>
-                  </li>
+                      <li>
+                        <a href="{{ route('products.show',['id'=>$product->id]) }}" data-tip="Quick View"><i class="fa fa-search"></i></a>
+                      </li>
+                    @if($product->quantity>0)
+                      <li>
+                        <a href="{{ route('cart.addProduct',['product'=>$product]) }}" data-tip="Add to Cart" onclick="parentNode.submit()"><i class="fa fa-shopping-cart"></i></a>
+                      </li>
+                    @endif
                 </ul>
             </div>
         </div>

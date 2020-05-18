@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('name')->unique();
             $table->integer('quantity');
             $table->enum('category', ['Phone', 'Laptop', 'Computer','Accessory','TV','Tablet','Camera','Gaming','Other']);
-            $table->enum('brand',['Apple','Samsung','Sony','Huwai','Other']);
+            $table->enum('brand',['Apple','Samsung','Sony','Huawei','Canon','Other']);
             $table->longText('description');
             $table->float('basic_price');
             $table->float('price');

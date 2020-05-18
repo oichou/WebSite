@@ -21,6 +21,8 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/checkout', 'CheckoutController@index')->name('checkout')->middleware('auth');
 
+// Route::get('/user/activation/{token}','Auth\RegisterController@userActivation');
+
   // Routes for the contact page
 
 Route::get('/contact', 'contactController@index')->name('contact');
@@ -138,7 +140,7 @@ Route::get('/laptops', function () { return redirect()->route('products.index', 
 Route::get('/tablets', function () { return redirect()->route('products.index', ['category'=>'tablet']); })->name('tablets');
 Route::get('/cameras', function () { return redirect()->route('products.index', ['category'=>'camera']); })->name('cameras');
 Route::get('/gaming', function () { return redirect()->route('products.index', ['category'=>'Gaming']); })->name('gaming');
-Route::get('/accessoires', function () { return redirect()->route('products.index', ['category'=>'accessorie']); })->name('accessoires');
+Route::get('/accessoires', function () { return redirect()->route('products.index', ['category'=>'Accessory']); })->name('accessoires');
 
 Route::get('/game','TictactoeController@index')->name('game.index')->middleware('auth');
 Route::post('/game/winner','TictactoeController@getdiscount')->name('game.getdiscount')->middleware('auth');

@@ -1,6 +1,13 @@
 @extends('layouts.app')
 
+@section('title')
+<title>Our Products</title>
+@endsection
 
+@section('extra-css')
+<!-- <link href="{{ asset('css/products.css') }}" rel="stylesheet"> -->
+<!-- <link href="{{ asset('css/product.css') }}" rel="stylesheet"> -->
+@endsection
 <!-- Header -->
 @include('header')
 
@@ -34,7 +41,8 @@
           <a href="#">High to low</a>
         </li>
       </ul>
-    </div> <!-- end sidebar -->
+    </div>
+    <!-- end sidebar -->
     <div class="">
       <!-- <div class="products-header">
         <h1 class="stylish-heading">categoryName }}</h1>
@@ -58,11 +66,14 @@
                     <div class="price">$ {{ $product->price }}</div>
                 </div>
                 <ul class="social">
-                    <li><a href="{{ route('products.show',['id'=>$product->id]) }}" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
-                    <!-- <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li> -->
-                    <li>
-                      <a href="{{ route('cart.addProduct',['product'=>$product]) }}" data-tip="Add to Cart" onclick="parentNode.submit()"><i class="fa fa-shopping-cart"></i></a>
-                  </li>
+                      <li>
+                        <a href="{{ route('products.show',['id'=>$product->id]) }}" data-tip="Quick View"><i class="fa fa-search"></i></a>
+                      </li>
+                    @if($product->quantity > 0)
+                      <li>
+                        <a href="{{ route('cart.addProduct',['product'=>$product]) }}" data-tip="Add to Cart" onclick="parentNode.submit()"><i class="fa fa-shopping-cart"></i></a>
+                      </li>
+                    @endif
                 </ul>
             </div>
         </div>

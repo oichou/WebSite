@@ -95,36 +95,36 @@
                 <span class="menu-title" data-i18n="">Dashboard</span>
               </a>
             </li>
-            <li class=" nav-item">
+            <!-- <li class=" nav-item">
               <a href="charts.html">
                 <i class="ft-pie-chart"></i>
                 <span class="menu-title" data-i18n="">Charts</span>
               </a>
-            </li>
-            <li class=" nav-item">
+            </li> -->
+            <!-- <li class=" nav-item">
               <a href="icons.html">
                 <i class="ft-droplet"></i>
                 <span class="menu-title" data-i18n="">Icons</span>
               </a>
-            </li>
-            <li class=" nav-item">
+            </li> -->
+            <!-- <li class=" nav-item">
               <a href="cards.html">
                 <i class="ft-layers"></i>
                 <span class="menu-title" data-i18n="">Cards</span>
               </a>
-            </li>
-            <li class=" nav-item">
+            </li> -->
+            <!-- <li class=" nav-item">
               <a href="buttons.html">
                 <i class="ft-box"></i>
                 <span class="menu-title" data-i18n="">Buttons</span>
               </a>
-            </li>
-            <li class=" nav-item">
+            </li> -->
+            <!-- <li class=" nav-item">
               <a href="typography.html">
                 <i class="ft-bold"></i>
                 <span class="menu-title" data-i18n="">Typography</span>
               </a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                 <i class="ft-credit-card"></i>
@@ -153,18 +153,18 @@
                   <li class="nav-item">
                     <a class="nav-link" href="pages/ui-features/typography.html">
                       <i class="ft-bold"></i>
-                      <span class="menu-title">XXXX</span>
+                      <span class="menu-title">Another table to add later</span>
                     </a>
                   </li>
                 </ul>
               </div>
             </li>
-            <li class=" nav-item">
+            <!-- <li class=" nav-item">
               <a href="form-elements.html">
                 <i class="ft-layout"></i>
                 <span class="menu-title" data-i18n="">Form Elements</span>
               </a>
-            </li>
+            </li> -->
           </ul>
         </div>
         <div class="navigation-background"></div>

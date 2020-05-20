@@ -40,6 +40,10 @@ class OrderController extends Controller
    */
   protected function create($data) {
     // dd($request->input('promo'));
+    $validator = $this->validator($data);
+    if($validator->fails())
+        $validator->validate();
+    else{
       return Order::create([
           'user_id'        => $data['user_id'],
           'method'         => $data['method'],
@@ -49,6 +53,7 @@ class OrderController extends Controller
           'date_order'     => $data['date_order'],
           'date_delivery'  => $data['date_delivery'],
       ]);
+    }
     }
 
       /**
@@ -64,20 +69,26 @@ class OrderController extends Controller
         // dd($order->id);
         if(!$order)
           return redirect()->route('error',['whichone' => 'outofstock' ]);
-        if($order->user_id != $currentuser->id)
+        if($order->user_id != $currentuser->id && !$currentuser->is_admin)
           return redirect()->route('error',['whichone' => '403' ]);
         $details = Ordersproduct::where('order_id','=',$order->id)->get();
         $ppqs = [];
+        $missing = [];
         // dd($details);
         foreach ($details as $detail) {
           $product = Product::find($detail->product_id);
+          if($product)
           $ppqs []= [$product,$detail->product_price,$detail->quantity];
+          else
+          $missing [] = $detail->product_id;
+
         }
         // dd($ppqs);
         return view('/purchase/orderdetail')->with([
             'user'  => $currentuser,
             'order' => $order,
             'ppqs'  => $ppqs,
+            'missing' => $missing,
         ]);
       }
       /**
@@ -128,13 +139,11 @@ class OrderController extends Controller
             $admin = Auth::user();
             if(!$admin->is_admin)
               return redirect()->route('error',['whichone' => '403' ]);
+
             $order = Order::find($id);
-            // $order->statut =request()->statut;
-            // dd($updates);
-            $order->update(request()->all());
-            // $order->updated_at = now();
-            // $order->save();
-            dd($order);
+            $order->setattributes($request->except('_token'));
+            $order->save();
+
             return redirect()->route('admin.showtable', ['table' => 'Order']);
           }
 }

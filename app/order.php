@@ -22,5 +22,11 @@ class Order extends Model
     {
         return $this->hasMany(OrderItem::class);
     }
-    
+
+    public function setattributes($data) {
+      foreach ($data as $key => $value) {
+        $this->attributes[$key] = $value;
+      }
+    }
+
 }

@@ -7,120 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <style type="text/css">
-        body,
-        table,
-        td,
-        a {
-            -webkit-text-size-adjust: 100%;
-            -ms-text-size-adjust: 100%;
-        }
-
-        table,
-        td {
-            mso-table-lspace: 0pt;
-            mso-table-rspace: 0pt;
-        }
-
-        img {
-            -ms-interpolation-mode: bicubic;
-        }
-
-        img {
-            border: 0;
-            height: auto;
-            line-height: 100%;
-            outline: none;
-            text-decoration: none;
-        }
-
-        table {
-            border-collapse: collapse !important;
-        }
-
-        body {
-            height: 100% !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            width: 100% !important;
-        }
-
-        a[x-apple-data-detectors] {
-            color: inherit !important;
-            text-decoration: none !important;
-            font-size: inherit !important;
-            font-family: inherit !important;
-            font-weight: inherit !important;
-            line-height: inherit !important;
-        }
-
-        @media screen and (max-width: 480px) {
-            .mobile-hide {
-                display: none !important;
-            }
-
-            .mobile-center {
-                text-align: center !important;
-            }
-        }
-
-        div[style*="margin: 16px 0;"] {
-            margin: 0 !important;
-        }
-        body{
-          margin: 0 !important;
-          padding: 0 !important;
-          background-color: #eeeeee;
-        }
-        #t1{
-          border : 0;
-          cellpadding: 0;
-          cellspacing: 0;
-          width : 100% ;
-        }
-        #t2{
-          align :center;
-          border :0;
-          cellpadding :0;
-          cellspacing :0;
-          width :100%;
-          max-width:600px;
-        }
-        #t3{
-          align : left;
-          border : 0;
-          cellpadding : 0;
-          cellspacing : 0;
-          width : 100%;
-          max-width:300px;
-        }
-        #thanks{
-          align : center;
-          border : 0;
-          cellpadding : 0;
-          cellspacing : 0;
-          width : 100%;
-          max-width:600px;
-        }
-        #tdthx{
-          align : center;
-          font-family: Open Sans, Helvetica, Arial, sans-serif;
-          font-size: 16px;
-          font-weight: 400;
-          line-height: 24px;
-          padding-top: 25px;
-        }
-        .check{
-          right : 35%;
-          align : center;
-          width: 125;
-          height :120;
-          font-size: 500%;
-          display: block; border: 0px
-        }
-
-    </style>
-
+    <link href="{{ asset('css/purchase/success.css') }}" rel="stylesheet">
 <body>
     <table id="t1">
         <tr>
@@ -285,11 +172,6 @@
             </td>
         </tr>
     </table>
-    <script type="text/javascript">
-    // document.ready(function(){
-    //   window.location.href=window.location.href.split('?')[0];
-    // })
-    </script>
 </body>
 
 </html>

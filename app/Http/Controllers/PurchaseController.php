@@ -96,13 +96,12 @@ class PurchaseController extends Controller
     $amount['amount']   = $total;
     $amount['currency'] = "USD";
     Session::put('order',$order);
-    // dd($_POST['stripeToken']);
     if($request->method == 'cc') {
 
       try {
 
           $response = $pay->makeStripePayment($amount,$request->stripeToken);
-          $statut = $response->status;
+          $statut   = $response->status;
       } catch(\Stripe\Exception\CardException $e) {
         // Since it's a decline, \Stripe\Exception\CardException will be caught
         $statut = null;
@@ -127,13 +126,14 @@ class PurchaseController extends Controller
         // Something else happened, completely unrelated to Stripe
         $statut = null;
       }
-      $order->method = 'Credit Card';
+      $order->method         = 'Credit Card';
+      $order->transaction_id = $request->stripeToken;
       $order->save();
 
       if($statut == 'succeeded'){
-        return redirect()->action('PurchaseController@success');
         $order->statut = 'Received';
         $order->save();
+        return redirect()->action('PurchaseController@success');
       }
 
       else{
@@ -152,14 +152,14 @@ class PurchaseController extends Controller
 
     } elseif ($request->method == 'paypal') {
 
-        $response = $pay->makePaypalPayment($amount);
+        $response      = $pay->makePaypalPayment($amount);
         $order->method = 'paypal';
         $order->save();
 
         // We get 'approval_url' a paypal url to go to for payments.
         foreach($response[0]->getLinks() as $link) {
             if($link->getRel() == 'approval_url') {
-                $redirect_url = $link->getHref();
+                $redirect_url   = $link->getHref();
                 break;
             }
         }
@@ -206,8 +206,8 @@ class PurchaseController extends Controller
 
         if($result->state == 'approved') {
 
-          $order->statut ='Received';
-          $order->PayerID=$_GET['PayerID'];
+          $order->statut  = 'Received';
+          $order->PayerID = $_GET['PayerID'];
           $order->transaction_id=$_GET['paymentId'];
           $order->save();
           Session::forget('ApiContext');
@@ -222,7 +222,7 @@ class PurchaseController extends Controller
             foreach ($ordersproduct as $products) {
 
                 $ordersproduct = Ordersproduct::where('order_id','=',$order->id)->get();
-                $product = Product::find($products->product_id);
+                $product       = Product::find($products->product_id);
                 $product->quantity += $products->quantity;
                 $product->save();
 
@@ -262,7 +262,7 @@ class PurchaseController extends Controller
     if($cart->discountisused) {
 
     $per=$cart->discounts[$cart->discountused];
-    $discountamount=$cart->discountamount;
+    $discountamount = $cart->discountamount;
     $discountisused = $cart->discountisused;
 
     }
@@ -298,6 +298,7 @@ class PurchaseController extends Controller
 
     } catch (\Exception $e) {
 
+        return redirect()->route('error',['whichone' => '504' ]);
     }
 
   }

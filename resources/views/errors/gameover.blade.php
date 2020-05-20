@@ -107,13 +107,13 @@
 
         <li>e</li>
 
-        <li class="twelve">t</li>
+        <li class="twelve">n</li>
 
-        <li class="thirteen">i</li>
+        <li class="thirteen">e</li>
 
-        <li class="fourteen">m</li>
+        <li class="fourteen">x</li>
 
-        <li class="fifteen">e</li>
+        <li class="fifteen">t</li>
 
         <li >d</li>
 
@@ -129,13 +129,13 @@
 
         <li>s</li>
 
-        <li>m</li>
+        <li class="sixteen" >t</li>
 
-        <li class="sixteen" >o</li>
+        <li class="sixteen" >i</li>
 
-        <li class="seventeen" >u</li>
+        <li class="seventeen" >m</li>
 
-        <li class="seventeen" >t</li>
+        <li class="seventeen" >e</li>
       </ul>
     </div>
     <div id="main-content">

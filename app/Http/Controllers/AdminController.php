@@ -22,19 +22,19 @@ class AdminController extends Controller
       if(!$admin->is_admin)
         return redirect()->route('error',['whichone' => '403' ]);
        // return redirect('/dashboard');
-      $recent_order  = Product::join('ordersproducts','ordersproducts.product_id','=','products.id')
-                       ->join('orders','orders.id','=','ordersproducts.order_id')
-                       ->join('users','users.id','=','orders.user_id')
-                       ->orderByDesc('date_order')->select('first_name','last_name','path','orders.id')->paginate(4);
+       $recent_orders  = Order::join('users','users.id','=','orders.user_id')
+                        ->orderByDesc('date_order')->select('orders.id','first_name','last_name','orders.id')->paginate(4);
+       $recent_order = [];
+       foreach ($recent_orders as $ro) {
+         $pid = Ordersproduct::where('order_id',$ro->id)->pluck('product_id');
+         $paths = Product::find($pid)->pluck('path');
+         $recent_order [] = [$ro, $paths];
+       }
       $total_order   = Order::count();
       $total_income  = Order::sum('price');
       $total_user    = User::count();
       $total_product = Product::count();
-      $big_numbers   = Order::orderByDesc('price')->select('price','first_name','last_name','date_order')->join('users','users.id','=','orders.user_id')->paginate(6);
-      // $big_numbers = Ordersproduct::select('order_id')->groupBy('order_id')->sum('quantity');
-      // orderByDesc('price')->join('users','users.id','=','orders.user_id')
-      //                  -->get();
-                       // dd($big_numbers);
+      $big_numbers   = Order::orderByDesc('price')->select('price','first_name','last_name','date_order','statut')->join('users','users.id','=','orders.user_id')->paginate(6);
       return view('/dashboard/admin')->with([
         'admin'         => $admin,
         'recent_order'  => $recent_order,

@@ -113,7 +113,6 @@ class ProductController extends Controller
     public function index() {
       if (request()->id){
         $product = Product::select()->where('id','=',request()->id)->get();
-        // dd($product);
         return view('product')->with([
           'product'   => $product,
         ]);
@@ -159,7 +158,6 @@ class ProductController extends Controller
         return redirect()->route('error',['whichone' => '403' ]);
         $product = Product::find($id);
         $photos  = Productphoto::select()->where('product_id','=',$id)->get();
-        // dd($product);
         return view('dashboard/edit/editproduct')->with([
             'admin'   => $admin,
             'product' => $product,
@@ -182,15 +180,12 @@ class ProductController extends Controller
 
       $request['promo'] = $request->input('promo') ? true : false;
       $validator = $this->validatorforupdate($request->all());
-      // dd($request->all());
       if($validator->fails())
           $validator->validate();
       else{
         $product = Product::find($id);
-        $product->update(request()->all());
-        // $product->updated_at = now();
-        // $product->save();
-        // dd($product);
+        $product->update($request->all());
+
         return redirect()->route('admin.showtable', ['table' => 'Product']);
       }
     }

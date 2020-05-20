@@ -36,7 +36,7 @@ class contactController extends Controller
       $message = $request->input('message');
 
       $admins = DB::table('users')
-                ->where('is_admin','=','true')
+                ->where('is_admin','=',true)
                 ->select('email')
                 ->get()
                 ->toArray();
@@ -61,7 +61,6 @@ class contactController extends Controller
 
       for ($i=0; $i <count($result) ; $i++) {
         \Mail::to($result[$i]['email'])
-        ->from($request->get('email'))
         ->send(new contactus($data));
 
       }

@@ -31,7 +31,7 @@ class contactus extends Mailable
     public function build()
     {
         return $this->subject('Contacting admin')
-                    // ->from($this->data['email'])
+                    ->from('ycama69@gmail.com')
                     ->view('emails.testmail');
     }
 }

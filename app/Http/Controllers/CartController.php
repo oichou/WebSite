@@ -34,7 +34,6 @@ class CartController extends Controller
           }
           $total = $cart->total_price;
           if($cart->discountisused)
-          // dd($cart);
             $discount = [$cart->discounts[$cart->discountused],$cart->discountamount];
         }
         return view('cart')->with([
@@ -46,20 +45,10 @@ class CartController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * add a newly product to the cart.
      *
      * @param  \Illuminate\Http\Product  $product
-     * @return \Illuminate\Http\Response
+     * @return void
      */
     public function addProduct(Product $product)
     {
@@ -74,14 +63,12 @@ class CartController extends Controller
      * remove a product from the cart.
      *
      * @param  \Illuminate\Http\Product  $product
-     * @return \Illuminate\Http\Response
+     * @return void
      */
     public function removeProduct(Product $product)
     {
         $oldcart = Session::has('cart') ? Session::get('cart') : null;
-        // dd($oldcart);
         $mycart  = new Cart($oldcart);
-        // dd(count($mycart->products_id));
         if(count($mycart->products_id) <= 1)
           return redirect()->route('cart.empty' ,['name'=>'cart']);
         $mycart->remove($product);
@@ -90,22 +77,12 @@ class CartController extends Controller
         return redirect()->route('cart.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * increase and decrease the quantity of a product
      *
      * @param
-     * @return
+     * @return void
      */
     public function changequantity()
     {
@@ -115,15 +92,7 @@ class CartController extends Controller
       $product = Product::find($id);
       $oldcart = Session::has('cart') ? Session::get('cart') : null;
       $mycart  = new Cart($oldcart);
-      // if(request()->c == 'p' && $quantity == $product->quantity)
-      //     return [
-      //       "error" => "no more product"
-      //     ];
-      // if(request()->c == 'm' && $quantity <= 1)
-      // {
-      //   return ["error" => "you should have at least one item or remove it",];
-      //   // return redirect()->action('CartController@removeProduct',$product);
-      // }
+
       if(request()->c == 'p'){
         if($quantity >= $product->quantity)
           return ["error" => "no more product"];
@@ -131,6 +100,7 @@ class CartController extends Controller
         if($mycart->discountisused)
           $mycart->discountamount += $product->price*$mycart->discounts[$mycart->discountused]/100;
       }
+
       if(request()->c == 'm'){
         if($quantity <= 1 )
           return ["error" => "you should have at least one item or remove it",];
@@ -138,6 +108,7 @@ class CartController extends Controller
         if($mycart->discountisused)
           $mycart->discountamount -= $product->price*$mycart->discounts[$mycart->discountused]/100;
       }
+
       Session::put('cart',$mycart);
       return [
         "quantity"       => $mycart->products_id["$product->id"],
@@ -152,7 +123,7 @@ class CartController extends Controller
      * apply a discount
      *
      * @param
-     * @return
+     * @return void
      */
     public function discount() {
       $oldcart = Session::has('cart') ? Session::get('cart') : null;
@@ -162,7 +133,6 @@ class CartController extends Controller
         return ["error" => "you already have a discount",];
       if(!array_key_exists($discount,$mycart->discounts))
         return ["error" => "Invalide Coupon",];
-      // $price = $mycart->total_price;
       $mycart->applydiscount($discount);
       Session::put('cart',$mycart);
       return [
@@ -173,32 +143,11 @@ class CartController extends Controller
 
 
     }
+
     public function empty($name)
     {
       Session::forget($name);
       return redirect()->route('cart.index');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

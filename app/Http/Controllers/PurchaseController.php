@@ -64,12 +64,6 @@ class PurchaseController extends Controller
 
     }
 
-    // supprimer les produit de la table if succes je laisse else je remets
-    // creer blade succes and erreur
-    // creer dans la table order ce quil faut
-    // ajoute f checkout if he want to save cc or note
-    //
-
         // create order and ordersproduct
     $currentuser = Auth::user();
     $address = Address::find($currentuser->adress_id);

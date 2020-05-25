@@ -7,7 +7,6 @@ class Cart
   public $products_id = null;
   public $total_product = 0;
   public $total_price = 0;
-  // public $payement = 0;
   public $discounts = ["hambouk"=>20,"angers"=>15,"XAEA-12"=>33,"n7bkrbk"=>5];
   public $discountisused = false;
   public $discountused = '';
@@ -41,7 +40,7 @@ class Cart
    * @return void
    */
 
-  public function add($product){
+  public function add($product) {
      $ajout = false;
       if ($this->products_id) {
           if (array_key_exists($product->id,$this->products_id)) {
@@ -73,7 +72,7 @@ class Cart
       }
 }
 
-  public function remove($product){
+  public function remove($product) {
     $this->total_product -= $this->products_id["$product->id"];
     if($this->discountisused){
       $this->total_price -= ($product->price - $product->price * $this->discounts[$this->discountused]/100);
@@ -88,12 +87,11 @@ class Cart
       $this->total_product=0;
   }
 
-  public function set_total_price($price){
+  public function set_total_price($price) {
       $this->total_price += $price;
   }
 
-  public function set_quantity($product,$qty)
-  {
+  public function set_quantity($product,$qty) {
 
     if($this->discountisused){
       $this->total_price    -= $this->products_id["$product->id"] * ($product->price - $product->price * $this->discounts[$this->discountused]/100);
@@ -108,14 +106,13 @@ class Cart
     $this->products_id["$product->id"] = $qty;
   }
 
-  public function applydiscount($coupon){
+  public function applydiscount($coupon) {
       $this->discountamount = $this->total_price * $this->discounts["$coupon"] /100;
       $this->total_price -= $this->total_price * $this->discounts["$coupon"] /100;
       $this->discountisused = true;
       $this->discountused = $coupon;
   }
-  public function empty()
-  {
+  public function empty() {
     return ($this->total_price == 0 && $this->total_product == 0) ;
   }
 

@@ -13,12 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::group(['middleware'=>['visitors']],function(){
-//
-// });
+
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
+
 Route::get('/checkout', 'CheckoutController@index')->name('checkout')->middleware('auth');
 
 // Route::get('/user/activation/{token}','Auth\RegisterController@userActivation');
@@ -45,26 +44,12 @@ Route::get('profile.birth', 'UserPanelController@updateBirth')->name('profile.bi
 Route::get('profile.username', 'UserPanelController@updateUsername')->name('profile.username')->middleware('auth');
 Route::get('change-password', 'ChangePasswordController@index')->name('change-password');
 Route::post('change-password', 'ChangePasswordController@change')->name('change.password');
-
-Route::get('/admin', function () {
-    return view('admin');
-})->middleware('auth');
-
-// Route::get('/outofstock', function () {
-//     return view('errors/outofstock');
-// });
-
-// Route::get('/changepass', function() {
-//   return Auth::user()->username;
-// })->name('changepass');
-
 Route::post('/changepass','ChangePasswordController@change')->name('changepass');
 
+// route for errors
 Route::get('error/{whichone}','ErrorController@index')->name('error')->middleware('auth');
 
-Route::get('/admin','AdminController@index')->name('admin.index')->middleware('auth');
-Route::get('/table','AdminController@showtable')->name('admin.showtable')->middleware('auth');
-
+// route for delivery address
 Route::get('/addressform/{for}','AdressController@form')->name('adress.form')->middleware('auth');
 Route::post('/addressform/{for}','AdressController@create')->name('adress.create')->middleware('auth');
 
@@ -73,6 +58,7 @@ Route::get('/overview','UserPanelController@index')->name('overview')->middlewar
 Route::get('/profile','UserPanelController@getProfile')->name('profile')->middleware('auth');
 Route::get('/orders','UserPanelController@getOrders')->name('orders')->middleware('auth');
 
+// route dor admin's dasshboard
 Route::get('/admin','AdminController@index')->name('admin.index')->middleware('auth');
 Route::get('/admin/{table}','AdminController@showtable')->name('admin.showtable')->middleware('auth');
 Route::get('/admin/removefrom/{table}/{id}','AdminController@removefrom')->name('admin.removefrom')->middleware('auth');
@@ -81,55 +67,41 @@ Route::post('/admin/chmod','AdminController@chmod')->name('admin.chmod')->middle
 Route::get('/newproduct',function(){
   return view('newproduct');
 })->name('newproduct')->middleware('auth');
-
-
 Route::get('/update/product/{id}','ProductController@createform')->name('createformeditproduct')->middleware('auth');
 Route::post('/update/product/{id}','ProductController@update')->name('updateproduct')->middleware('auth');
-
 Route::get('/update/order/{id}','OrderController@createform')->name('createformeditorder')->middleware('auth');
 Route::post('/update/order/{id}','OrderController@update')->name('updateorder')->middleware('auth');
-
 Route::post('/newproduct','ProductController@create')->name('product.create')->middleware('auth');
-// Route::post('/editprodut/{id}', 'ProductController@edit')->name('product.edit');
 
+
+
+
+// route for the cart
 Route::post('/cart/discount','CartController@discount')->name('cart.discount');
 Route::post('/cart/change','CartController@changequantity')->name('cart.changequantity');
+Route::get('/cart', 'CartController@index')->name('cart.index');
+
 // List articles
 
-Route::get('/cart', 'CartController@index')->name('cart.index');
 
 //add article to the carte
 Route::get('/cart/{product}', 'CartController@addProduct')->name('cart.addProduct');
 Route::get('/session/{name}','CartController@empty')->name('cart.empty');
+
 //remove an article from the cart
 Route::delete('/cart/{product}', 'CartController@removeProduct')->name('cart.removeProduct');
-// this is the probleme i cant do both add and remove with the same url
-Auth::routes();
 
 // purchase blade
-// Route::get('/success','PurchaseController@purchase')->name('purchase.success');
 Route::get('/checkpaypal/{check}','PurchaseController@checkpaypal')->name('purchase.checkpaypal')->middleware('auth');
-
 Route::get('/psuccess','PurchaseController@success')->name('purchase.success')->middleware('auth');
 Route::get('/perror','PurchaseController@echec')->name('purchase.echec')->middleware('auth');
-
-// Route::get('/check/{check}', function () {
-//     return 'Bonjour ' . $_GET['token'];
-// });
-// Route::get('/bonjour', function () {
-//     return 'Bonjour ' . $_GET['prenom'];
-// });
-
 Route::post('/send','contactController@send')->name('send');
-
 Route::post('/purchase','PurchaseController@purchase')->name('purchase')->middleware('auth');
-// Route::get('/echec',function(){
-//   return view('/purchase/echec');
-// })->name('purchase.success');
 
+// order blade
 Route::get('/order/{id}','OrderController@show')->name('order.show')->middleware('auth');
 Route::get('/order','OrderController@create')->name('order.create')->middleware('auth');
-// ajouter plus tard une verification pour les site avec argument abort 404
+
 
 //search some articles
 Route::get('/search','searchController@index')->name('search');
@@ -142,6 +114,9 @@ Route::get('/cameras', function () { return redirect()->route('products.index', 
 Route::get('/gaming', function () { return redirect()->route('products.index', ['category'=>'Gaming']); })->name('gaming');
 Route::get('/accessoires', function () { return redirect()->route('products.index', ['category'=>'Accessory']); })->name('accessoires');
 
+// routes fot tictactoe
 Route::get('/game','TictactoeController@index')->name('game.index')->middleware('auth');
 Route::post('/game/winner','TictactoeController@getdiscount')->name('game.getdiscount')->middleware('auth');
 Route::post('/game/newgame','TictactoeController@newgame')->name('game.newgame')->middleware('auth');
+
+Auth::routes();

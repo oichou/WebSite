@@ -21,7 +21,6 @@ class AdminController extends Controller
       $admin = Auth::user();
       if(!$admin->is_admin)
         return redirect()->route('error',['whichone' => '403' ]);
-       // return redirect('/dashboard');
        $recent_orders  = Order::join('users','users.id','=','orders.user_id')
                         ->orderByDesc('date_order')->select('orders.id','first_name','last_name','orders.id')->paginate(4);
        $recent_order = [];
@@ -109,24 +108,19 @@ class AdminController extends Controller
     if(!$user->is_admin)
       return redirect()->route('error',['whichone' => '403' ]);
     $type       = !filter_var(request()->type, FILTER_VALIDATE_BOOLEAN);
-    // dd($converted_res = !$type ? 'true' : 'false');
     $id         = request()->id;
     $promo      = request()->promo;
     $product    = Product::find($id);
     if($product == null || $product->quantity <= 0){
       return [
         "error" => "Product no longer available",
-        // 'type' => $type ? 'false' : 'true',
       ];
     }
     if($promo < 0 || $promo >= 100){
       return [
         "error" => "Error percentage",
-        // 'type' => $type ? 'false' : 'true',
       ];
     }
-    // $new_price = $product->basic_price - ($product->basic_price * $promo / 100 );
-    // dd($product);
     $product->setpromotion($promo,$type);
     $product->save();
     return [

@@ -62,7 +62,6 @@ class TictactoeController extends Controller
 
   public function getdiscount(){
     $game     = Session::has('Game') ? Session::get('Game') : null;
-    // dd($game);
     if($game){
 
     if($game->getTry() >= 2)

@@ -142,8 +142,6 @@
 
 @section('extra-js')
 <script defer src="{{ asset('js/cart.js') }}"></script>
-
-
 @endsection
 <!-- Footer -->
 @include('footer')

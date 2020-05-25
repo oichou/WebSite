@@ -96,32 +96,13 @@ class Payments
             return [$response,$this->initPaypal()];
 
         } catch (\PayPal\Exception\PPConnectionException $ex){
-            // return 'kll';
             return back()->withError('Some error occur, sorry for inconvenient');
         } catch (\PayPal\Exception\PayPalConnectionException $ex){
-            // return 'kll';
             return back()->withError('Some error occur, sorry for inconvenient');
         } catch (\PayPal\Exception\Exception $ex) {
-            // return 'kll';
             return back()->withError('Some error occur, sorry for inconvenient');
         }
-          // return $payment;
-          // $payment->create($this->_api_context);
-        /** dd($payment->create($this->_api_context));exit; **/
-            // Setup payment gateway
-
-            // Send purchase request
-            // $response = $this->gateway()->authorize(
-            //     [
-            //         'amount'    => $value['amount'],
-            //         'currency'  => $value['currency'],
-            //         'cancelUrl' => 'http://localhost:8000/check/echec',
-            //         'returnUrl' => 'http://localhost:8000/check/success',
-            //     ]
-            // )->send();
-            // return $response;
-        }
-        catch(\Exception $ex){
+        } catch(\Exception $ex){
             return $ex->getMessage();
         }
     }

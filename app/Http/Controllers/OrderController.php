@@ -39,7 +39,6 @@ class OrderController extends Controller
    * @return \App\Order
    */
   protected function create($data) {
-    // dd($request->input('promo'));
     $validator = $this->validator($data);
     if($validator->fails())
         $validator->validate();
@@ -66,7 +65,6 @@ class OrderController extends Controller
       {
         $currentuser = Auth::user();
         $order       = Order::find($id);
-        // dd($order->id);
         if(!$order)
           return redirect()->route('error',['whichone' => 'outofstock' ]);
         if($order->user_id != $currentuser->id && !$currentuser->is_admin)
@@ -74,7 +72,6 @@ class OrderController extends Controller
         $details = Ordersproduct::where('order_id','=',$order->id)->get();
         $ppqs = [];
         $missing = [];
-        // dd($details);
         foreach ($details as $detail) {
           $product = Product::find($detail->product_id);
           if($product)
@@ -83,7 +80,6 @@ class OrderController extends Controller
           $missing [] = $detail->product_id;
 
         }
-        // dd($ppqs);
         return view('/purchase/orderdetail')->with([
             'user'  => $currentuser,
             'order' => $order,
@@ -103,30 +99,12 @@ class OrderController extends Controller
         if(!$admin->is_admin)
           return redirect()->route('error',['whichone' => '403' ]);
           $order = Order::find($id);
-          // dd($product);
           return view('dashboard/edit/editorder')->with([
               'admin'   => $admin,
               'order'   => $order,
           ]);
         }
-          // /**
-          //  * edit the order .
-          //  *
-          //  * @param  int  $id
-          //  * @return \Illuminate\Http\Response
-          //  */
-          // public function edit($id)
-          // {
-          //     $order = Order::find($id);
-          //     // $order->statut =request()->statut;
-          //     // dd($updates);
-          //     $order->update(request()->all());
-          //     // $order->updated_at = now();
-          //     // $order->save();
-          //     dd($order);
-          //     return redirect()->route('admin.showtable', ['table' => 'Order']);
-          //
-          // }
+        
           /**
            * Update the specified resource in storage.
            *

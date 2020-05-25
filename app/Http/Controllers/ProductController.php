@@ -46,7 +46,6 @@ class ProductController extends Controller
        */
       protected function validatorforupdate(array $data)
       {
-          // $regex = "/^(?=.+)(?:[1-9]\d*|0)?(?:\.\d+)?$/";
           return Validator::make($data, [
               'name'              => ['required', 'string', 'Max:255'],
               'quantity'          => ['required', 'numeric','Min:1'],

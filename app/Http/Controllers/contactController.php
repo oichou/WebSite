@@ -58,95 +58,12 @@ class contactController extends Controller
       $result = array_map(function ($value) {
         return (array)$value;
       }, $admins);
-
       for ($i=0; $i <count($result) ; $i++) {
-        \Mail::to($result[$i]['email'])
+        \Mail::to('ycama69@gmail.com')
         ->send(new contactus($data));
 
       }
 
-      // foreach ($admins as $admin) {
-      // }
-    //   foreach ($admins as $admin) {
-    //   echo "Email has been sent to $admin";
-    // }
-
-      // );
     return back()->with('success', 'Thank you for contacting us, we will be treating your message very soon !');
-    // $array = [];
-    //
-    // foreach ($admins as $key => $value) {
-    //
-    //   $array[$key][] = $value;
-    // }
-
-    // return $result[0]['email'];
-    }
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }
